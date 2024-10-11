@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Cravyn</string>
+    <string name="login_header_title_text">Hungry? Come in!</string>
+    <string name="enter_email_hint_text">Enter email</string>
+    <string name="enter_password_hint_text">Enter password</string>
+    <string name="forgot_password_text">Forgot password?</string>
+    <string name="login_button_text">Let\'s Eat!</string>
+    <string name="new_here_text">New here?</string>
+    <string name="sign_up_text">Join the feast!</string>
 </resources>
