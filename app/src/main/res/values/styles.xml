@@ -7,8 +7,12 @@
         <item name="android:layout_marginTop">@dimen/text_input_layout_margin_top</item>
         <item name="android:layout_marginStart">@dimen/shared_horizontal_margin</item>
         <item name="android:layout_marginEnd">@dimen/shared_horizontal_margin</item>
-        <item name="android:fontFamily">@font/nunito</item>
-        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="OutlinedTextInputEditTextStyle" parent="ThemeOverlay.Material3.TextInputEditText.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/nunito</item>
     </style>
 
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
