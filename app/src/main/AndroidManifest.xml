@@ -3,16 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".CravynApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".CravynApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cravyn"
         tools:targetApi="31">
+        <activity
+            android:name=".features.auth.signup.SignUpActivity"
+            android:exported="false" />
         <activity
             android:name=".features.auth.login.LoginActivity"
             android:exported="true">
@@ -22,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
