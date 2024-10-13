@@ -1,10 +1,10 @@
 package com.cravyn.app.features.auth.signup
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.cravyn.app.databinding.FragmentSignUpBinding
 import com.cravyn.app.features.auth.AuthViewModel
@@ -12,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 private var _binding: FragmentSignUpBinding? = null
 private val binding get() = _binding!!
+
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {
     private val authViewModel: AuthViewModel by viewModels()

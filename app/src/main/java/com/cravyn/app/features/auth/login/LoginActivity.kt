@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.cravyn.app.R
-import com.cravyn.app.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /** Tag for identifying the [LoginFragment] in transactions. */
@@ -38,5 +37,4 @@ class LoginActivity : AppCompatActivity() {
             R.id.login_fragment_placeholder
         ) as LoginFragment?
     }
-
 }
