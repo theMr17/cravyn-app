@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.auth.signup.SignUpActivity">
+    tools:context=".features.auth.signup.SignUpFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/materialToolbar"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -23,23 +23,23 @@
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar">
-
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/join_the_feast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-                android:layout_marginTop="@dimen/login_button_margin_top"
+                android:layout_marginTop="@dimen/sign_up_header_margin_top"
                 android:fontFamily="@font/nunito_extrabold"
                 android:text="@string/sign_up_text"
                 android:textColor="@color/header_text_color"
-                android:textSize="@dimen/login_header_title_text_size"
+                android:textSize="@dimen/sign_up_header_title_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,11 +48,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_text_input_layout"
                 style="@style/OutlinedTextInputLayoutStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-                android:hint="Enter name"
-                android:layout_marginTop="@dimen/login_button_margin_top"
+                android:hint="@string/enter_name_hint_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/join_the_feast">
@@ -64,11 +61,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email_text_input_layout"
                 style="@style/OutlinedTextInputLayoutStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-                android:hint="Enter email"
-                android:layout_marginTop="@dimen/login_button_margin_top"
+                android:hint="@string/enter_email_hint_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name_text_input_layout">
@@ -80,11 +73,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phone_text_input_layout"
                 style="@style/OutlinedTextInputLayoutStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-                android:hint="Enter phone"
-                android:layout_marginTop="@dimen/login_button_margin_top"
+                android:hint="@string/enter_phone_hint_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email_text_input_layout">
@@ -96,11 +85,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dob_text_input_layout"
                 style="@style/OutlinedTextInputLayoutStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-                android:hint="Enter Date of birth"
-                android:layout_marginTop="@dimen/login_button_margin_top"
+                android:hint="@string/choose_date_of_birth_hint_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phone_text_input_layout"
@@ -115,8 +100,6 @@
                 android:id="@+id/password_text_input_layout"
                 style="@style/OutlinedTextInputLayoutStyle"
                 android:hint="@string/enter_password_hint_text"
-                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-                android:layout_marginTop="@dimen/login_button_margin_top"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dob_text_input_layout"
@@ -129,9 +112,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirm_password_text_input_layout"
                 style="@style/OutlinedTextInputLayoutStyle"
-                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-                android:hint="Confirm password"
-                android:layout_marginTop="@dimen/login_button_margin_top"
+                android:hint="@string/confirm_password_hint_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password_text_input_layout"
@@ -142,10 +123,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/grab_seat_button"
+                android:id="@+id/grab_a_seat_button"
                 style="@style/ButtonStyle"
-                android:layout_marginTop="24dp"
-                android:text="Grab a seat!"
+                android:layout_marginTop="@dimen/sign_up_button_margin_top"
+                android:text="@string/sign_up_button_text"
+                android:layout_marginBottom="@dimen/shared_margin_bottom"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/confirm_password_text_input_layout" />

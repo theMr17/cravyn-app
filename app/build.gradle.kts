@@ -9,10 +9,6 @@ android {
     namespace = "com.cravyn.app"
     compileSdk = 34
 
-    buildFeatures {
-        viewBinding = true
-    }
-
     defaultConfig {
         applicationId = "com.cravyn.app"
         minSdk = 24

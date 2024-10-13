@@ -11,12 +11,11 @@ import com.cravyn.app.features.auth.AuthViewModel
 import com.cravyn.app.features.auth.signup.SignUpActivity
 import dagger.hilt.android.AndroidEntryPoint
 
-private var _binding: FragmentLoginBinding? = null
-private val binding get() = _binding!!
-
-
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+
     private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
@@ -24,12 +23,11 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        val view = binding.root
 
         binding.joinTheFeast.setOnClickListener {
             startActivity(SignUpActivity.createSignUpActivity(requireContext()))
         }
-        return view
+        return binding.root
     }
 
     override fun onDestroyView() {

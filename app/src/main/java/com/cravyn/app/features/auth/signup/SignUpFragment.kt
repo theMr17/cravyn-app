@@ -10,11 +10,10 @@ import com.cravyn.app.databinding.FragmentSignUpBinding
 import com.cravyn.app.features.auth.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-private var _binding: FragmentSignUpBinding? = null
-private val binding get() = _binding!!
-
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {
+    private var _binding: FragmentSignUpBinding? = null
+    private val binding get() = _binding!!
     private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
@@ -22,12 +21,12 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
-        val view = binding.root
 
-        binding.materialToolbar.setNavigationOnClickListener {
+        binding.toolbar.setNavigationOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
-        return view
+
+        return binding.root
     }
 
     override fun onDestroyView() {
