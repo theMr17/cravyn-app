@@ -1,37 +1,30 @@
-package com.cravyn.app.features.auth.login
+package com.cravyn.app.features.auth.signup
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.cravyn.app.R
-import com.cravyn.app.databinding.FragmentLoginBinding
+import com.cravyn.app.databinding.FragmentSignUpBinding
 import com.cravyn.app.features.auth.AuthViewModel
-import com.cravyn.app.features.auth.signup.SignUpActivity
 import dagger.hilt.android.AndroidEntryPoint
 
-private var _binding:FragmentLoginBinding? = null
+private var _binding: FragmentSignUpBinding? = null
 private val binding get() = _binding!!
-
-
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class SignUpFragment : Fragment() {
     private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.joinTheFeast.setOnClickListener {
-            startActivity(SignUpActivity.createSignUpActivity(requireContext()))
+        binding.materialToolbar.setNavigationOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
         return view
     }
@@ -40,6 +33,5 @@ class LoginFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }
+
