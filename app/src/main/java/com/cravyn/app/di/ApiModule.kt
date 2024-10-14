@@ -1,6 +1,7 @@
 package com.cravyn.app.di
 
 import android.content.Context
+import com.cravyn.app.BuildConfig
 import com.cravyn.app.features.auth.AuthApi
 import com.cravyn.app.features.auth.AuthRepository
 import com.cravyn.app.features.auth.AuthRepositoryImpl
@@ -18,13 +19,12 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object AppModule {
+object ApiModule {
     @Provides
     @Singleton
     fun providesOkHttpClient(
         @ApplicationContext context: Context
     ): OkHttpClient {
-
         val cacheSize = (5 * 1024 * 1024).toLong()
         val myCache = Cache(context.cacheDir, cacheSize)
 
@@ -36,14 +36,13 @@ object AppModule {
             .readTimeout(60, TimeUnit.SECONDS)
 
         return builder.build()
-
     }
 
     @Provides
     @Singleton
     fun providesRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("/api/")
+            .baseUrl("${BuildConfig.BASE_URL}/api/v1")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

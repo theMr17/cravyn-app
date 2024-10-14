@@ -19,8 +19,17 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
+
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://cravyn-sever.onrender.com\"")
+        }
         release {
+            buildConfigField("String", "BASE_URL", "\"https://cravyn-sever.onrender.com\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -43,6 +52,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
+    implementation(libs.androidx.room)
     implementation(libs.hilt.android)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
@@ -50,6 +60,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
+
+    kapt(libs.androidx.room.compiler)
     kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)
