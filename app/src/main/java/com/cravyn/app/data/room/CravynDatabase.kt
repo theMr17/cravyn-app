@@ -3,10 +3,10 @@ package com.cravyn.app.data.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.cravyn.app.features.auth.AuthDao
-import com.cravyn.app.features.auth.models.User
+import com.cravyn.app.features.auth.models.Customer
 
 @Database(
-    entities = [User::class],
+    entities = [Customer::class],
     exportSchema = false,
     version = 1
 )

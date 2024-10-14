@@ -8,9 +8,9 @@ data class LoginResponse(
     @SerializedName("refreshToken")
     val refreshToken: String,
     @SerializedName("user")
-    val user: List<User>
+    val user: Customer
 ) {
-    data class User(
+    data class Customer(
         @SerializedName("date_of_birth")
         val dateOfBirth: String,
         @SerializedName("email_address")
