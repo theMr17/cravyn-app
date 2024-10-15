@@ -2,7 +2,7 @@ package com.cravyn.app.features.auth.models
 
 import com.google.gson.annotations.SerializedName
 
-data class UpdateProfileRequestBody(
-    @SerializedName("image")
-    val image: String
+data class DeleteAccountRequestBody(
+    @SerializedName("password")
+    val password: String
 )

@@ -2,9 +2,12 @@ package com.cravyn.app.features.auth.models
 
 import com.google.gson.annotations.SerializedName
 
-data class UpdateAccountResponse(
+data class UpdateProfileImageResponse(
     @SerializedName("customer")
-    val customer: Customer
+    val customer: Customer,
+
+    @SerializedName("imageUrl")
+    val imageUrl: String
 ) {
     data class Customer(
         @SerializedName("date_of_birth")
