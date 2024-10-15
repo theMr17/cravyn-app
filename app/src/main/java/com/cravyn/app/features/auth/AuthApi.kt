@@ -1,6 +1,6 @@
 package com.cravyn.app.features.auth
 
-import com.cravyn.app.data.ApiResponse
+import com.cravyn.app.data.api.ApiResponse
 import com.cravyn.app.features.auth.models.DeleteAccountRequestBody
 import com.cravyn.app.features.auth.models.LoginRequestBody
 import com.cravyn.app.features.auth.models.LoginResponse
@@ -18,34 +18,34 @@ import retrofit2.http.PATCH
 import retrofit2.http.POST
 
 interface AuthApi {
-    @POST("/customer/register")
+    @POST("customer/register")
     suspend fun register(
         @Body body: RegisterRequestBody
     ): Response<ApiResponse<RegisterResponse>>
 
-    @POST("/customer/login")
+    @POST("customer/login")
     suspend fun login(
         @Body body: LoginRequestBody
     ): Response<ApiResponse<LoginResponse>>
 
-    @POST("/customer/logout")
-    suspend fun logout(): Response<ApiResponse<Void>>
+    @POST("customer/logout")
+    suspend fun logout(): Response<ApiResponse<Unit>>
 
-    @PATCH("/customer")
+    @PATCH("customer")
     suspend fun updateAccount(
         @Body body: UpdateAccountRequestBody
     ): Response<ApiResponse<UpdateAccountResponse>>
 
-    @DELETE("/customer")
+    @DELETE("customer")
     suspend fun deleteAccount(
         @Body body: DeleteAccountRequestBody
-    ): Response<ApiResponse<Void>>
+    ): Response<ApiResponse<Unit>>
 
-    @PATCH("/customer/profile-image")
+    @PATCH("customer/profile-image")
     suspend fun updateProfileImage(
         @Body body: UpdateProfileImageRequestBody
     ): Response<ApiResponse<UpdateProfileImageResponse>>
 
-    @PATCH("/customer/refresh-token")
+    @PATCH("customer/refresh-token")
     suspend fun refreshAccessToken(): Response<ApiResponse<RefreshAccessTokenResponse>>
 }

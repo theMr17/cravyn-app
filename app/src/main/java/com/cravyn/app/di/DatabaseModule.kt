@@ -2,7 +2,7 @@ package com.cravyn.app.di
 
 import android.content.Context
 import androidx.room.Room
-import com.cravyn.app.data.room.CravynDatabase
+import com.cravyn.app.data.db.CravynDatabase
 import com.cravyn.app.features.auth.AuthDao
 import dagger.Module
 import dagger.Provides
@@ -19,9 +19,7 @@ object DatabaseModule {
     fun providesCravynDatabase(
         @ApplicationContext context: Context
     ): CravynDatabase {
-        return Room.databaseBuilder(context, CravynDatabase::class.java, "cravyn-db")
-            .fallbackToDestructiveMigration()
-            .build()
+        return Room.databaseBuilder(context, CravynDatabase::class.java, "cravyn-db").build()
     }
 
     @Singleton

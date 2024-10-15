@@ -1,4 +1,4 @@
-package com.cravyn.app.data
+package com.cravyn.app.data.api
 
 sealed class Resource<T>(
     val data: T? = null,

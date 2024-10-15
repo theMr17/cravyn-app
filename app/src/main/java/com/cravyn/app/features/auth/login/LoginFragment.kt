@@ -27,6 +27,11 @@ class LoginFragment : Fragment() {
         binding.joinTheFeast.setOnClickListener {
             startActivity(SignUpActivity.createSignUpActivity(requireContext()))
         }
+
+        binding.letsEatButton.setOnClickListener {
+            authViewModel.login("harrypotter@hogwarts.com", "dumbledore")
+        }
+
         return binding.root
     }
 
