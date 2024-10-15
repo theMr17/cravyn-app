@@ -32,5 +32,4 @@ class AuthRepositoryImpl @Inject constructor(
             emit(Resource.Error())
         }
     }
-
 }

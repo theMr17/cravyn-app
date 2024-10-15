@@ -2,9 +2,13 @@ package com.cravyn.app.di
 
 import android.content.Context
 import com.cravyn.app.BuildConfig
+import com.cravyn.app.data.api.AuthInterceptor
+import com.cravyn.app.data.api.TokenAuthenticator
 import com.cravyn.app.features.auth.AuthApi
 import com.cravyn.app.features.auth.AuthRepository
 import com.cravyn.app.features.auth.AuthRepositoryImpl
+import com.cravyn.app.features.auth.JwtTokenRepository
+import com.cravyn.app.features.auth.JwtTokenRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +28,9 @@ object ApiModule {
     @Provides
     @Singleton
     fun providesOkHttpClient(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
+        authInterceptor: AuthInterceptor,
+        tokenAuthenticator: TokenAuthenticator
     ): OkHttpClient {
         val cacheSize = (5 * 1024 * 1024).toLong()
         val myCache = Cache(context.cacheDir, cacheSize)
@@ -32,9 +38,11 @@ object ApiModule {
         val builder = OkHttpClient().newBuilder()
 
         builder.cache(myCache)
+            .addInterceptor(authInterceptor)
             .connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
+            .authenticator(tokenAuthenticator)
 
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(
@@ -58,6 +66,8 @@ object ApiModule {
     @Provides
     fun providesAuthRepository(impl: AuthRepositoryImpl): AuthRepository = impl
 
+    @Provides
+    fun providesJwtTokenRepository(impl: JwtTokenRepositoryImpl): JwtTokenRepository = impl
 
     @Provides
     @Singleton

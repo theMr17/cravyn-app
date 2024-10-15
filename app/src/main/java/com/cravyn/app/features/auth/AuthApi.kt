@@ -4,6 +4,7 @@ import com.cravyn.app.data.api.ApiResponse
 import com.cravyn.app.features.auth.models.DeleteAccountRequestBody
 import com.cravyn.app.features.auth.models.LoginRequestBody
 import com.cravyn.app.features.auth.models.LoginResponse
+import com.cravyn.app.features.auth.models.RefreshAccessTokenRequestBody
 import com.cravyn.app.features.auth.models.RefreshAccessTokenResponse
 import com.cravyn.app.features.auth.models.RegisterRequestBody
 import com.cravyn.app.features.auth.models.RegisterResponse
@@ -11,6 +12,7 @@ import com.cravyn.app.features.auth.models.UpdateAccountRequestBody
 import com.cravyn.app.features.auth.models.UpdateAccountResponse
 import com.cravyn.app.features.auth.models.UpdateProfileImageRequestBody
 import com.cravyn.app.features.auth.models.UpdateProfileImageResponse
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -47,5 +49,7 @@ interface AuthApi {
     ): Response<ApiResponse<UpdateProfileImageResponse>>
 
     @PATCH("customer/refresh-token")
-    suspend fun refreshAccessToken(): Response<ApiResponse<RefreshAccessTokenResponse>>
+    fun refreshAccessToken(
+        @Body body: RefreshAccessTokenRequestBody
+    ): Call<ApiResponse<RefreshAccessTokenResponse>>
 }
