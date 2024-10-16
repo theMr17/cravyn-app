@@ -13,7 +13,6 @@ import retrofit2.Response
 interface AuthRepository {
     suspend fun login(body: LoginRequestBody): Response<ApiResponse<LoginResponse>>
     suspend fun logout(): Response<ApiResponse<Unit>>
-
     suspend fun register(body: RegisterRequestBody): Response<ApiResponse<RegisterResponse>>
 
     fun addUserToDatabase(user: User): Flow<Resource<Unit>>

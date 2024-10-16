@@ -24,4 +24,24 @@
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:textAllCaps">false</item>
     </style>
+
+    <style name="LoadingBarCardStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:layout_marginTop">@dimen/loading_bar_card_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/loading_bar_card_margin_bottom</item>
+        <item name="cardElevation">@dimen/loading_bar_card_elevation</item>
+        <item name="cardBackgroundColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="CircularProgressIndicatorStyle" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:indeterminate">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="indicatorSize">@dimen/loading_indicator_size</item>
+        <item name="trackThickness">@dimen/loading_track_thickness</item>
+        <item name="indicatorColor">?attr/colorOnPrimary</item>
+    </style>
 </resources>

@@ -1,12 +1,14 @@
 package com.cravyn.app.features.auth
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.features.auth.models.LoginRequestBody
 import com.cravyn.app.features.auth.models.RegisterRequestBody
 import com.cravyn.app.features.auth.models.User
+import com.cravyn.app.util.ErrorResponseParserUtil.getErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -16,31 +18,15 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
-    fun register(
-        name: String,
-        phoneNumber: String,
-        emailAddress: String,
-        dateOfBirth: String,
-        password: String,
-        confirmPassword: String ) {
-        viewModelScope.launch {
-            val registerRequestBody = RegisterRequestBody(name,phoneNumber,emailAddress,dateOfBirth,password,confirmPassword)
-            val registerResponse = authRepository.register(registerRequestBody)
+    val loginLiveData: MutableLiveData<Resource<User>> = MutableLiveData()
 
-            if(registerResponse.isSuccessful){
-
-            }
-            else {
-
-            }
-        }
-
-    }
     /**,
      * Attempts to log in the user with the provided [email] and [password].
      */
     fun login(email: String, password: String) {
         viewModelScope.launch {
+            loginLiveData.postValue(Resource.Loading())
+
             val loginRequestBody = LoginRequestBody(email, password)
             val response = authRepository.login(loginRequestBody)
 
@@ -64,10 +50,49 @@ class AuthViewModel @Inject constructor(
                             is Resource.Error -> Log.e("Auth", "Failed to add user to database.")
                         }
                     }
+
+                    loginLiveData.postValue(
+                        Resource.Success(
+                            data = user,
+                            message = response.body()!!.message
+                        )
+                    )
+
                 } ?: Log.e("Auth", "Response body or customer data is null.")
             } else {
+                loginLiveData.postValue(
+                    Resource.Error(getErrorMessage(response))
+                )
                 Log.e("Auth", "Login failed with status code: ${response.code()}.")
             }
         }
+    }
+
+    fun register(
+        name: String,
+        phoneNumber: String,
+        emailAddress: String,
+        dateOfBirth: String,
+        password: String,
+        confirmPassword: String
+    ) {
+        viewModelScope.launch {
+            val registerRequestBody = RegisterRequestBody(
+                name,
+                phoneNumber,
+                emailAddress,
+                dateOfBirth,
+                password,
+                confirmPassword
+            )
+            val registerResponse = authRepository.register(registerRequestBody)
+
+            if (registerResponse.isSuccessful) {
+
+            } else {
+
+            }
+        }
+
     }
 }
