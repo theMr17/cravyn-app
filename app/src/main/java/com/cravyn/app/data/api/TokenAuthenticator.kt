@@ -51,7 +51,7 @@ class TokenAuthenticator @Inject constructor(
         }
 
         try {
-            val call = Retrofit.Builder().baseUrl("${BuildConfig.BASE_URL}/api/v1/")
+            val call = Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(AuthApi::class.java)
                 .refreshAccessToken(refreshAccessTokenRequestBody)

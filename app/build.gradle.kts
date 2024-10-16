@@ -26,10 +26,10 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://cravyn-sever.onrender.com\"")
+            buildConfigField("String", "BASE_URL", "\"https://cravyn-sever.onrender.com/api/v1/\"")
         }
         release {
-            buildConfigField("String", "BASE_URL", "\"https://cravyn-sever.onrender.com\"")
+            buildConfigField("String", "BASE_URL", "\"https://cravyn-sever.onrender.com/api/v1/\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

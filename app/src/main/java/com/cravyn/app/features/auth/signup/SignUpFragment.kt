@@ -34,4 +34,3 @@ class SignUpFragment : Fragment() {
         _binding = null
     }
 }
-
