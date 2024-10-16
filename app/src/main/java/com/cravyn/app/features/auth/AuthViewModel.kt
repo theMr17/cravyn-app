@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.features.auth.models.LoginRequestBody
+import com.cravyn.app.features.auth.models.RegisterRequestBody
 import com.cravyn.app.features.auth.models.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -15,7 +16,27 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
-    /**
+    fun register(
+        name: String,
+        phoneNumber: String,
+        emailAddress: String,
+        dateOfBirth: String,
+        password: String,
+        confirmPassword: String ) {
+        viewModelScope.launch {
+            val registerRequestBody = RegisterRequestBody(name,phoneNumber,emailAddress,dateOfBirth,password,confirmPassword)
+            val registerResponse = authRepository.register(registerRequestBody)
+
+            if(registerResponse.isSuccessful){
+
+            }
+            else {
+
+            }
+        }
+
+    }
+    /**,
      * Attempts to log in the user with the provided [email] and [password].
      */
     fun login(email: String, password: String) {
