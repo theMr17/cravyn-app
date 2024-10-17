@@ -18,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-
     private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
@@ -26,13 +25,15 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        val email = binding.emailTextInputLayout.editText?.text.toString()
+        val password = binding.passwordTextInputLayout.editText?.text.toString()
 
         binding.joinTheFeast.setOnClickListener {
             startActivity(SignUpActivity.createSignUpActivity(requireContext()))
         }
 
         binding.letsEatButton.setOnClickListener {
-            authViewModel.login("harrypotter@hogwarts.com", "dumbledore")
+            authViewModel.login(email, password)
         }
 
         authViewModel.loginLiveData.observe(viewLifecycleOwner) {
