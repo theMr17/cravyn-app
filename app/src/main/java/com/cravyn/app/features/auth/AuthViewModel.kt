@@ -1,6 +1,7 @@
 package com.cravyn.app.features.auth
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,14 +19,18 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
-    val loginLiveData: MutableLiveData<Resource<User>> = MutableLiveData()
+    val _loginLiveData: MutableLiveData<Resource<User>> = MutableLiveData()
+    val loginLiveData: LiveData<Resource<User>> get() = _loginLiveData
+
+    val _registerLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
+    val registerLiveData: LiveData<Resource<Unit>> get() = _registerLiveData
 
     /**,
      * Attempts to log in the user with the provided [email] and [password].
      */
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            loginLiveData.postValue(Resource.Loading())
+            _loginLiveData.postValue(Resource.Loading())
 
             val loginRequestBody = LoginRequestBody(email, password)
             val response = authRepository.login(loginRequestBody)
@@ -51,7 +56,7 @@ class AuthViewModel @Inject constructor(
                         }
                     }
 
-                    loginLiveData.postValue(
+                    _loginLiveData.postValue(
                         Resource.Success(
                             data = user,
                             message = response.body()!!.message
@@ -60,7 +65,7 @@ class AuthViewModel @Inject constructor(
 
                 } ?: Log.e("Auth", "Response body or customer data is null.")
             } else {
-                loginLiveData.postValue(
+                _loginLiveData.postValue(
                     Resource.Error(getErrorMessage(response))
                 )
                 Log.e("Auth", "Login failed with status code: ${response.code()}.")
@@ -77,6 +82,7 @@ class AuthViewModel @Inject constructor(
         confirmPassword: String
     ) {
         viewModelScope.launch {
+            _registerLiveData.postValue(Resource.Loading())
             val registerRequestBody = RegisterRequestBody(
                 name,
                 phoneNumber,
@@ -88,10 +94,16 @@ class AuthViewModel @Inject constructor(
             val registerResponse = authRepository.register(registerRequestBody)
 
             if (registerResponse.isSuccessful) {
-
+                _registerLiveData.postValue(
+                    Resource.Success(data = Unit)
+                )
             } else {
-
+                _registerLiveData.postValue(
+                    Resource.Error(getErrorMessage(registerResponse))
+                )
             }
+
+
         }
 
     }
