@@ -25,18 +25,19 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
-        val name = binding.nameTextInputLayout.editText?.text.toString()
-        val email = binding.emailTextInputLayout.editText?.text.toString()
-        val phoneNumber = binding.phoneTextInputLayout.editText?.text.toString()
-        val dateOfBirth = binding.dobTextInputLayout.editText?.text.toString()
-        val password = binding.passwordTextInputLayout.editText?.text.toString()
-        val confirmPassword = binding.confirmPasswordTextInputLayout.editText?.text.toString()
 
         binding.toolbar.setNavigationOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
         binding.grabASeatButton.setOnClickListener {
+            val name = binding.nameTextInputLayout.editText?.text.toString()
+            val email = binding.emailTextInputLayout.editText?.text.toString()
+            val phoneNumber = binding.phoneTextInputLayout.editText?.text.toString()
+            val dateOfBirth = binding.dobTextInputLayout.editText?.text.toString()
+            val password = binding.passwordTextInputLayout.editText?.text.toString()
+            val confirmPassword = binding.confirmPasswordTextInputLayout.editText?.text.toString()
+
             authViewModel.register(name, email, phoneNumber, dateOfBirth, password, confirmPassword)
         }
 
@@ -69,7 +70,6 @@ class SignUpFragment : Fragment() {
                     startActivity(LoginActivity.createLoginActivity(requireContext()))
                 }
             }
-
         }
         return binding.root
     }

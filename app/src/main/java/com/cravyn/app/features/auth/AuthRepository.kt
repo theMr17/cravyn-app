@@ -15,5 +15,5 @@ interface AuthRepository {
     suspend fun logout(): Response<ApiResponse<Unit>>
     suspend fun register(body: RegisterRequestBody): Response<ApiResponse<RegisterResponse>>
 
-    fun addUserToDatabase(user: User): Flow<Resource<Unit>>
+    fun saveUserToDatabase(user: User): Flow<Resource<Unit>>
 }

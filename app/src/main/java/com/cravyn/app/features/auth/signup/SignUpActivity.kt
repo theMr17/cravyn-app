@@ -9,7 +9,7 @@ import com.cravyn.app.R
 import dagger.hilt.android.AndroidEntryPoint
 
 /** Tag for identifying the [SignUpFragment] in transactions. */
-private const val TAG_SIGNUP_FRAGMENT = "SIGNUP_FRAGMENT"
+private const val TAG_SIGN_UP_FRAGMENT = "SIGN_UP_FRAGMENT"
 
 @AndroidEntryPoint
 class SignUpActivity : AppCompatActivity() {
@@ -28,7 +28,7 @@ class SignUpActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().add(
                 R.id.signup_fragment_placeholder,
                 SignUpFragment(),
-                TAG_SIGNUP_FRAGMENT
+                TAG_SIGN_UP_FRAGMENT
             ).commitNow()
         }
 

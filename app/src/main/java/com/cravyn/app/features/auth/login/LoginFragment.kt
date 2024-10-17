@@ -25,14 +25,15 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        val email = binding.emailTextInputLayout.editText?.text.toString()
-        val password = binding.passwordTextInputLayout.editText?.text.toString()
 
         binding.joinTheFeast.setOnClickListener {
             startActivity(SignUpActivity.createSignUpActivity(requireContext()))
         }
 
         binding.letsEatButton.setOnClickListener {
+            val email = binding.emailTextInputLayout.editText?.text.toString()
+            val password = binding.passwordTextInputLayout.editText?.text.toString()
+
             authViewModel.login(email, password)
         }
 

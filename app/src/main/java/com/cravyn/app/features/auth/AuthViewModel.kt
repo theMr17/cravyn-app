@@ -15,6 +15,9 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/** Tag for identifying the [AuthViewModel] in transactions. */
+private const val TAG_AUTH_VIEW_MODEL = "AUTH_VIEW_MODEL"
+
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository
@@ -25,8 +28,12 @@ class AuthViewModel @Inject constructor(
     val _registerLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
     val registerLiveData: LiveData<Resource<Unit>> get() = _registerLiveData
 
-    /**,
+    /**
      * Attempts to log in the user with the provided [email] and [password].
+     *
+     * If the login is successful, the user's details are saved to the database,
+     * and a success resource is posted to [loginLiveData].
+     * If unsuccessful, an error resource is posted.
      */
     fun login(email: String, password: String) {
         viewModelScope.launch {
@@ -34,49 +41,58 @@ class AuthViewModel @Inject constructor(
 
             val loginRequestBody = LoginRequestBody(email, password)
             val response = authRepository.login(loginRequestBody)
+            val responseBody = response.body()
 
-            if (response.isSuccessful) {
-                response.body()?.data?.customer?.let { customer ->
-                    val user = User(
-                        id = customer.id,
-                        dateOfBirth = customer.dateOfBirth,
-                        emailAddress = customer.emailAddress,
-                        name = customer.name,
-                        phoneNumber = customer.phoneNumber,
-                        profileImageUrl = customer.profileImageUrl,
-                        accessToken = response.body()?.data?.accessToken,
-                        refreshToken = response.body()?.data?.refreshToken
-                    )
-                    // Add user to the database and collect the result.
-                    authRepository.addUserToDatabase(user).collectLatest { result ->
-                        when (result) {
-                            is Resource.Loading -> Log.d("Auth", "Adding user to database.")
-                            is Resource.Success -> Log.d("Auth", "User added successfully.")
-                            is Resource.Error -> Log.e("Auth", "Failed to add user to database.")
-                        }
-                    }
-
-                    _loginLiveData.postValue(
-                        Resource.Success(
-                            data = user,
-                            message = response.body()!!.message
-                        )
-                    )
-
-                } ?: Log.e("Auth", "Response body or customer data is null.")
-            } else {
-                _loginLiveData.postValue(
-                    Resource.Error(getErrorMessage(response))
+            if (response.isSuccessful && responseBody?.data?.customer != null) {
+                val customer = responseBody.data.customer
+                val user = User(
+                    id = customer.id,
+                    dateOfBirth = customer.dateOfBirth,
+                    emailAddress = customer.emailAddress,
+                    name = customer.name,
+                    phoneNumber = customer.phoneNumber,
+                    profileImageUrl = customer.profileImageUrl,
+                    accessToken = responseBody.data.accessToken,
+                    refreshToken = responseBody.data.refreshToken
                 )
-                Log.e("Auth", "Login failed with status code: ${response.code()}.")
+
+                saveUserToDatabase(user)
+
+                _loginLiveData.postValue(
+                    Resource.Success(
+                        data = user,
+                        message = responseBody.message
+                    )
+                )
+            } else {
+                val errorMessage = if (response.errorBody() == null) {
+                    "Login failed: Something went wrong, please try again."
+                } else {
+                    getErrorMessage(response)
+                }
+                _loginLiveData.postValue(Resource.Error(errorMessage))
+                Log.e(
+                    TAG_AUTH_VIEW_MODEL,
+                    "Login failed with status code: ${response.code()}. Error: $errorMessage"
+                )
+            }
+        }
+    }
+
+    private suspend fun saveUserToDatabase(user: User) {
+        authRepository.saveUserToDatabase(user).collectLatest { result ->
+            when (result) {
+                is Resource.Loading -> Log.d(TAG_AUTH_VIEW_MODEL, "Adding user to database.")
+                is Resource.Success -> Log.d(TAG_AUTH_VIEW_MODEL, "User added successfully.")
+                is Resource.Error -> Log.e(TAG_AUTH_VIEW_MODEL, "Failed to add user to database.")
             }
         }
     }
 
     fun register(
         name: String,
-        phoneNumber: String,
         emailAddress: String,
+        phoneNumber: String,
         dateOfBirth: String,
         password: String,
         confirmPassword: String
@@ -102,9 +118,6 @@ class AuthViewModel @Inject constructor(
                     Resource.Error(getErrorMessage(registerResponse))
                 )
             }
-
-
         }
-
     }
 }

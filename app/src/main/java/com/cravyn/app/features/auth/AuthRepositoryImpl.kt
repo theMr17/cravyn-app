@@ -28,7 +28,7 @@ class AuthRepositoryImpl @Inject constructor(
         return authApi.register(body)
     }
 
-    override fun addUserToDatabase(user: User): Flow<Resource<Unit>> = flow {
+    override fun saveUserToDatabase(user: User): Flow<Resource<Unit>> = flow {
         emit(Resource.Loading())
         try {
             authDao.insertUser(user)
