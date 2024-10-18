@@ -39,7 +39,7 @@
                 android:fontFamily="@font/nunito_extrabold"
                 android:text="@string/sign_up_text"
                 android:textColor="@color/header_text_color"
-                android:textSize="@dimen/sign_up_header_title_text_size"
+                android:textSize="@dimen/header_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
