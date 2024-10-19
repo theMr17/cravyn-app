@@ -22,8 +22,8 @@ class JwtTokenRepositoryImpl @Inject constructor(
     override fun getRefreshTokenFromDatabase(): Flow<Resource<String>> = flow {
         emit(Resource.Loading())
         try {
-            val accessToken = authDao.getRefreshToken()
-            emit(Resource.Success(accessToken ?: ""))
+            val refreshToken = authDao.getRefreshToken()
+            emit(Resource.Success(refreshToken ?: ""))
         } catch (e: Exception) {
             e.printStackTrace()
             emit(Resource.Error())

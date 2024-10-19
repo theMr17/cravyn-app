@@ -11,7 +11,7 @@ class AuthInterceptor @Inject constructor(
     private val jwtTokenRepository: JwtTokenRepository
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        lateinit var accessToken: String
+        var accessToken = ""
         runBlocking {
             jwtTokenRepository.getAccessTokenFromDatabase().collectLatest { result ->
                 when (result) {

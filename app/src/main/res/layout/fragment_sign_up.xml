@@ -32,16 +32,9 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/join_the_feast"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-                android:layout_marginTop="@dimen/sign_up_header_margin_top"
-                android:fontFamily="@font/nunito_extrabold"
+                style="@style/HeaderStyle"
                 android:text="@string/sign_up_text"
-                android:textColor="@color/header_text_color"
-                android:textSize="@dimen/header_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

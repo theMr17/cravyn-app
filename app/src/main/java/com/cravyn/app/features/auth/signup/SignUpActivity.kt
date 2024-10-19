@@ -3,7 +3,6 @@ package com.cravyn.app.features.auth.signup
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.cravyn.app.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,15 +30,6 @@ class SignUpActivity : AppCompatActivity() {
                 TAG_SIGN_UP_FRAGMENT
             ).commitNow()
         }
-
-        onBackPressedDispatcher.addCallback(
-            this,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    finish()
-                }
-            }
-        )
     }
 
     private fun getSignUpFragment(): SignUpFragment? {

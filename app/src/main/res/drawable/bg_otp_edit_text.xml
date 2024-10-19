@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <corners android:radius="@dimen/otp_edit_text_item_corner_radius" />
+
+    <stroke
+        android:width="@dimen/otp_edit_text_item_stroke_width"
+        android:color="@color/grey" />
+
+    <padding
+        android:left="@dimen/otp_edit_text_item_padding"
+        android:top="@dimen/otp_edit_text_item_padding"
+        android:right="@dimen/otp_edit_text_item_padding"
+        android:bottom="@dimen/otp_edit_text_item_padding" />
+</shape>

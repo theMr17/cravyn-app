@@ -28,16 +28,10 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/header_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-            android:layout_marginTop="@dimen/login_header_margin_top"
-            android:fontFamily="@font/nunito_extrabold"
+            style="@style/HeaderStyle"
+            android:layout_marginTop="0dp"
             android:text="@string/login_header_title_text"
-            android:textColor="@color/header_text_color"
-            android:textSize="@dimen/login_header_title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

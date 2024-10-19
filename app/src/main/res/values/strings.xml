@@ -12,6 +12,15 @@
     <string name="choose_date_of_birth_hint_text">Choose date of birth</string>
     <string name="enter_name_hint_text">Enter name</string>
     <string name="enter_phone_hint_text">Enter phone</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="current_step_count">Step %d of %d</string>
+    <string name="forgot_password_step_1_header_text">Enter your email address</string>
+    <string name="forgot_password_step_1_description_text">Please provide the email linked to your account, and we’ll send you a one-time password (OTP) to reset your password.</string>
+    <string name="forgot_password_step_1_button_text">Send OTP</string>
+    <string name="forgot_password_step_2_header_text">Verify your OTP</string>
+    <string name="forgot_password_step_2_description_text">Please enter the 4-digit OTP we sent to your email.</string>
+    <string name="forgot_password_step_2_button_text">Submit OTP</string>
+    <string name="forgot_password_step_3_header_text">Enter Your New Password</string>
+    <string name="forgot_password_step_3_description_text">Please enter and confirm your new password below.</string>
+    <string name="forgot_password_step_3_button_text">Update Password</string>
+    <string name="forgot_password_toolbar_title">Forgot Password</string>
 </resources>

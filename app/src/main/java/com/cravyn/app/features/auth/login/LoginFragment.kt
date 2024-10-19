@@ -10,7 +10,8 @@ import androidx.fragment.app.viewModels
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentLoginBinding
 import com.cravyn.app.features.auth.AuthViewModel
-import com.cravyn.app.features.auth.signup.SignUpActivity
+import com.cravyn.app.features.auth.forgotpassword.ForgotPasswordActivity.Companion.createForgotPasswordActivity
+import com.cravyn.app.features.auth.signup.SignUpActivity.Companion.createSignUpActivity
 import com.cravyn.app.util.LoadingBarUtil.showButtonLoadingBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,8 +27,12 @@ class LoginFragment : Fragment() {
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
+        binding.forgotPasswordText.setOnClickListener {
+            startActivity(createForgotPasswordActivity(requireContext()))
+        }
+
         binding.joinTheFeast.setOnClickListener {
-            startActivity(SignUpActivity.createSignUpActivity(requireContext()))
+            startActivity(createSignUpActivity(requireContext()))
         }
 
         binding.letsEatButton.setOnClickListener {
