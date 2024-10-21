@@ -6,8 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cravyn.app.data.api.Resource
+import com.cravyn.app.features.auth.models.ForgetPasswordRequestBody
 import com.cravyn.app.features.auth.models.LoginRequestBody
+import com.cravyn.app.features.auth.models.OtpVerificationRequestBody
 import com.cravyn.app.features.auth.models.RegisterRequestBody
+import com.cravyn.app.features.auth.models.ResetPasswordRequestBody
 import com.cravyn.app.features.auth.models.User
 import com.cravyn.app.util.ErrorResponseParserUtil.getErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,11 +25,20 @@ private const val TAG_AUTH_VIEW_MODEL = "AUTH_VIEW_MODEL"
 class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
-    val _loginLiveData: MutableLiveData<Resource<User>> = MutableLiveData()
+    private val _loginLiveData: MutableLiveData<Resource<User>> = MutableLiveData()
     val loginLiveData: LiveData<Resource<User>> get() = _loginLiveData
 
-    val _registerLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
+    private val _registerLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
     val registerLiveData: LiveData<Resource<Unit>> get() = _registerLiveData
+
+    private val _forgetPasswordLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
+    val forgetPasswordLiveData: LiveData<Resource<Unit>> get() = _forgetPasswordLiveData
+
+    private val _otpVerificationLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
+    val otpVerificationLiveData: LiveData<Resource<Unit>> get() = _otpVerificationLiveData
+
+    private val _resetPasswordLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
+    val resetPasswordLiveData: LiveData<Resource<Unit>> get() = _resetPasswordLiveData
 
     /**
      * Attempts to log in the user with the provided [email] and [password].
@@ -120,4 +132,61 @@ class AuthViewModel @Inject constructor(
             }
         }
     }
+
+    fun forgetPassword(email: String) {
+        viewModelScope.launch {
+            _forgetPasswordLiveData.postValue(Resource.Loading())
+            val forgetPasswordRequestBody = ForgetPasswordRequestBody(email)
+            val forgetPasswordResponse = authRepository.forgetPassword(forgetPasswordRequestBody)
+
+            if (forgetPasswordResponse.isSuccessful) {
+                _forgetPasswordLiveData.postValue(
+                    Resource.Success(data = Unit)
+                )
+            } else {
+                _forgetPasswordLiveData.postValue(
+                    Resource.Error(getErrorMessage(forgetPasswordResponse))
+                )
+            }
+        }
+    }
+
+    fun otpVerification(otp: String, email: String) {
+        viewModelScope.launch {
+            _otpVerificationLiveData.postValue(Resource.Loading())
+            val otpVerificationRequestBody = OtpVerificationRequestBody(otp, email)
+            val otpVerificationResponse = authRepository.otpVerification(otpVerificationRequestBody)
+
+            if (otpVerificationResponse.isSuccessful) {
+                _otpVerificationLiveData.postValue(
+                    Resource.Success(
+                        data = Unit
+                    )
+                )
+            } else {
+                _otpVerificationLiveData.postValue(Resource.Error())
+            }
+        }
+    }
+
+    fun resetPassword(email: String, password: String, confirmPassword: String, otp: String) {
+        viewModelScope.launch {
+            _resetPasswordLiveData.postValue(Resource.Loading())
+            val resetPasswordRequestBody =
+                ResetPasswordRequestBody(email, password, confirmPassword, otp)
+            val resetPasswordResponse = authRepository.resetPassword(resetPasswordRequestBody)
+
+            if (resetPasswordResponse.isSuccessful) {
+                _resetPasswordLiveData.postValue(
+                    Resource.Success(
+                        data = Unit
+                    )
+                )
+            } else {
+                _resetPasswordLiveData.postValue(Resource.Error())
+            }
+        }
+    }
+
+
 }

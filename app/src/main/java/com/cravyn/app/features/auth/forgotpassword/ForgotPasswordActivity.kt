@@ -79,13 +79,14 @@ class ForgotPasswordActivity : AppCompatActivity(), ForgotPasswordPageChanger {
         forgotPasswordViewModel.updateCurrentProgress(progress)
     }
 
-    override fun changePage(pageNumber: Int) {
+    override fun changePage(pageNumber: Int, bundle: Bundle) {
         val fragment = when (pageNumber) {
             ForgotPasswordPages.ENTER_EMAIL.value -> EnterEmailFragment()
             ForgotPasswordPages.OTP_VERIFICATION.value -> OtpVerificationFragment()
             ForgotPasswordPages.NEW_PASSWORD.value -> NewPasswordFragment()
             else -> throw IllegalArgumentException("Invalid page number")
         }
+        fragment.arguments = bundle
         showFragment(fragment, pageNumber)
     }
 }
