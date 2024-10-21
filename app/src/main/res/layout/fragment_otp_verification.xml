@@ -41,4 +41,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/otp_edit_text" />
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/loading_bar"
+        style="@style/LoadingBarCardStyle"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/submit_otp_button"
+        app:layout_constraintEnd_toEndOf="@id/submit_otp_button"
+        app:layout_constraintStart_toStartOf="@id/submit_otp_button"
+        app:layout_constraintTop_toTopOf="@id/submit_otp_button">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator style="@style/CircularProgressIndicatorStyle" />
+
+    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
