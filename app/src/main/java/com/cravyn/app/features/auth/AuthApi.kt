@@ -2,12 +2,17 @@ package com.cravyn.app.features.auth
 
 import com.cravyn.app.data.api.ApiResponse
 import com.cravyn.app.features.auth.models.DeleteAccountRequestBody
+import com.cravyn.app.features.auth.models.ForgetPasswordRequestBody
+import com.cravyn.app.features.auth.models.ForgetPasswordResponse
 import com.cravyn.app.features.auth.models.LoginRequestBody
 import com.cravyn.app.features.auth.models.LoginResponse
+import com.cravyn.app.features.auth.models.OtpVerificationRequestBody
 import com.cravyn.app.features.auth.models.RefreshAccessTokenRequestBody
 import com.cravyn.app.features.auth.models.RefreshAccessTokenResponse
 import com.cravyn.app.features.auth.models.RegisterRequestBody
 import com.cravyn.app.features.auth.models.RegisterResponse
+import com.cravyn.app.features.auth.models.ResetPasswordRequestBody
+import com.cravyn.app.features.auth.models.ResetPasswordResponse
 import com.cravyn.app.features.auth.models.UpdateAccountRequestBody
 import com.cravyn.app.features.auth.models.UpdateAccountResponse
 import com.cravyn.app.features.auth.models.UpdateProfileImageRequestBody
@@ -18,6 +23,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface AuthApi {
     @POST("customer/register")
@@ -52,4 +58,22 @@ interface AuthApi {
     fun refreshAccessToken(
         @Body body: RefreshAccessTokenRequestBody
     ): Call<ApiResponse<RefreshAccessTokenResponse>>
+
+    @POST("forgot-password")
+    suspend fun forgetPassword(
+        @Query("userType") userType: String = "customer",
+        @Body body: ForgetPasswordRequestBody
+    ): Response<ApiResponse<ForgetPasswordResponse>>
+
+    @POST("forgot-password/verify-otp")
+    suspend fun otpVerification(
+        @Query("userType") userType: String = "customer",
+        @Body body: OtpVerificationRequestBody
+    ): Response<ApiResponse<Unit>>
+
+    @PATCH("forgot-password/reset-password")
+    suspend fun resetPassword(
+        @Query("userType") userType: String = "customer",
+        @Body body: ResetPasswordRequestBody
+    ): Response<ApiResponse<ResetPasswordResponse>>
 }
