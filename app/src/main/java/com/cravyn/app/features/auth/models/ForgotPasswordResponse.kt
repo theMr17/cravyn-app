@@ -3,7 +3,7 @@ package com.cravyn.app.features.auth.models
 
 import com.google.gson.annotations.SerializedName
 
-data class ForgetPasswordResponse(
+data class ForgotPasswordResponse(
     @SerializedName("mailResponse")
     val mailResponse: MailResponse,
     @SerializedName("user")

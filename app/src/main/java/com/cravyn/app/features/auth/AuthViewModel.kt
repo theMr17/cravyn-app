@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cravyn.app.data.api.Resource
-import com.cravyn.app.features.auth.models.ForgetPasswordRequestBody
+import com.cravyn.app.features.auth.models.ForgotPasswordRequestBody
 import com.cravyn.app.features.auth.models.LoginRequestBody
 import com.cravyn.app.features.auth.models.OtpVerificationRequestBody
 import com.cravyn.app.features.auth.models.RegisterRequestBody
@@ -18,27 +18,49 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/** Tag for identifying the [AuthViewModel] in transactions. */
+/** Tag for identifying the [AuthViewModel] in logs. */
 private const val TAG_AUTH_VIEW_MODEL = "AUTH_VIEW_MODEL"
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
+    private val _isUserLoggedInLiveData: MutableLiveData<Resource<Boolean>> = MutableLiveData()
+    val isUserLoggedInLiveData: LiveData<Resource<Boolean>> get() = _isUserLoggedInLiveData
+
     private val _loginLiveData: MutableLiveData<Resource<User>> = MutableLiveData()
     val loginLiveData: LiveData<Resource<User>> get() = _loginLiveData
 
     private val _registerLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
     val registerLiveData: LiveData<Resource<Unit>> get() = _registerLiveData
 
-    private val _forgetPasswordLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
-    val forgetPasswordLiveData: LiveData<Resource<Unit>> get() = _forgetPasswordLiveData
+    private val _logoutLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
+    val logoutLiveData: LiveData<Resource<Unit>> get() = _logoutLiveData
+
+    private val _forgotPasswordLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
+    val forgotPasswordLiveData: LiveData<Resource<Unit>> get() = _forgotPasswordLiveData
 
     private val _otpVerificationLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
     val otpVerificationLiveData: LiveData<Resource<Unit>> get() = _otpVerificationLiveData
 
     private val _resetPasswordLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
     val resetPasswordLiveData: LiveData<Resource<Unit>> get() = _resetPasswordLiveData
+
+    fun isUserLoggedIn() {
+        viewModelScope.launch {
+            authRepository.isUserLoggedIn().collectLatest {
+                when (it) {
+                    is Resource.Error -> _isUserLoggedInLiveData.postValue(Resource.Error(message = "An error occurred while fetching the logged in user."))
+                    is Resource.Loading -> _isUserLoggedInLiveData.postValue(Resource.Loading())
+                    is Resource.Success -> _isUserLoggedInLiveData.postValue(
+                        Resource.Success(
+                            data = it.data ?: false, message = it.message
+                        )
+                    )
+                }
+            }
+        }
+    }
 
     /**
      * Attempts to log in the user with the provided [email] and [password].
@@ -91,16 +113,6 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    private suspend fun saveUserToDatabase(user: User) {
-        authRepository.saveUserToDatabase(user).collectLatest { result ->
-            when (result) {
-                is Resource.Loading -> Log.d(TAG_AUTH_VIEW_MODEL, "Adding user to database.")
-                is Resource.Success -> Log.d(TAG_AUTH_VIEW_MODEL, "User added successfully.")
-                is Resource.Error -> Log.e(TAG_AUTH_VIEW_MODEL, "Failed to add user to database.")
-            }
-        }
-    }
-
     fun register(
         name: String,
         emailAddress: String,
@@ -123,7 +135,7 @@ class AuthViewModel @Inject constructor(
 
             if (registerResponse.isSuccessful) {
                 _registerLiveData.postValue(
-                    Resource.Success(data = Unit)
+                    Resource.Success(data = Unit, message = registerResponse.body()?.message)
                 )
             } else {
                 _registerLiveData.postValue(
@@ -133,18 +145,60 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun forgetPassword(email: String) {
+    fun logout() {
         viewModelScope.launch {
-            _forgetPasswordLiveData.postValue(Resource.Loading())
-            val forgetPasswordRequestBody = ForgetPasswordRequestBody(email)
-            val forgetPasswordResponse = authRepository.forgetPassword(forgetPasswordRequestBody)
+            _logoutLiveData.postValue(Resource.Loading())
+            val logoutResponse = authRepository.logout()
 
-            if (forgetPasswordResponse.isSuccessful) {
-                _forgetPasswordLiveData.postValue(
-                    Resource.Success(data = Unit)
+            if (logoutResponse.isSuccessful) {
+                deleteUserFromDatabase()
+
+                _logoutLiveData.postValue(
+                    Resource.Success(data = Unit, message = logoutResponse.body()?.message)
                 )
             } else {
-                _forgetPasswordLiveData.postValue(
+                _logoutLiveData.postValue(
+                    Resource.Error(getErrorMessage(logoutResponse))
+                )
+            }
+        }
+    }
+
+    private suspend fun saveUserToDatabase(user: User) {
+        authRepository.saveUserToDatabase(user).collectLatest { result ->
+            when (result) {
+                is Resource.Loading -> Log.d(TAG_AUTH_VIEW_MODEL, "Adding user to database.")
+                is Resource.Success -> Log.d(TAG_AUTH_VIEW_MODEL, "User added successfully.")
+                is Resource.Error -> Log.e(TAG_AUTH_VIEW_MODEL, "Failed to add user to database.")
+            }
+        }
+    }
+
+    private suspend fun deleteUserFromDatabase() {
+        authRepository.deleteUserFromDatabase().collectLatest { result ->
+            when (result) {
+                is Resource.Loading -> Log.d(TAG_AUTH_VIEW_MODEL, "Deleting user from database.")
+                is Resource.Success -> Log.d(TAG_AUTH_VIEW_MODEL, "Deleted user successfully.")
+                is Resource.Error -> Log.e(
+                    TAG_AUTH_VIEW_MODEL,
+                    "Failed to delete user from database."
+                )
+            }
+        }
+    }
+
+    fun forgotPassword(email: String) {
+        viewModelScope.launch {
+            _forgotPasswordLiveData.postValue(Resource.Loading())
+            val forgotPasswordRequestBody = ForgotPasswordRequestBody(email)
+            val forgetPasswordResponse = authRepository.forgotPassword(forgotPasswordRequestBody)
+
+            if (forgetPasswordResponse.isSuccessful) {
+                _forgotPasswordLiveData.postValue(
+                    Resource.Success(data = Unit, message = forgetPasswordResponse.body()?.message)
+                )
+            } else {
+                _forgotPasswordLiveData.postValue(
                     Resource.Error(getErrorMessage(forgetPasswordResponse))
                 )
             }
@@ -159,9 +213,7 @@ class AuthViewModel @Inject constructor(
 
             if (otpVerificationResponse.isSuccessful) {
                 _otpVerificationLiveData.postValue(
-                    Resource.Success(
-                        data = Unit
-                    )
+                    Resource.Success(data = Unit, message = otpVerificationResponse.body()?.message)
                 )
             } else {
                 _otpVerificationLiveData.postValue(Resource.Error())
@@ -178,15 +230,11 @@ class AuthViewModel @Inject constructor(
 
             if (resetPasswordResponse.isSuccessful) {
                 _resetPasswordLiveData.postValue(
-                    Resource.Success(
-                        data = Unit
-                    )
+                    Resource.Success(data = Unit, message = resetPasswordResponse.body()?.message)
                 )
             } else {
                 _resetPasswordLiveData.postValue(Resource.Error())
             }
         }
     }
-
-
 }

@@ -10,6 +10,9 @@ import com.cravyn.app.R
 import com.cravyn.app.databinding.ActivityForgotPasswordBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+const val BUNDLE_KEY_EMAIL = "BUNDLE_KEY_EMAIL"
+const val BUNDLE_KEY_OTP = "BUNDLE_KEY_OTP"
+
 @AndroidEntryPoint
 class ForgotPasswordActivity : AppCompatActivity(), ForgotPasswordPageChanger {
     private lateinit var binding: ActivityForgotPasswordBinding
@@ -68,8 +71,13 @@ class ForgotPasswordActivity : AppCompatActivity(), ForgotPasswordPageChanger {
     }
 
     private inline fun <reified T : Fragment> getOrCreateFragment(): T {
-        return supportFragmentManager.findFragmentById(R.id.forgot_password_fragment_placeholder) as? T
-            ?: T::class.java.getDeclaredConstructor().newInstance()
+        // Try to find the fragment if it exists.
+        val fragment =
+            supportFragmentManager.findFragmentById(R.id.forgot_password_fragment_placeholder) as? T
+        // If not found, create a new instance of the fragment and add the bundle.
+        return fragment ?: T::class.java.getDeclaredConstructor().newInstance().apply {
+            arguments = forgotPasswordViewModel.bundle
+        }
     }
 
     private fun showFragment(fragment: Fragment, progress: Int) {
@@ -79,14 +87,14 @@ class ForgotPasswordActivity : AppCompatActivity(), ForgotPasswordPageChanger {
         forgotPasswordViewModel.updateCurrentProgress(progress)
     }
 
-    override fun changePage(pageNumber: Int, bundle: Bundle) {
+    override fun changePage(pageNumber: Int, bundle: Bundle?) {
+        forgotPasswordViewModel.bundle = bundle
         val fragment = when (pageNumber) {
-            ForgotPasswordPages.ENTER_EMAIL.value -> EnterEmailFragment()
-            ForgotPasswordPages.OTP_VERIFICATION.value -> OtpVerificationFragment()
-            ForgotPasswordPages.NEW_PASSWORD.value -> NewPasswordFragment()
+            ForgotPasswordPages.ENTER_EMAIL.value -> getOrCreateFragment<EnterEmailFragment>()
+            ForgotPasswordPages.OTP_VERIFICATION.value -> getOrCreateFragment<OtpVerificationFragment>()
+            ForgotPasswordPages.NEW_PASSWORD.value -> getOrCreateFragment<NewPasswordFragment>()
             else -> throw IllegalArgumentException("Invalid page number")
         }
-        fragment.arguments = bundle
         showFragment(fragment, pageNumber)
     }
 }

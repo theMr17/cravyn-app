@@ -2,8 +2,8 @@ package com.cravyn.app.features.auth
 
 import com.cravyn.app.data.api.ApiResponse
 import com.cravyn.app.data.api.Resource
-import com.cravyn.app.features.auth.models.ForgetPasswordRequestBody
-import com.cravyn.app.features.auth.models.ForgetPasswordResponse
+import com.cravyn.app.features.auth.models.ForgotPasswordRequestBody
+import com.cravyn.app.features.auth.models.ForgotPasswordResponse
 import com.cravyn.app.features.auth.models.LoginRequestBody
 import com.cravyn.app.features.auth.models.LoginResponse
 import com.cravyn.app.features.auth.models.OtpVerificationRequestBody
@@ -19,8 +19,11 @@ interface AuthRepository {
     suspend fun login(body: LoginRequestBody): Response<ApiResponse<LoginResponse>>
     suspend fun logout(): Response<ApiResponse<Unit>>
     suspend fun register(body: RegisterRequestBody): Response<ApiResponse<RegisterResponse>>
-    suspend fun forgetPassword(body: ForgetPasswordRequestBody): Response<ApiResponse<ForgetPasswordResponse>>
+    suspend fun forgotPassword(body: ForgotPasswordRequestBody): Response<ApiResponse<ForgotPasswordResponse>>
     suspend fun otpVerification(body: OtpVerificationRequestBody): Response<ApiResponse<Unit>>
     suspend fun resetPassword(body: ResetPasswordRequestBody): Response<ApiResponse<ResetPasswordResponse>>
+
     fun saveUserToDatabase(user: User): Flow<Resource<Unit>>
+    fun deleteUserFromDatabase(): Flow<Resource<Unit>>
+    fun isUserLoggedIn(): Flow<Resource<Boolean>>
 }

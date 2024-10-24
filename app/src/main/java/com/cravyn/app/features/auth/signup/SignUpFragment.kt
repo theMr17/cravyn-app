@@ -49,7 +49,7 @@ class SignUpFragment : Fragment() {
                         binding.grabASeatButton,
                         binding.loadingBar
                     )
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG)
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG)
                         .show()
                 }
 
@@ -67,7 +67,7 @@ class SignUpFragment : Fragment() {
                         binding.grabASeatButton,
                         binding.loadingBar
                     )
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG)
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG)
                         .show()
                     startActivity(LoginActivity.createLoginActivity(requireContext()))
                 }

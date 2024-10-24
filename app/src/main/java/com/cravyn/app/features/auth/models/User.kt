@@ -20,7 +20,7 @@ data class User(
     val name: String,
 
     @ColumnInfo("phone_number")
-    val phoneNumber: String,
+    val phoneNumber: String?,
 
     @ColumnInfo("profile_image_url")
     val profileImageUrl: String?,

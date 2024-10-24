@@ -1,5 +1,6 @@
-package com.cravyn.app.features.auth.forgotpassword
+package com.cravyn.app.features.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,42 +9,34 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.cravyn.app.data.api.Resource
-import com.cravyn.app.databinding.FragmentEnterEmailBinding
+import com.cravyn.app.databinding.FragmentHomeBinding
 import com.cravyn.app.features.auth.AuthViewModel
+import com.cravyn.app.features.auth.login.LoginActivity.Companion.createLoginActivity
 import com.cravyn.app.util.LoadingBarUtil.showButtonLoadingBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EnterEmailFragment : Fragment() {
-    private var _binding: FragmentEnterEmailBinding? = null
+class HomeFragment : Fragment() {
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
     private val authViewModel: AuthViewModel by viewModels()
-
-    private lateinit var bundle: Bundle
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentEnterEmailBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.sendOtpButton.setOnClickListener {
-            val email = binding.emailTextInputLayout.editText?.text.toString()
-
-            bundle = Bundle().apply {
-                putString(BUNDLE_KEY_EMAIL, email)
-            }
-
-            authViewModel.forgotPassword(email)
+        binding.logoutButton.setOnClickListener {
+            authViewModel.logout()
         }
 
-        authViewModel.forgotPasswordLiveData.observe(viewLifecycleOwner) {
+        authViewModel.logoutLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {
                     showButtonLoadingBar(
                         isLoading = false,
-                        binding.sendOtpButton,
+                        binding.logoutButton,
                         binding.loadingBar
                     )
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
@@ -52,7 +45,7 @@ class EnterEmailFragment : Fragment() {
                 is Resource.Loading -> {
                     showButtonLoadingBar(
                         isLoading = true,
-                        binding.sendOtpButton,
+                        binding.logoutButton,
                         binding.loadingBar
                     )
                 }
@@ -60,15 +53,13 @@ class EnterEmailFragment : Fragment() {
                 is Resource.Success -> {
                     showButtonLoadingBar(
                         isLoading = false,
-                        binding.sendOtpButton,
+                        binding.logoutButton,
                         binding.loadingBar
                     )
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG)
-                        .show()
-
-                    (activity as ForgotPasswordPageChanger).changePage(
-                        ForgotPasswordPages.OTP_VERIFICATION.value,
-                        bundle
+                    startActivity(
+                        createLoginActivity(requireContext()).apply {
+                            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        }
                     )
                 }
             }

@@ -17,9 +17,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class OtpVerificationFragment : Fragment() {
     private var _binding: FragmentOtpVerificationBinding? = null
     private val binding get() = _binding!!
-    private lateinit var email: String
+
     private val authViewModel: AuthViewModel by viewModels()
+
+    private lateinit var email: String
     private lateinit var bundle: Bundle
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,15 +30,15 @@ class OtpVerificationFragment : Fragment() {
         _binding = FragmentOtpVerificationBinding.inflate(inflater, container, false)
 
         arguments?.let {
-            email = it.getString("email", "")
+            email = it.getString(BUNDLE_KEY_EMAIL, "")
         }
 
         binding.submitOtpButton.setOnClickListener {
             val otp = binding.otpEditText.getText()
 
             bundle = Bundle().apply {
-                putString("otp", otp)
-                putString("email", email)
+                putString(BUNDLE_KEY_EMAIL, email)
+                putString(BUNDLE_KEY_OTP, otp)
             }
 
             authViewModel.otpVerification(otp, email)
@@ -49,7 +52,7 @@ class OtpVerificationFragment : Fragment() {
                         binding.submitOtpButton,
                         binding.loadingBar
                     )
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
 
                 is Resource.Loading -> {
@@ -66,8 +69,9 @@ class OtpVerificationFragment : Fragment() {
                         binding.submitOtpButton,
                         binding.loadingBar
                     )
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG)
                         .show()
+
                     (activity as ForgotPasswordPageChanger).changePage(
                         ForgotPasswordPages.NEW_PASSWORD.value,
                         bundle

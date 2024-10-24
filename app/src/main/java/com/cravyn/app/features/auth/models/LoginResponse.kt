@@ -26,7 +26,7 @@ data class LoginResponse(
         val name: String,
 
         @SerializedName("phone_number")
-        val phoneNumber: String,
+        val phoneNumber: String?,
 
         @SerializedName("profile_image_url")
         val profileImageUrl: String?

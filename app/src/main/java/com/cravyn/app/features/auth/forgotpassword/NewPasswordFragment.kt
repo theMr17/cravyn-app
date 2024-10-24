@@ -17,10 +17,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class NewPasswordFragment : Fragment() {
     private var _binding: FragmentNewPasswordBinding? = null
     private val binding get() = _binding!!
-    private lateinit var otp: String
-    private lateinit var email: String
 
     private val authViewModel: AuthViewModel by viewModels()
+
+    private lateinit var email: String
+    private lateinit var otp: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,9 +30,10 @@ class NewPasswordFragment : Fragment() {
         _binding = FragmentNewPasswordBinding.inflate(inflater, container, false)
 
         arguments?.let {
-            otp = it.getString("otp", "")
-            email = it.getString("email", "")
+            email = it.getString(BUNDLE_KEY_EMAIL, "")
+            otp = it.getString(BUNDLE_KEY_OTP, "")
         }
+
         binding.updatePasswordButton.setOnClickListener {
             val password = binding.newPasswordTextInputLayout.editText?.text.toString()
             val confirmPassword =
@@ -48,7 +50,7 @@ class NewPasswordFragment : Fragment() {
                         binding.updatePasswordButton,
                         binding.loadingBar
                     )
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
 
                 is Resource.Loading -> {
@@ -65,11 +67,14 @@ class NewPasswordFragment : Fragment() {
                         binding.updatePasswordButton,
                         binding.loadingBar
                     )
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG)
                         .show()
+
+                    requireActivity().finish()
                 }
             }
         }
+
         return binding.root
     }
 

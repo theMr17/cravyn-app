@@ -1,5 +1,6 @@
 package com.cravyn.app.features.auth.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.cravyn.app.databinding.FragmentLoginBinding
 import com.cravyn.app.features.auth.AuthViewModel
 import com.cravyn.app.features.auth.forgotpassword.ForgotPasswordActivity.Companion.createForgotPasswordActivity
 import com.cravyn.app.features.auth.signup.SignUpActivity.Companion.createSignUpActivity
+import com.cravyn.app.features.home.HomeActivity.Companion.createHomeActivity
 import com.cravyn.app.util.LoadingBarUtil.showButtonLoadingBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -67,7 +69,11 @@ class LoginFragment : Fragment() {
                         binding.letsEatButton,
                         binding.loadingBar
                     )
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    startActivity(
+                        createHomeActivity(requireContext()).apply {
+                            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        }
+                    )
                 }
             }
         }

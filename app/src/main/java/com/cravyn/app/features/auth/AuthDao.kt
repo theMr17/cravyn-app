@@ -4,17 +4,37 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
+import androidx.room.Transaction
 import com.cravyn.app.features.auth.models.User
 
 @Dao
 interface AuthDao {
     /**
-     * Inserts a [User] into the database. Replaces the existing entry if there is a conflict.
+     * Inserts a [User] into the database. Ensures that there is only one user in the database.
+     *
+     * @param user The user object to insert.
+     */
+    @Transaction
+    suspend fun insertUser(user: User) {
+        // Delete the existing user if any.
+        deleteUser()
+        // Now insert the new user.
+        insertSingleUser(user)
+    }
+
+    /**
+     * Inserts a [User] into the database.
      *
      * @param user The user object to insert.
      */
     @Insert(onConflict = REPLACE)
-    suspend fun insertUser(user: User)
+    suspend fun insertSingleUser(user: User)
+
+    /**
+     * Deletes the only [User] from the database.
+     */
+    @Query("DELETE FROM User")
+    suspend fun deleteUser()
 
     /**
      * Retrieves the access_token for the user.
@@ -45,8 +65,10 @@ interface AuthDao {
     )
 
     /**
-     * Clears the access and refresh tokens for the first user in the database.
+     * Checks if an user exists in the database.
+     *
+     * @return True if an user exists, false otherwise.
      */
-    @Query("UPDATE User SET access_token = NULL, refresh_token = NULL WHERE id = (SELECT id FROM User LIMIT 1)")
-    suspend fun clearAccessAndRefreshToken()
+    @Query("SELECT COUNT(*) FROM User")
+    suspend fun getUserCount(): Int
 }
