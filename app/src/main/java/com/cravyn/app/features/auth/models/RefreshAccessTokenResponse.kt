@@ -6,6 +6,6 @@ data class RefreshAccessTokenResponse(
     @SerializedName("accessToken")
     val accessToken: String,
 
-    @SerializedName("accessToken")
+    @SerializedName("refreshToken")
     val refreshToken: String
 )

@@ -60,6 +60,7 @@ class TokenAuthenticator @Inject constructor(
 
             return refreshAccessTokenResponse.body()?.data
         } catch (e: Exception) {
+            e.printStackTrace()
             return null
         }
     }

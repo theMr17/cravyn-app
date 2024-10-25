@@ -54,7 +54,7 @@ interface AuthApi {
         @Body body: UpdateProfileImageRequestBody
     ): Response<ApiResponse<UpdateProfileImageResponse>>
 
-    @PATCH("customer/refresh-token")
+    @POST("customer/refresh-token")
     fun refreshAccessToken(
         @Body body: RefreshAccessTokenRequestBody
     ): Call<ApiResponse<RefreshAccessTokenResponse>>
