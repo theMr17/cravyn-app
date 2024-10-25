@@ -1,5 +1,6 @@
 package com.cravyn.app.data.api
 
+import android.util.Log
 import com.cravyn.app.BuildConfig
 import com.cravyn.app.features.auth.AuthApi
 import com.cravyn.app.features.auth.JwtTokenRepository
@@ -21,7 +22,8 @@ class TokenAuthenticator @Inject constructor(
     override fun authenticate(route: Route?, response: Response): Request? {
         val refreshAccessTokenResponse = getNewAccessAndRefreshTokens()
         if (refreshAccessTokenResponse == null) {
-            // Log out user.
+            // TODO: Log out user.
+            Log.d("TokenAuthenticator", "Refresh token expired, logout user.")
         }
         return refreshAccessTokenResponse?.let {
             jwtTokenRepository.updateAccessAndRefreshTokenOnDatabase(
