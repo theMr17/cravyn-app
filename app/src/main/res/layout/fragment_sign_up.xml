@@ -85,7 +85,9 @@
                 app:endIconMode="custom"
                 app:endIconDrawable="@drawable/ic_calender">
 
-                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/OutlinedTextInputEditTextStyle"
+                    android:enabled="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
