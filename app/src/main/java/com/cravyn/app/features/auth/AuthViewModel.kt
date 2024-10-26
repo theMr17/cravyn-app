@@ -50,7 +50,11 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             authRepository.isUserLoggedIn().collectLatest {
                 when (it) {
-                    is Resource.Error -> _isUserLoggedInLiveData.postValue(Resource.Error(message = "An error occurred while fetching the logged in user."))
+                    is Resource.Error -> _isUserLoggedInLiveData.postValue(
+                        Resource.Error(
+                            message = "An error occurred while fetching the logged in user."
+                        )
+                    )
                     is Resource.Loading -> _isUserLoggedInLiveData.postValue(Resource.Loading())
                     is Resource.Success -> _isUserLoggedInLiveData.postValue(
                         Resource.Success(
@@ -164,29 +168,6 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    private suspend fun saveUserToDatabase(user: User) {
-        authRepository.saveUserToDatabase(user).collectLatest { result ->
-            when (result) {
-                is Resource.Loading -> Log.d(TAG_AUTH_VIEW_MODEL, "Adding user to database.")
-                is Resource.Success -> Log.d(TAG_AUTH_VIEW_MODEL, "User added successfully.")
-                is Resource.Error -> Log.e(TAG_AUTH_VIEW_MODEL, "Failed to add user to database.")
-            }
-        }
-    }
-
-    private suspend fun deleteUserFromDatabase() {
-        authRepository.deleteUserFromDatabase().collectLatest { result ->
-            when (result) {
-                is Resource.Loading -> Log.d(TAG_AUTH_VIEW_MODEL, "Deleting user from database.")
-                is Resource.Success -> Log.d(TAG_AUTH_VIEW_MODEL, "Deleted user successfully.")
-                is Resource.Error -> Log.e(
-                    TAG_AUTH_VIEW_MODEL,
-                    "Failed to delete user from database."
-                )
-            }
-        }
-    }
-
     fun forgotPassword(email: String) {
         viewModelScope.launch {
             _forgotPasswordLiveData.postValue(Resource.Loading())
@@ -234,6 +215,29 @@ class AuthViewModel @Inject constructor(
                 )
             } else {
                 _resetPasswordLiveData.postValue(Resource.Error())
+            }
+        }
+    }
+
+    private suspend fun saveUserToDatabase(user: User) {
+        authRepository.saveUserToDatabase(user).collectLatest { result ->
+            when (result) {
+                is Resource.Loading -> Log.d(TAG_AUTH_VIEW_MODEL, "Adding user to database.")
+                is Resource.Success -> Log.d(TAG_AUTH_VIEW_MODEL, "User added successfully.")
+                is Resource.Error -> Log.e(TAG_AUTH_VIEW_MODEL, "Failed to add user to database.")
+            }
+        }
+    }
+
+    private suspend fun deleteUserFromDatabase() {
+        authRepository.deleteUserFromDatabase().collectLatest { result ->
+            when (result) {
+                is Resource.Loading -> Log.d(TAG_AUTH_VIEW_MODEL, "Deleting user from database.")
+                is Resource.Success -> Log.d(TAG_AUTH_VIEW_MODEL, "Deleted user successfully.")
+                is Resource.Error -> Log.e(
+                    TAG_AUTH_VIEW_MODEL,
+                    "Failed to delete user from database."
+                )
             }
         }
     }

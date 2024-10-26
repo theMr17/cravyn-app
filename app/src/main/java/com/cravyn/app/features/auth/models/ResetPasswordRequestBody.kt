@@ -14,6 +14,4 @@ data class ResetPasswordRequestBody(
 
     @SerializedName("otp")
     val otp: String
-
-
 )

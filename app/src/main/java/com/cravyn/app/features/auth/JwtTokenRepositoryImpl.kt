@@ -15,7 +15,7 @@ class JwtTokenRepositoryImpl @Inject constructor(
             emit(Resource.Success(accessToken ?: ""))
         } catch (e: Exception) {
             e.printStackTrace()
-            emit(Resource.Error())
+            emit(Resource.Error("Failed to retrieve access token: ${e.message}"))
         }
     }
 
@@ -26,7 +26,7 @@ class JwtTokenRepositoryImpl @Inject constructor(
             emit(Resource.Success(refreshToken ?: ""))
         } catch (e: Exception) {
             e.printStackTrace()
-            emit(Resource.Error())
+            emit(Resource.Error("Failed to retrieve refresh token: ${e.message}"))
         }
     }
 
@@ -40,7 +40,7 @@ class JwtTokenRepositoryImpl @Inject constructor(
             emit(Resource.Success(Unit))
         } catch (e: Exception) {
             e.printStackTrace()
-            emit(Resource.Error())
+            emit(Resource.Error("Failed to update tokens: ${e.message}"))
         }
     }
 }

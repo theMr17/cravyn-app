@@ -32,7 +32,7 @@ object ApiModule {
         authInterceptor: AuthInterceptor,
         tokenAuthenticator: TokenAuthenticator
     ): OkHttpClient {
-        val cacheSize = (5 * 1024 * 1024).toLong()
+        val cacheSize = (5 * 1024 * 1024).toLong() // 5 MB cache.
         val myCache = Cache(context.cacheDir, cacheSize)
 
         val builder = OkHttpClient().newBuilder()
@@ -44,6 +44,7 @@ object ApiModule {
             .readTimeout(60, TimeUnit.SECONDS)
             .authenticator(tokenAuthenticator)
 
+        // Add logging interceptor in debug mode.
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
