@@ -96,17 +96,6 @@ interface AuthApi {
     ): Response<ApiResponse<UpdateProfileImageResponse>>
 
     /**
-     * Refreshes the access token using the provided refresh token.
-     *
-     * @param body The request containing the refresh token.
-     * @return A Call object containing the API response with the new access token.
-     */
-    @POST("customer/refresh-token")
-    fun refreshAccessToken(
-        @Body body: RefreshAccessTokenRequestBody
-    ): Call<ApiResponse<RefreshAccessTokenResponse>>
-
-    /**
      * Initiates the forgot password process for the user.
      *
      * @param userType The type of user (default is "customer").
@@ -144,4 +133,15 @@ interface AuthApi {
         @Query("userType") userType: String = "customer",
         @Body body: ResetPasswordRequestBody
     ): Response<ApiResponse<ResetPasswordResponse>>
+
+    /**
+     * Refreshes the access token using the provided refresh token.
+     *
+     * @param body The request containing the refresh token.
+     * @return A Call object containing the API response with the new access token.
+     */
+    @POST("customer/refresh-token")
+    fun refreshAccessToken(
+        @Body body: RefreshAccessTokenRequestBody
+    ): Call<ApiResponse<RefreshAccessTokenResponse>>
 }

@@ -24,7 +24,7 @@ object DatabaseModule {
 
     @Singleton
     @Provides
-    fun getUserDao(database: CravynDatabase): AuthDao {
+    fun getAuthDao(database: CravynDatabase): AuthDao {
         return database.authDao()
     }
 }

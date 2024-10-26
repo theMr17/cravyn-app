@@ -38,15 +38,15 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun forgotPassword(body: ForgotPasswordRequestBody): Response<ApiResponse<ForgotPasswordResponse>> {
-        return authApi.forgotPassword(userType = USER_TYPE, body)
+        return authApi.forgotPassword(USER_TYPE, body)
     }
 
     override suspend fun otpVerification(body: OtpVerificationRequestBody): Response<ApiResponse<Unit>> {
-        return authApi.otpVerification(userType = USER_TYPE, body)
+        return authApi.otpVerification(USER_TYPE, body)
     }
 
     override suspend fun resetPassword(body: ResetPasswordRequestBody): Response<ApiResponse<ResetPasswordResponse>> {
-        return authApi.resetPassword(userType = USER_TYPE, body)
+        return authApi.resetPassword(USER_TYPE, body)
     }
 
     override fun saveUserToDatabase(user: User): Flow<Resource<Unit>> = flow {
