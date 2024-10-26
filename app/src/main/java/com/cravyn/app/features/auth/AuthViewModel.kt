@@ -46,6 +46,12 @@ class AuthViewModel @Inject constructor(
     private val _resetPasswordLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
     val resetPasswordLiveData: LiveData<Resource<Unit>> get() = _resetPasswordLiveData
 
+    /**
+     * Checks if the user is logged in and updates [isUserLoggedInLiveData].
+     *
+     * This function collects the result from the repository and updates the LiveData
+     * with the login status. Possible states are Loading, Success, or Error.
+     */
     fun isUserLoggedIn() {
         viewModelScope.launch {
             authRepository.isUserLoggedIn().collectLatest {
@@ -55,6 +61,7 @@ class AuthViewModel @Inject constructor(
                             message = "An error occurred while fetching the logged in user."
                         )
                     )
+
                     is Resource.Loading -> _isUserLoggedInLiveData.postValue(Resource.Loading())
                     is Resource.Success -> _isUserLoggedInLiveData.postValue(
                         Resource.Success(
@@ -117,6 +124,19 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Registers a new user with the provided details.
+     *
+     * If registration is successful, a success resource is posted to [registerLiveData].
+     * If unsuccessful, an error resource is posted.
+     *
+     * @param name The name of the user.
+     * @param emailAddress The email address of the user.
+     * @param phoneNumber The phone number of the user.
+     * @param dateOfBirth The date of birth of the user.
+     * @param password The password for the user's account.
+     * @param confirmPassword The confirmation of the password for validation.
+     */
     fun register(
         name: String,
         emailAddress: String,
@@ -149,6 +169,13 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Logs out the currently logged-in user.
+     *
+     * If the logout is successful, the user is removed from the database,
+     * and a success resource is posted to [logoutLiveData]. If unsuccessful,
+     * an error resource is posted.
+     */
     fun logout() {
         viewModelScope.launch {
             _logoutLiveData.postValue(Resource.Loading())
@@ -168,6 +195,15 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Initiates the forgot password process for the user.
+     *
+     * Sends a reset password request to the server with the provided email.
+     * If successful, a success resource is posted to [forgotPasswordLiveData].
+     * If unsuccessful, an error resource is posted.
+     *
+     * @param email The email address of the user requesting a password reset.
+     */
     fun forgotPassword(email: String) {
         viewModelScope.launch {
             _forgotPasswordLiveData.postValue(Resource.Loading())
@@ -186,6 +222,16 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Verifies the OTP for password reset.
+     *
+     * Sends the OTP and email to the server for verification. If successful,
+     * a success resource is posted to [otpVerificationLiveData].
+     * If unsuccessful, an error resource is posted.
+     *
+     * @param otp The one-time password sent to the user.
+     * @param email The email address of the user.
+     */
     fun otpVerification(otp: String, email: String) {
         viewModelScope.launch {
             _otpVerificationLiveData.postValue(Resource.Loading())
@@ -202,6 +248,18 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Resets the user's password.
+     *
+     * Sends a reset password request with the user's email, new password, confirmation,
+     * and OTP. If successful, a success resource is posted to [resetPasswordLiveData].
+     * If unsuccessful, an error resource is posted.
+     *
+     * @param otp The one-time password for verification.
+     * @param email The email address of the user resetting the password.
+     * @param password The new password for the user's account.
+     * @param confirmPassword The confirmation of the new password for validation.
+     */
     fun resetPassword(email: String, password: String, confirmPassword: String, otp: String) {
         viewModelScope.launch {
             _resetPasswordLiveData.postValue(Resource.Loading())

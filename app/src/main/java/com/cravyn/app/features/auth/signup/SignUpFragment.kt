@@ -44,7 +44,8 @@ class SignUpFragment : Fragment() {
                             dayOfMonth,
                             month,
                             year
-                        ))
+                        )
+                    )
                 },
                 calender.get(Calendar.YEAR),
                 calender.get(Calendar.MONTH),

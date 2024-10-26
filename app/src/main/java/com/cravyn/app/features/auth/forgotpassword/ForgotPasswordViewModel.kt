@@ -19,7 +19,9 @@ class ForgotPasswordViewModel : ViewModel() {
     private var _bundle: Bundle? = null
     var bundle: Bundle?
         get() = _bundle
-        set(value) { _bundle = value }
+        set(value) {
+            _bundle = value
+        }
 
     /**
      * Updates the current progress with a new value.
