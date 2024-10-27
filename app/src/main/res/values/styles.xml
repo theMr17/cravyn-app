@@ -78,12 +78,15 @@
         <item name="layout_constraintDimensionRatio">1</item>
     </style>
     
-    <style name="ToolbarStyle" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+    <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">?attr/colorPrimary</item>
         <item name="android:theme">?attr/actionBarTheme</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+        <item name="fontFamily">@font/nunito</item>
+        <item name="navigationIcon">@drawable/ic_arrow_back</item>
     </style>
 
 </resources>
