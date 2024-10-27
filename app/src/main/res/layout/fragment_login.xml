@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.auth.login.LoginFragment">
+
+    <ImageView
+        android:id="@+id/header_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/header"
+        app:layout_constraintDimensionRatio="0.933"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/header_text"
+        style="@style/HeaderStyle"
+        android:layout_marginTop="@dimen/login_header_margin_top"
+        android:text="@string/login_header_title_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_image" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_text_input_layout"
+        style="@style/OutlinedTextInputLayoutStyle"
+        android:layout_marginTop="@dimen/email_text_input_layout_margin_top"
+        android:hint="@string/enter_email_hint_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_text">
+
+        <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_text_input_layout"
+        style="@style/OutlinedTextInputLayoutStyle"
+        android:hint="@string/enter_password_hint_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_text_input_layout"
+        app:endIconMode="password_toggle">
+
+        <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/forgot_password_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/forgot_password_text_margin_top"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/forgot_password_text"
+        android:textColor="@color/forgot_password_text_color"
+        android:textSize="@dimen/forgot_password_text_size"
+        app:layout_constraintEnd_toEndOf="@id/password_text_input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/password_text_input_layout" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/lets_eat_button"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="@dimen/login_button_margin_top"
+        android:text="@string/login_button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgot_password_text" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/loading_bar"
+        style="@style/LoadingBarCardStyle"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/lets_eat_button"
+        app:layout_constraintEnd_toEndOf="@id/lets_eat_button"
+        app:layout_constraintStart_toStartOf="@id/lets_eat_button"
+        app:layout_constraintTop_toTopOf="@id/lets_eat_button">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator style="@style/CircularProgressIndicatorStyle" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sign_up_text_container_margin_top"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lets_eat_button">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/new_here_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
+            android:text="@string/new_here_text"
+            android:textSize="@dimen/sign_up_text_size" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/join_the_feast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sign_up_text_margin_start"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="@string/sign_up_text"
+            android:textColor="@color/sign_up_text_color"
+            android:textSize="@dimen/sign_up_text_size" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

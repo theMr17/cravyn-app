@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.auth.signup.SignUpFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolbarStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/join_the_feast"
+                style="@style/HeaderStyle"
+                android:text="@string/sign_up_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name_text_input_layout"
+                style="@style/OutlinedTextInputLayoutStyle"
+                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+                android:hint="@string/enter_name_hint_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/join_the_feast">
+
+                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_text_input_layout"
+                style="@style/OutlinedTextInputLayoutStyle"
+                android:hint="@string/enter_email_hint_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_text_input_layout"
+                style="@style/OutlinedTextInputLayoutStyle"
+                android:hint="@string/enter_phone_hint_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/email_text_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dob_text_input_layout"
+                style="@style/OutlinedTextInputLayoutStyle"
+                android:hint="@string/choose_date_of_birth_hint_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone_text_input_layout"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_calender">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/OutlinedTextInputEditTextStyle"
+                    android:enabled="false" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_text_input_layout"
+                style="@style/OutlinedTextInputLayoutStyle"
+                android:hint="@string/enter_password_hint_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dob_text_input_layout"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/confirm_password_text_input_layout"
+                style="@style/OutlinedTextInputLayoutStyle"
+                android:hint="@string/confirm_password_hint_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/password_text_input_layout"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/grab_a_seat_button"
+                style="@style/ButtonStyle"
+                android:layout_marginTop="@dimen/sign_up_button_margin_top"
+                android:text="@string/sign_up_button_text"
+                android:layout_marginBottom="@dimen/shared_margin_bottom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_password_text_input_layout" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/loading_bar"
+                style="@style/LoadingBarCardStyle"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/grab_a_seat_button"
+                app:layout_constraintEnd_toEndOf="@+id/grab_a_seat_button"
+                app:layout_constraintStart_toStartOf="@+id/grab_a_seat_button"
+                app:layout_constraintTop_toTopOf="@+id/grab_a_seat_button">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator style="@style/CircularProgressIndicatorStyle" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

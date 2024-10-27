@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="header_text_color">@color/black</color>
+    <color name="forgot_password_text_color">@color/black</color>
+    <color name="sign_up_text_color">@color/red_1</color>
+</resources>

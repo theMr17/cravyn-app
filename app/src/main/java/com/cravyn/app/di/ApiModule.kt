@@ -1,0 +1,78 @@
+package com.cravyn.app.di
+
+import android.content.Context
+import com.cravyn.app.BuildConfig
+import com.cravyn.app.data.api.AuthInterceptor
+import com.cravyn.app.data.api.TokenAuthenticator
+import com.cravyn.app.features.auth.AuthApi
+import com.cravyn.app.features.auth.AuthRepository
+import com.cravyn.app.features.auth.AuthRepositoryImpl
+import com.cravyn.app.features.auth.JwtTokenRepository
+import com.cravyn.app.features.auth.JwtTokenRepositoryImpl
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import okhttp3.Cache
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
+
+@InstallIn(SingletonComponent::class)
+@Module
+object ApiModule {
+    @Provides
+    @Singleton
+    fun providesOkHttpClient(
+        @ApplicationContext context: Context,
+        authInterceptor: AuthInterceptor,
+        tokenAuthenticator: TokenAuthenticator
+    ): OkHttpClient {
+        val cacheSize = (5 * 1024 * 1024).toLong() // 5 MB cache.
+        val myCache = Cache(context.cacheDir, cacheSize)
+
+        val builder = OkHttpClient().newBuilder()
+
+        builder.cache(myCache)
+            .addInterceptor(authInterceptor)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .authenticator(tokenAuthenticator)
+
+        // Add logging interceptor in debug mode.
+        if (BuildConfig.DEBUG) {
+            builder.addInterceptor(
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            )
+        }
+
+        return builder.build()
+    }
+
+    @Provides
+    @Singleton
+    fun providesRetrofit(client: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Provides
+    fun providesAuthRepository(impl: AuthRepositoryImpl): AuthRepository = impl
+
+    @Provides
+    fun providesJwtTokenRepository(impl: JwtTokenRepositoryImpl): JwtTokenRepository = impl
+
+    @Provides
+    @Singleton
+    fun providesAuthApi(retrofit: Retrofit): AuthApi {
+        return retrofit.create(AuthApi::class.java)
+    }
+}

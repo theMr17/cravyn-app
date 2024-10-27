@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="OutlinedTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/text_input_layout_margin_top</item>
+        <item name="android:layout_marginStart">@dimen/shared_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/shared_horizontal_margin</item>
+    </style>
+
+    <style name="OutlinedTextInputEditTextStyle" parent="ThemeOverlay.Material3.TextInputEditText.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="fontFamily">@font/nunito</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_marginStart">@dimen/shared_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/shared_horizontal_margin</item>
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="LoadingBarCardStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:layout_marginTop">@dimen/loading_bar_card_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/loading_bar_card_margin_bottom</item>
+        <item name="cardElevation">@dimen/loading_bar_card_elevation</item>
+        <item name="cardBackgroundColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="CircularProgressIndicatorStyle" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:indeterminate">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="indicatorSize">@dimen/loading_indicator_size</item>
+        <item name="trackThickness">@dimen/loading_track_thickness</item>
+        <item name="indicatorColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="HeaderStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/header_margin_top</item>
+        <item name="android:layout_marginStart">@dimen/shared_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/shared_horizontal_margin</item>
+        <item name="android:textColor">@color/header_text_color</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="layout_constraintHorizontal_bias">0.0</item>
+    </style>
+
+    <style name="ForgotPasswordDescriptionTextStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/forgot_password_description_margin_top</item>
+        <item name="android:layout_marginStart">@dimen/shared_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/shared_horizontal_margin</item>
+        <item name="android:textSize">@dimen/forgot_password_description_text_size</item>
+        <item name="android:fontFamily">@font/nunito</item>
+    </style>
+
+    <style name="OtpEditTextItemStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">number</item>
+        <item name="android:fontFamily">@font/nunito</item>
+        <item name="android:background">@drawable/bg_otp_edit_text</item>
+        <item name="layout_constraintDimensionRatio">1</item>
+    </style>
+    
+    <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:theme">?attr/actionBarTheme</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+        <item name="fontFamily">@font/nunito</item>
+        <item name="navigationIcon">@drawable/ic_arrow_back</item>
+    </style>
+
+</resources>

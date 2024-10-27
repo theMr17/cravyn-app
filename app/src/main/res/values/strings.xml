@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">Cravyn</string>
+    <string name="login_header_title_text">Hungry? Come in!</string>
+    <string name="enter_email_hint_text">Enter email</string>
+    <string name="enter_password_hint_text">Enter password</string>
+    <string name="forgot_password_text">Forgot password?</string>
+    <string name="login_button_text">Let\'s Eat!</string>
+    <string name="new_here_text">New here?</string>
+    <string name="sign_up_text">Join the feast!</string>
+    <string name="sign_up_button_text">Grab a seat!</string>
+    <string name="confirm_password_hint_text">Confirm password</string>
+    <string name="choose_date_of_birth_hint_text">Choose date of birth</string>
+    <string name="enter_name_hint_text">Enter name</string>
+    <string name="enter_phone_hint_text">Enter phone</string>
+    <string name="current_step_count">Step %d of %d</string>
+    <string name="forgot_password_step_1_header_text">Enter your email address</string>
+    <string name="forgot_password_step_1_description_text">Please provide the email linked to your account, and we’ll send you a one-time password (OTP) to reset your password.</string>
+    <string name="forgot_password_step_1_button_text">Send OTP</string>
+    <string name="forgot_password_step_2_header_text">Verify your OTP</string>
+    <string name="forgot_password_step_2_description_text">Please enter the 4-digit OTP we sent to your email.</string>
+    <string name="forgot_password_step_2_button_text">Submit OTP</string>
+    <string name="forgot_password_step_3_header_text">Enter Your New Password</string>
+    <string name="forgot_password_step_3_description_text">Please enter and confirm your new password below.</string>
+    <string name="forgot_password_step_3_button_text">Update Password</string>
+    <string name="forgot_password_toolbar_title">Forgot Password</string>
+    <string name="formatted_date">%1$d/%2$d/%3$d</string>
 </resources>
