@@ -34,7 +34,7 @@ class ForgotPasswordActivity : AppCompatActivity(), ForgotPasswordPageChanger {
         initializeFragment(forgotPasswordViewModel.currentProgress.value ?: -1)
 
         binding.toolbar.setNavigationOnClickListener {
-            this.onBackPressedDispatcher.onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 
