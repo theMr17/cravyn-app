@@ -26,7 +26,7 @@
         </activity>
         <activity
             android:name=".features.auth.login.LoginActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".features.auth.signup.SignUpActivity"
             android:exported="false" />

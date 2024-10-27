@@ -7,34 +7,6 @@ data class ForgotPasswordResponse(
     @SerializedName("user")
     val user: User
 ) {
-    data class MailResponse(
-        @SerializedName("accepted")
-        val accepted: List<String>,
-        @SerializedName("ehlo")
-        val ehlo: List<String>,
-        @SerializedName("envelope")
-        val envelope: Envelope,
-        @SerializedName("envelopeTime")
-        val envelopeTime: Int,
-        @SerializedName("messageId")
-        val messageId: String,
-        @SerializedName("messageSize")
-        val messageSize: Int,
-        @SerializedName("messageTime")
-        val messageTime: Int,
-        @SerializedName("rejected")
-        val rejected: List<Any>,
-        @SerializedName("response")
-        val response: String
-    ) {
-        data class Envelope(
-            @SerializedName("from")
-            val from: String,
-            @SerializedName("to")
-            val to: List<String>
-        )
-    }
-
     data class User(
         @SerializedName("email_address")
         val emailAddress: String,
