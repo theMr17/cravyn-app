@@ -6,5 +6,7 @@
     <color name="yellow_1">#FFEDC0</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="grey">#7A747474</color>
+    <color name="grey_1">#7A747474</color>
+    <color name="grey_2">#7AC3C3C3</color>
+    <color name="green">#009688</color>
 </resources>

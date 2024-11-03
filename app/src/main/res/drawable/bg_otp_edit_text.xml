@@ -6,7 +6,7 @@
 
     <stroke
         android:width="@dimen/otp_edit_text_item_stroke_width"
-        android:color="@color/grey" />
+        android:color="@color/grey_1" />
 
     <padding
         android:left="@dimen/otp_edit_text_item_padding"
