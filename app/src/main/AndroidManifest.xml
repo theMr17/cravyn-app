@@ -36,6 +36,9 @@
         <activity
             android:name=".features.home.HomeActivity"
             android:exported="false" />
+        <activity
+            android:name=".features.restaurant.RestaurantActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
