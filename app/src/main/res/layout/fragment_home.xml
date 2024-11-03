@@ -6,27 +6,135 @@
     android:layout_height="match_parent"
     tools:context=".features.home.HomeFragment">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/logout_button"
-        style="@style/ButtonStyle"
-        android:layout_marginTop="@dimen/login_button_margin_top"
-        android:text="Log out"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/loading_bar"
-        style="@style/LoadingBarCardStyle"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/logout_button"
-        app:layout_constraintEnd_toEndOf="@id/logout_button"
-        app:layout_constraintStart_toStartOf="@id/logout_button"
-        app:layout_constraintTop_toTopOf="@id/logout_button">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/grid_gradient">
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator style="@style/CircularProgressIndicatorStyle" />
+            <ImageView
+                android:id="@+id/background_gradient"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:src="@drawable/background_gradient"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_bar"
+                style="@style/OutlinedTextInputLayoutStyle"
+                android:layout_marginBottom="20dp"
+                android:hint="Search for"
+                android:outlineSpotShadowColor="@color/white"
+                app:boxBackgroundColor="@color/white"
+                app:endIconDrawable="@drawable/baseline_mic_none_24"
+                app:endIconMode="custom"
+                app:endIconTint="@color/red_1"
+                app:layout_constraintBottom_toBottomOf="@+id/background_gradient"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:startIconDrawable="@drawable/baseline_search_24"
+                app:startIconTint="@color/red_1">
+
+                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/your_account"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/baseline_account_circle_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/background_gradient">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/get_ready_for_exciting_offers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="GET READY FOR\nEXCITING OFFERS"
+                    android:textAlignment="center"
+                    android:textColor="@color/red_1"
+                    android:textSize="@dimen/header_text_size"
+                    app:fontFamily="@font/permanent_marker" />
+
+                <TextView
+                    android:id="@+id/crazy_deals_in_your_way"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="CRAZY DEALS IN YOUR WAY" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/order_now"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:text="ORDER NOW"
+                    android:textSize="10dp"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/whats_on_your_mind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nunito_black"
+                android:text="What's on your mind?"
+                android:textSize="@dimen/header_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+            <GridView
+                android:id="@+id/gridView"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+                android:layout_marginTop="12dp"
+                android:background="@color/white"
+                android:horizontalSpacing="6dp"
+                android:numColumns="3"
+                android:verticalSpacing="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/whats_on_your_mind">
+
+            </GridView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
