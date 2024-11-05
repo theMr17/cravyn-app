@@ -1,4 +1,4 @@
-package com.cravyn.app.features.home
+package com.cravyn.app.features.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.cravyn.app.R
-import javax.inject.Inject
+import com.cravyn.app.features.auth.models.FoodItem
 
 class GridAdapter (
     private val context: Context,

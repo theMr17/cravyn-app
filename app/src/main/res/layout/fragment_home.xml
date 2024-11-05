@@ -109,6 +109,7 @@
                 android:fontFamily="@font/nunito_black"
                 android:text="What's on your mind?"
                 android:textSize="@dimen/header_text_size"
+                android:textColor="@color/header_text_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -142,11 +143,12 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:cardCornerRadius="24dp"
+                android:elevation="8dp"
                 app:layout_constraintTop_toBottomOf="@id/gridView">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/join_plus"
@@ -187,46 +189,73 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/filter"
-                style="@style/SmallButtonStyle"
-                android:layout_gravity="center"
-                android:layout_marginStart="32dp"
-                android:backgroundTint="@color/white"
-                android:text="Filter"
-                android:textColor="@color/black"
-                app:cornerRadius="12dp"
+            <LinearLayout
+                android:id="@+id/chip_handler"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:layout_marginTop="32dp"
-                android:drawableEnd="@drawable/filter"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_background" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/sort_by"
-                style="@style/SmallButtonStyle"
-                android:backgroundTint="@color/white"
-                android:text="Sort by"
-                android:textColor="@color/black"
-                app:cornerRadius="12dp"
-                android:layout_marginTop="32dp"
-                android:drawableEnd="@drawable/baseline_keyboard_arrow_down_24"
-                app:layout_constraintStart_toEndOf="@+id/filter"
-                app:layout_constraintTop_toBottomOf="@+id/button_background"
-                app:layout_constraintEnd_toStartOf="@id/plus_offer"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/plus_offer"
-                style="@style/SmallButtonStyle"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/white"
-                android:text="PLUS Extra off"
-                android:textColor="@color/black"
-                app:cornerRadius="12dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="@dimen/shared_horizontal_margin"
+                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/sort_by"
-                app:layout_constraintTop_toBottomOf="@+id/button_background" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button_background">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/filter"
+                    style="@style/SmallButtonStyle"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/white"
+                    android:drawableEnd="@drawable/filter"
+                    android:text="Filter"
+                    android:textColor="@color/black"
+                    app:cornerRadius="12dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sort_by"
+                    style="@style/SmallButtonStyle"
+                    android:backgroundTint="@color/white"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_down_24"
+                    android:text="Sort by"
+                    android:layout_marginHorizontal="8dp"
+                    android:textColor="@color/black"
+                    app:cornerRadius="12dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/plus_offer"
+                    style="@style/SmallButtonStyle"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/white"
+                    android:text="PLUS Extra off"
+                    android:textColor="@color/black"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/recommended_restaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_black"
+                android:text="Recommended Restaurant"
+                android:textSize="@dimen/header_text_size"
+                android:textColor="@color/header_text_color"
+                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chip_handler"
+                app:layout_constraintHorizontal_bias="0.0"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/recommended_restaurant"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

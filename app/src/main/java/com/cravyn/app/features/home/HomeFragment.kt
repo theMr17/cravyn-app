@@ -1,21 +1,20 @@
 package com.cravyn.app.features.home
 
-import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.R
-import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentHomeBinding
 import com.cravyn.app.features.auth.AuthViewModel
-import com.cravyn.app.features.auth.login.LoginActivity.Companion.createLoginActivity
-import com.cravyn.app.util.LoadingBarUtil.showButtonLoadingBar
+import com.cravyn.app.features.adapter.GridAdapter
+import com.cravyn.app.features.adapter.RecommandedRestaurantAdapter
+import com.cravyn.app.features.auth.models.FoodItem
+import com.cravyn.app.features.auth.models.RestaurantItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,6 +24,8 @@ class HomeFragment : Fragment() {
     private val authViewModel: AuthViewModel by viewModels()
     private lateinit var foodItem : List<FoodItem>
     private lateinit var gridView: GridView
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var restaurantItem: List<RestaurantItem>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,8 +48,23 @@ class HomeFragment : Fragment() {
             FoodItem(R.drawable.ic_icecream, "Ice Cream")
         )
 
-
         gridView.adapter = GridAdapter(requireContext(), foodItem)
+
+        recyclerView = binding.recycleView
+
+        restaurantItem= listOf(
+            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Upto ₹100", "Biriyani","4.4(10k+)",".15-20 mins","Restaurant address"),
+            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Upto ₹100", "Biriyani","4.4(10k+)",".15-20 mins","Restaurant address"),
+            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Upto ₹100", "Biriyani","4.4(10k+)",".15-20 mins","Restaurant address"),
+            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Upto ₹100", "Biriyani","4.4(10k+)",".15-20 mins","Restaurant address"),
+            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Upto ₹100", "Biriyani","4.4(10k+)",".15-20 mins","Restaurant address"),
+            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Upto ₹100", "Biriyani","4.4(10k+)",".15-20 mins","Restaurant address"),
+            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Upto ₹100", "Biriyani","4.4(10k+)",".15-20 mins","Restaurant address"),
+            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Upto ₹100", "Biriyani","4.4(10k+)",".15-20 mins","Restaurant address")
+        )
+
+        recyclerView.adapter = RecommandedRestaurantAdapter(restaurantItem)
+
         return binding.root
     }
 
