@@ -3,4 +3,5 @@
     <color name="header_text_color">@color/white</color>
     <color name="forgot_password_text_color">@color/white</color>
     <color name="sign_up_text_color">@color/red_3</color>
+    <color name="offer_sub_heading_text_color">@color/white</color>
 </resources>

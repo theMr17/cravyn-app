@@ -24,4 +24,21 @@
     <string name="forgot_password_step_3_button_text">Update Password</string>
     <string name="forgot_password_toolbar_title">Forgot Password</string>
     <string name="formatted_date">%1$d/%2$d/%3$d</string>
+    <string name="search_hint_text">Search for your cravings here</string>
+    <string name="offer_heading_text">GET READY FOR\nEXCITING OFFERS</string>
+    <string name="offer_sub_heading_Text">CRAZY DEALS IN YOUR WAY</string>
+    <string name="offer_action_button_text">Order Now</string>
+    <string name="recommended_food_header_text">What\'s on your mind?</string>
+    <string name="join_plus_text">Join PLUS</string>
+    <string name="recommended_restaurant_header_text">Recommended Restaurant</string>
+    <string name="item_recommended_food_name_dummy_text">Biryani</string>
+    <string name="item_recommended_restaurant_discount_percent_dummy_text">20% Off</string>
+    <string name="item_recommended_restaurant_discount_max_dummy_text">Up to ₹100</string>
+    <string name="item_recommended_restaurant_best_in_item_name_dummy_text">Best in Biryani</string>
+    <string name="item_recommended_restaurant_name_dummy_text">Arsalan</string>
+    <string name="item_recommended_restaurant_rating_delivery_time_dummy_text">4.4 (10K+) • 15-20 mins</string>
+    <string name="item_recommended_restaurant_address_dummy_text">Salt Lake | 2.5 km</string>
+    <string name="home_recommended_restaurant_list_filter_button_text">Filter</string>
+    <string name="home_recommended_restaurant_list_sort_by_button_text">Sort by</string>
+    <string name="home_recommended_restaurant_list_plus_filter_button_text">PLUS Extra off</string>
 </resources>
