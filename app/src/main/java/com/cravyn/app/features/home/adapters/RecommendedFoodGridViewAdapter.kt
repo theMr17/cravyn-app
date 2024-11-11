@@ -10,25 +10,26 @@ import android.widget.TextView
 import com.cravyn.app.R
 import com.cravyn.app.features.auth.models.FoodItem
 
-class RecommendedFoodGridViewAdapter (
+class RecommendedFoodGridViewAdapter(
     private val context: Context,
     private val items: List<FoodItem>
 ) : BaseAdapter() {
     override fun getCount(): Int {
-        return items.size;
+        return items.size
     }
 
     override fun getItem(position: Int): Any {
-        return items[position];
+        return items[position]
     }
 
     override fun getItemId(position: Int): Long {
-        return position.toLong();
+        return position.toLong()
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val layoutInflater = LayoutInflater.from(context)
-        val view = convertView ?: layoutInflater.inflate(R.layout.item_recommended_food, parent, false)
+        val view =
+            convertView ?: layoutInflater.inflate(R.layout.item_recommended_food, parent, false)
 
         val imageView = view.findViewById<ImageView>(R.id.food_image)
         val textView = view.findViewById<TextView>(R.id.food_name_text)

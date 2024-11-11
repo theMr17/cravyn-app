@@ -121,7 +121,7 @@
             tools:listitem="@layout/item_recommended_food"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recommended_food_header_text"/>
+            app:layout_constraintTop_toBottomOf="@+id/recommended_food_header_text" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/join_plus_card"
@@ -213,15 +213,17 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recommended_restaurant_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="@dimen/shared_margin_bottom"
             android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
             tools:listitem="@layout/item_recommended_restaurant"
             tools:itemCount="4"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/chip_container"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

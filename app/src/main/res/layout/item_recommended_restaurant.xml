@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito"
             android:text="@string/item_recommended_restaurant_best_in_item_name_dummy_text"
-            android:drawableStart="@drawable/ic_best_in"/>
+            android:drawableStart="@drawable/ic_best_in" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/restaurant_name_text"

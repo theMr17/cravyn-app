@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.R
 import com.cravyn.app.databinding.FragmentHomeBinding
-import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
-import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import com.cravyn.app.features.auth.models.FoodItem
 import com.cravyn.app.features.auth.models.RestaurantItem
+import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
+import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +20,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var foodItem : List<FoodItem>
+    private lateinit var foodItem: List<FoodItem>
     private lateinit var gridView: GridView
     private lateinit var recyclerView: RecyclerView
     private lateinit var restaurantItem: List<RestaurantItem>
@@ -50,15 +50,79 @@ class HomeFragment : Fragment() {
 
         recyclerView = binding.recommendedRestaurantRecyclerView
 
-        restaurantItem= listOf(
-            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Up to ₹100", "Biryani","4.4 (10K+)", "15-20 mins","Salt Lake | 2.5 km "),
-            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Up to ₹100", "Biryani","4.4 (10K+)", "15-20 mins","Salt Lake | 2.5 km "),
-            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Up to ₹100", "Biryani","4.4 (10K+)", "15-20 mins","Salt Lake | 2.5 km "),
-            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Up to ₹100", "Biryani","4.4 (10K+)", "15-20 mins","Salt Lake | 2.5 km "),
-            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Up to ₹100", "Biryani","4.4 (10K+)", "15-20 mins","Salt Lake | 2.5 km "),
-            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Up to ₹100", "Biryani","4.4 (10K+)", "15-20 mins","Salt Lake | 2.5 km "),
-            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Up to ₹100", "Biryani","4.4 (10K+)", "15-20 mins","Salt Lake | 2.5 km "),
-            RestaurantItem(R.drawable.restaurant_sample_image,"20% OFF","Up to ₹100", "Biryani","4.4 (10K+)", "15-20 mins","Salt Lake | 2.5 km "),
+        restaurantItem = listOf(
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
         )
 
         recyclerView.adapter = RecommendedRestaurantRecyclerViewAdapter(restaurantItem)

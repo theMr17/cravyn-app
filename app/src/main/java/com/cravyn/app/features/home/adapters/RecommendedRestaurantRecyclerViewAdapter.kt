@@ -10,10 +10,10 @@ import com.cravyn.app.R
 import com.cravyn.app.features.auth.models.RestaurantItem
 
 class RecommendedRestaurantRecyclerViewAdapter(
-    private val restaurantItemList : List<RestaurantItem>
+    private val restaurantItemList: List<RestaurantItem>
 ) : RecyclerView.Adapter<RecommendedRestaurantRecyclerViewAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val restaurantImg = itemView.findViewById<ImageView>(R.id.restaurant_image)
         val offer = itemView.findViewById<TextView>(R.id.discount_percent_text)
         val maxOffer = itemView.findViewById<TextView>(R.id.discount_max_text)
@@ -23,7 +23,8 @@ class RecommendedRestaurantRecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recommended_restaurant, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_recommended_restaurant, parent, false)
         return ViewHolder(view)
     }
 
