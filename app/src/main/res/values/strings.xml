@@ -41,4 +41,7 @@
     <string name="home_recommended_restaurant_list_filter_button_text">Filter</string>
     <string name="home_recommended_restaurant_list_sort_by_button_text">Sort by</string>
     <string name="home_recommended_restaurant_list_plus_filter_button_text">PLUS Extra off</string>
+    <string name="search_menu_hint_text">Search menu</string>
+    <string name="filter_menu_veg_only_button_text">Veg Only</string>
+    <string name="filter_menu_top_ratings_button_text">Ratings 4.0+</string>
 </resources>

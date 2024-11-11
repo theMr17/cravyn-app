@@ -7,6 +7,7 @@
     tools:context=".features.restaurant.RestaurantFragment">
 
     <LinearLayout
+        android:id="@+id/restaurant_header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_restaurant_header"
@@ -17,6 +18,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_arrow_back_dark" />
 
         <com.google.android.material.card.MaterialCardView
@@ -72,7 +74,7 @@
                     android:text="Arsalan"
                     android:fontFamily="@font/nunito_black"
                     android:textColor="@color/shared_text_color"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/best_in_text" />
 
@@ -90,6 +92,47 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/search_menu_text_input_layout"
+        style="@style/OutlinedTextInputLayoutStyle"
+        android:hint="@string/search_menu_hint_text"
+        app:boxBackgroundColor="@color/grey_2"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_mic"
+        app:endIconTint="@color/red_1"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="@color/red_1"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_header_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/chip_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_menu_text_input_layout">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/filter_button"
+            style="@style/FilterButtonStyle"
+            android:text="@string/filter_menu_veg_only_button_text" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sort_by_button"
+            style="@style/FilterButtonStyle"
+            android:text="@string/filter_menu_top_ratings_button_text" />
 
     </LinearLayout>
 
