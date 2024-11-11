@@ -1,25 +1,22 @@
 package com.cravyn.app.features.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import com.cravyn.app.data.api.Resource
+import com.cravyn.app.R
 import com.cravyn.app.databinding.FragmentHomeBinding
-import com.cravyn.app.features.auth.AuthViewModel
-import com.cravyn.app.features.auth.login.LoginActivity.Companion.createLoginActivity
-import com.cravyn.app.util.LoadingBarUtil.showButtonLoadingBar
+import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
+import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
+import com.cravyn.app.features.home.models.FoodItem
+import com.cravyn.app.features.home.models.RestaurantItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,43 +24,83 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.logoutButton.setOnClickListener {
-            authViewModel.logout()
-        }
+        val foodItem = listOf(
+            FoodItem(R.drawable.ic_kebab, "Kebab"),
+            FoodItem(R.drawable.ic_noodles, "Noodles"),
+            FoodItem(R.drawable.ic_burger, "Burger"),
+            FoodItem(R.drawable.ic_sweets, "Sweets"),
+            FoodItem(R.drawable.ic_salad, "Salad"),
+            FoodItem(R.drawable.ic_pizza, "Pizza"),
+            FoodItem(R.drawable.ic_biryani, "Biryani"),
+            FoodItem(R.drawable.ic_south_indian, "South Indian"),
+            FoodItem(R.drawable.ic_north_indian, "North Indian"),
+            FoodItem(R.drawable.ic_roll, "Roll"),
+            FoodItem(R.drawable.ic_momo, "Momo"),
+            FoodItem(R.drawable.ic_icecream, "Ice Cream")
+        )
 
-        authViewModel.logoutLiveData.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Error -> {
-                    showButtonLoadingBar(
-                        isLoading = false,
-                        binding.logoutButton,
-                        binding.loadingBar
-                    )
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                }
+        val gridView = binding.recommendedFoodGridView
+        gridView.adapter = RecommendedFoodGridViewAdapter(requireContext(), foodItem)
 
-                is Resource.Loading -> {
-                    showButtonLoadingBar(
-                        isLoading = true,
-                        binding.logoutButton,
-                        binding.loadingBar
-                    )
-                }
+        val restaurantItem = listOf(
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+            RestaurantItem(
+                R.drawable.restaurant_sample_image,
+                "20% OFF",
+                "Up to ₹100",
+                "Biryani",
+                "4.4 (10K+)",
+                "15-20 mins",
+                "Salt Lake | 2.5 km "
+            ),
+        )
 
-                is Resource.Success -> {
-                    showButtonLoadingBar(
-                        isLoading = false,
-                        binding.logoutButton,
-                        binding.loadingBar
-                    )
-                    startActivity(
-                        createLoginActivity(requireContext()).apply {
-                            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        }
-                    )
-                }
-            }
-        }
+        val recyclerView = binding.recommendedRestaurantRecyclerView
+        recyclerView.adapter = RecommendedRestaurantRecyclerViewAdapter(restaurantItem)
 
         return binding.root
     }
