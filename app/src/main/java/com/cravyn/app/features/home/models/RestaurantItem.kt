@@ -1,4 +1,4 @@
-package com.cravyn.app.features.auth.models
+package com.cravyn.app.features.home.models
 
 data class RestaurantItem(
     val restaurantImage: Int,

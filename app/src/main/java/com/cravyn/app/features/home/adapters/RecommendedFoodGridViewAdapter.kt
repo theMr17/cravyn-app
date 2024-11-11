@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.cravyn.app.R
-import com.cravyn.app.features.auth.models.FoodItem
+import com.cravyn.app.features.home.models.FoodItem
 
 class RecommendedFoodGridViewAdapter(
     private val context: Context,

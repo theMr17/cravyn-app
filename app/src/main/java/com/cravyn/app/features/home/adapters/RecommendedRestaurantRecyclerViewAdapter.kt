@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.R
-import com.cravyn.app.features.auth.models.RestaurantItem
+import com.cravyn.app.features.home.models.RestaurantItem
 
 class RecommendedRestaurantRecyclerViewAdapter(
     private val restaurantItemList: List<RestaurantItem>
