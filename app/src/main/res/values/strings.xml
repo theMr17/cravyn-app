@@ -44,4 +44,9 @@
     <string name="search_menu_hint_text">Search menu</string>
     <string name="filter_menu_veg_only_button_text">Veg Only</string>
     <string name="filter_menu_top_ratings_button_text">Ratings 4.0+</string>
+    <string name="item_restaurant_menu_dummy_description_text">Succulent mutton pieces marinated in aromatic spices, layered with saffron-infused basmati rice and caramelized onions. A rich, flavorful feast that’s slow-cooked to perfection and served with refreshing raita.</string>
+    <string name="item_restaurant_menu_dummy_rating_text">4.4 (370)</string>
+    <string name="item_restaurant_menu_dummy_price_text">₹375</string>
+    <string name="item_restaurant_menu_dummy_food_name_text">Mutton Biryani</string>
+    <string name="item_restaurant_menu_add_to_cart_button_text">Add</string>
 </resources>
