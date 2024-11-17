@@ -4,19 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.cravyn.app.R
+import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentHomeBinding
 import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
 import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import com.cravyn.app.features.home.models.FoodItem
-import com.cravyn.app.features.home.models.RestaurantItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,65 +46,22 @@ class HomeFragment : Fragment() {
         val gridView = binding.recommendedFoodGridView
         gridView.adapter = RecommendedFoodGridViewAdapter(requireContext(), foodItem)
 
-        val restaurantItem = listOf(
-            RestaurantItem(
-                R.drawable.restaurant_sample_image,
-                "20% OFF",
-                "Up to ₹100",
-                "Biryani",
-                "4.4 (10K+)",
-                "15-20 mins",
-                "Salt Lake | 2.5 km "
-            ),
-            RestaurantItem(
-                R.drawable.restaurant_sample_image,
-                "20% OFF",
-                "Up to ₹100",
-                "Biryani",
-                "4.4 (10K+)",
-                "15-20 mins",
-                "Salt Lake | 2.5 km "
-            ),
-            RestaurantItem(
-                R.drawable.restaurant_sample_image,
-                "20% OFF",
-                "Up to ₹100",
-                "Biryani",
-                "4.4 (10K+)",
-                "15-20 mins",
-                "Salt Lake | 2.5 km "
-            ),
-            RestaurantItem(
-                R.drawable.restaurant_sample_image,
-                "20% OFF",
-                "Up to ₹100",
-                "Biryani",
-                "4.4 (10K+)",
-                "15-20 mins",
-                "Salt Lake | 2.5 km "
-            ),
-            RestaurantItem(
-                R.drawable.restaurant_sample_image,
-                "20% OFF",
-                "Up to ₹100",
-                "Biryani",
-                "4.4 (10K+)",
-                "15-20 mins",
-                "Salt Lake | 2.5 km "
-            ),
-            RestaurantItem(
-                R.drawable.restaurant_sample_image,
-                "20% OFF",
-                "Up to ₹100",
-                "Biryani",
-                "4.4 (10K+)",
-                "15-20 mins",
-                "Salt Lake | 2.5 km "
-            ),
-        )
+        homeViewModel.getRecommendedRestaurants(22.6865, 88.4694)
 
-        val recyclerView = binding.recommendedRestaurantRecyclerView
-        recyclerView.adapter = RecommendedRestaurantRecyclerViewAdapter(restaurantItem)
+        homeViewModel.recommendedRestaurantsLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+
+                is Resource.Loading -> {}
+
+                is Resource.Success -> {
+                    binding.recommendedRestaurantRecyclerView.adapter =
+                        RecommendedRestaurantRecyclerViewAdapter(it.data ?: emptyList())
+                }
+            }
+        }
 
         return binding.root
     }

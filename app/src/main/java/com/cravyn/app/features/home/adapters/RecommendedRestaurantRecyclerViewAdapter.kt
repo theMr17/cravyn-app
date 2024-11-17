@@ -1,42 +1,44 @@
 package com.cravyn.app.features.home.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.cravyn.app.R
-import com.cravyn.app.features.home.models.RestaurantItem
+import com.cravyn.app.databinding.ItemRecommendedRestaurantBinding
+import com.cravyn.app.features.home.models.RecommendedRestaurantItem
 
 class RecommendedRestaurantRecyclerViewAdapter(
-    private val restaurantItemList: List<RestaurantItem>
+    private val restaurantItemList: List<RecommendedRestaurantItem>
 ) : RecyclerView.Adapter<RecommendedRestaurantRecyclerViewAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val restaurantImg = itemView.findViewById<ImageView>(R.id.restaurant_image)
-        val offer = itemView.findViewById<TextView>(R.id.discount_percent_text)
-        val maxOffer = itemView.findViewById<TextView>(R.id.discount_max_text)
-        val bestInItem = itemView.findViewById<TextView>(R.id.best_in_item_name)
-        val ratingOfRestaurant = itemView.findViewById<TextView>(R.id.rating_delivery_time_text)
-        val address = itemView.findViewById<TextView>(R.id.restaurant_address_text)
-    }
+    class ViewHolder(val binding: ItemRecommendedRestaurantBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_recommended_restaurant, parent, false)
-        return ViewHolder(view)
+        val binding = ItemRecommendedRestaurantBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
-    // Bind data to the ViewHolder
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = restaurantItemList[position]
 
-        holder.restaurantImg.setImageResource(item.restaurantImage)
-        holder.offer.text = item.offerAmount
-        holder.maxOffer.text = item.maxOfferAmount
-        holder.bestInItem.text = item.bestInItemName
-        holder.address.text = item.restaurantAddress
+        holder.binding.apply {
+            restaurantNameText.text = item.name
+
+            item.maxDiscountPercent?.let { maxDiscount ->
+                discountPercentText.text = "${maxDiscount.formatted}% OFF"
+            } ?: run {
+                discountPercentText.isVisible = false
+            }
+
+            item.maxDiscountCap?.formatted?.let { maxDiscountCap ->
+                discountMaxText.text = "Up to ₹$maxDiscountCap"
+            } ?: run {
+                discountMaxText.isVisible = false
+            }
+            
+            ratingDeliveryTimeText.text = "${item.rating.formatted} (10K+) • ${item.minTime}-${item.maxTime} min"
+            restaurantAddressText.text = "${item.city} | ${item.distance.formatted} km"
+        }
     }
 
     override fun getItemCount() = restaurantItemList.size
