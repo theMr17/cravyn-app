@@ -9,6 +9,9 @@ import com.cravyn.app.features.auth.AuthRepository
 import com.cravyn.app.features.auth.AuthRepositoryImpl
 import com.cravyn.app.features.auth.JwtTokenRepository
 import com.cravyn.app.features.auth.JwtTokenRepositoryImpl
+import com.cravyn.app.features.home.HomeApi
+import com.cravyn.app.features.home.HomeRepository
+import com.cravyn.app.features.home.HomeRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -70,9 +73,19 @@ object ApiModule {
     @Provides
     fun providesJwtTokenRepository(impl: JwtTokenRepositoryImpl): JwtTokenRepository = impl
 
+
+    @Provides
+    fun providesHomeRepository(impl: HomeRepositoryImpl): HomeRepository = impl
+
     @Provides
     @Singleton
     fun providesAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesHomeApi(retrofit: Retrofit): HomeApi {
+        return retrofit.create(HomeApi::class.java)
     }
 }
