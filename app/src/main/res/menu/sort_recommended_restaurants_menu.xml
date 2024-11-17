@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/distance_option"
+        android:title="Distance" />
+    <item android:id="@+id/rating_option"
+        android:title="Rating" />
+    <item android:id="@+id/discount_option"
+        android:title="Discount" />
+</menu>
