@@ -37,15 +37,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/search_text_input_layout"
-                    style="@style/OutlinedTextInputLayoutStyle"
+                    style="@style/SearchOutlinedTextInputLayoutStyle"
                     android:hint="@string/search_hint_text"
                     android:textColorHint="@color/grey_2"
                     app:boxBackgroundColor="@color/white"
-                    app:endIconMode="custom"
-                    app:endIconDrawable="@drawable/ic_mic"
-                    app:endIconTint="@color/red_1"
-                    app:startIconDrawable="@drawable/ic_search"
-                    app:startIconTint="@color/red_1"
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="12dp"
                     app:layout_constraintTop_toBottomOf="@id/your_account_button"
