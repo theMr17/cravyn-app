@@ -36,7 +36,7 @@ class RecommendedRestaurantRecyclerViewAdapter(
                 discountMaxText.isVisible = false
             }
             
-            ratingDeliveryTimeText.text = "${item.rating.formatted} (10K+) • ${item.minTime}-${item.maxTime} min"
+            ratingDeliveryTimeText.text = "${item.rating.formatted} (${item.ratingCount}) • ${item.minTime}-${item.maxTime} min"
             restaurantAddressText.text = "${item.city} | ${item.distance.formatted} km"
         }
     }

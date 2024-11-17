@@ -36,13 +36,19 @@
         <item name="cardBackgroundColor">?attr/colorPrimary</item>
     </style>
 
-    <style name="CircularProgressIndicatorStyle" parent="Widget.MaterialComponents.CircularProgressIndicator">
+    <style name="PrimaryCircularProgressIndicatorStyle" parent="Widget.MaterialComponents.CircularProgressIndicator">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:indeterminate">true</item>
         <item name="android:layout_gravity">center</item>
         <item name="indicatorSize">@dimen/loading_indicator_size</item>
         <item name="trackThickness">@dimen/loading_track_thickness</item>
+        <item name="indicatorColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="WhiteCircularProgressIndicatorStyle" parent="PrimaryCircularProgressIndicatorStyle">
+        <item name="indicatorSize">25dp</item>
+        <item name="trackThickness">3dp</item>
         <item name="indicatorColor">?attr/colorOnPrimary</item>
     </style>
 

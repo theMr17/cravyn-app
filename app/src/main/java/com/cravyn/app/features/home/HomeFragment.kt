@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.cravyn.app.R
@@ -46,17 +48,24 @@ class HomeFragment : Fragment() {
         val gridView = binding.recommendedFoodGridView
         gridView.adapter = RecommendedFoodGridViewAdapter(requireContext(), foodItem)
 
-        homeViewModel.getRecommendedRestaurants(22.6865, 88.4694)
+        binding.sortByButton.setOnClickListener { view ->
+            showRecommendedRestaurantSortByMenu(view)
+        }
 
+        homeViewModel.getRecommendedRestaurants()
         homeViewModel.recommendedRestaurantsLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {
+                    binding.recommendedRestaurantsLoadingBar.isVisible = false
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
 
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                    binding.recommendedRestaurantsLoadingBar.isVisible = true
+                }
 
                 is Resource.Success -> {
+                    binding.recommendedRestaurantsLoadingBar.isVisible = false
                     binding.recommendedRestaurantRecyclerView.adapter =
                         RecommendedRestaurantRecyclerViewAdapter(it.data ?: emptyList())
                 }
@@ -69,5 +78,31 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun showRecommendedRestaurantSortByMenu(view: View) {
+        val popup = PopupMenu(requireContext(), view)
+        popup.menuInflater.inflate(R.menu.sort_recommended_restaurants_menu, popup.menu)
+
+        popup.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.distance_option -> {
+                    homeViewModel.getRecommendedRestaurants(sortBy = "distance")
+                    true
+                }
+                R.id.rating_option -> {
+                    homeViewModel.getRecommendedRestaurants(sortBy = "rating")
+                    true
+                }
+                R.id.discount_option -> {
+                    homeViewModel.getRecommendedRestaurants(sortBy = "discount_percent")
+                    true
+                }
+                else -> false
+            }
+        }
+        popup.setOnDismissListener { }
+
+        popup.show()
     }
 }

@@ -21,8 +21,8 @@ class HomeViewModel @Inject constructor(
     val recommendedRestaurantsLiveData: LiveData<Resource<List<RecommendedRestaurantItem>>> get() = _recommendedRestaurantsLiveData
 
     fun getRecommendedRestaurants(
-        lat: Double,
-        long: Double,
+        lat: Double = 22.6865,
+        long: Double = 88.4694,
         minRating: Float = 0.0f,
         sortBy: String = "distance",
         radius: Float = 30.0f,
