@@ -55,7 +55,9 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         style="@style/OutlinedTextInputEditTextStyle"
-                        android:enabled="false" />
+                        android:focusable="false"
+                        android:clickable="true"
+                        tools:ignore="KeyboardInaccessibleWidget" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

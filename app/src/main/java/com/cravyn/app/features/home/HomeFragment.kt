@@ -11,6 +11,7 @@ import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
 import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import com.cravyn.app.features.home.models.FoodItem
 import com.cravyn.app.features.home.models.RestaurantItem
+import com.cravyn.app.features.search.SearchActivity.Companion.createSearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +24,10 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        binding.searchTextInputLayout.editText?.setOnClickListener {
+            startActivity(createSearchActivity(requireContext()))
+        }
 
         val foodItem = listOf(
             FoodItem(R.drawable.ic_kebab, "Kebab"),
