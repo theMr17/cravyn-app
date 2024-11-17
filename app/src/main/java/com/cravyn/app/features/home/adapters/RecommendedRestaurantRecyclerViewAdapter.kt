@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.databinding.ItemRecommendedRestaurantBinding
 import com.cravyn.app.features.home.models.RecommendedRestaurantItem
 
-class RecommendedRestaurantRecyclerViewAdapter(
+open class RecommendedRestaurantRecyclerViewAdapter(
     private val restaurantItemList: List<RecommendedRestaurantItem>
 ) : RecyclerView.Adapter<RecommendedRestaurantRecyclerViewAdapter.ViewHolder>() {
 
