@@ -11,6 +11,7 @@ interface HomeRepository {
         minRating: Float,
         sortBy: String,
         radius: Float,
+        descending: Boolean,
         limit: Int
     ): Response<ApiResponse<RecommendedRestaurantsResponse>>
 }

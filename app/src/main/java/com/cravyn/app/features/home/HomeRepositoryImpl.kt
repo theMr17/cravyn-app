@@ -14,8 +14,9 @@ class HomeRepositoryImpl @Inject constructor(
         minRating: Float,
         sortBy: String,
         radius: Float,
+        descending: Boolean,
         limit: Int
     ): Response<ApiResponse<RecommendedRestaurantsResponse>> {
-        return homeApi.getRecommendedRestaurants(lat, long, minRating, sortBy, radius, limit)
+        return homeApi.getRecommendedRestaurants(lat, long, minRating, sortBy, radius, descending, limit)
     }
 }

@@ -14,6 +14,7 @@ interface HomeApi {
         @Query("minRating") minRating: Float,
         @Query("sortBy") sortBy: String,
         @Query("radius") radius: Float,
+        @Query("descending") descending: Boolean,
         @Query("limit") limit: Int,
     ): Response<ApiResponse<RecommendedRestaurantsResponse>>
 }
