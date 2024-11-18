@@ -12,6 +12,9 @@ import com.cravyn.app.features.auth.JwtTokenRepositoryImpl
 import com.cravyn.app.features.home.HomeApi
 import com.cravyn.app.features.home.HomeRepository
 import com.cravyn.app.features.home.HomeRepositoryImpl
+import com.cravyn.app.features.restaurant.RestaurantApi
+import com.cravyn.app.features.restaurant.RestaurantRepository
+import com.cravyn.app.features.restaurant.RestaurantRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -78,6 +81,9 @@ object ApiModule {
     fun providesHomeRepository(impl: HomeRepositoryImpl): HomeRepository = impl
 
     @Provides
+    fun providesRestaurantRepository(impl: RestaurantRepositoryImpl): RestaurantRepository = impl
+
+    @Provides
     @Singleton
     fun providesAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
@@ -87,5 +93,11 @@ object ApiModule {
     @Singleton
     fun providesHomeApi(retrofit: Retrofit): HomeApi {
         return retrofit.create(HomeApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesRestaurantApi(retrofit: Retrofit): RestaurantApi {
+        return retrofit.create(RestaurantApi::class.java)
     }
 }
