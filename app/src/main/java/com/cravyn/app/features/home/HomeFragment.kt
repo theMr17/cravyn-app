@@ -14,6 +14,7 @@ import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentHomeBinding
 import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
 import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
+import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
 import com.cravyn.app.features.home.models.FoodItem
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -67,7 +68,10 @@ class HomeFragment : Fragment() {
                 is Resource.Success -> {
                     binding.recommendedRestaurantsLoadingBar.isVisible = false
                     binding.recommendedRestaurantRecyclerView.adapter =
-                        RecommendedRestaurantRecyclerViewAdapter(it.data ?: emptyList())
+                        RecommendedRestaurantRecyclerViewAdapter(
+                            it.data ?: emptyList(),
+                            requireActivity() as RecommendedRestaurantItemClickListener
+                        )
                 }
             }
         }
