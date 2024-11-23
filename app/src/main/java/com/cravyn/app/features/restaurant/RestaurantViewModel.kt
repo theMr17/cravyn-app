@@ -15,7 +15,8 @@ import javax.inject.Inject
 class RestaurantViewModel @Inject constructor(
     private val restaurantRepository: RestaurantRepository
 ) : ViewModel() {
-    private val _restaurantMenuLiveData: MutableLiveData<Resource<RestaurantMenuResponse>> = MutableLiveData()
+    private val _restaurantMenuLiveData: MutableLiveData<Resource<RestaurantMenuResponse>> =
+        MutableLiveData()
     val restaurantMenuLiveData: LiveData<Resource<RestaurantMenuResponse>> get() = _restaurantMenuLiveData
 
     fun getRestaurantMenu(restaurantId: String, limit: Int = 50) {

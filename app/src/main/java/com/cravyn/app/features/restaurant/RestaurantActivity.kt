@@ -29,7 +29,7 @@ class RestaurantActivity : AppCompatActivity() {
         setContentView(R.layout.activity_restaurant)
 
         val restaurantId = intent.getStringExtra(RESTAURANT_ID_TAG)
-        
+
         if (getRestaurantFragment() == null) {
             supportFragmentManager.beginTransaction().add(
                 R.id.restaurant_fragment_placeholder,
