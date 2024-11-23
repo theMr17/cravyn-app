@@ -23,7 +23,8 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         val searchedFoodsRecyclerView = binding.searchedFoodsRecyclerView
-        searchedFoodsRecyclerView.adapter = SearchedFoodsRecyclerViewAdapter(List(2) { FoodItem(1, "") })
+        searchedFoodsRecyclerView.adapter =
+            SearchedFoodsRecyclerViewAdapter(List(2) { FoodItem(1, "") })
 
         val searchedRestaurantsRecyclerView = binding.searchedRestaurantsRecyclerView
         searchedRestaurantsRecyclerView.adapter = SearchedRestaurantsRecyclerViewAdapter(List(2) {

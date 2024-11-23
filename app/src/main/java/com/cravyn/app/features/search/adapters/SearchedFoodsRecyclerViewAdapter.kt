@@ -13,14 +13,15 @@ class SearchedFoodsRecyclerViewAdapter(
     class ViewHolder(val binding: ItemRestaurantMenuBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemRestaurantMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemRestaurantMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = searchedFoodsItemList[position]
 
-        holder.binding.foodDescriptionText.text= "Arsalan"
+        holder.binding.foodDescriptionText.text = "Arsalan"
     }
 
     override fun getItemCount() = searchedFoodsItemList.size
