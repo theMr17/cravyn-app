@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 private const val TAG_RESTAURANT_FRAGMENT = "RESTAURANT_FRAGMENT"
 
 /** Tag for the restaurantId extra. */
-private const val RESTAURANT_TAG = "restaurant"
+const val RESTAURANT_TAG = "restaurant"
 
 @AndroidEntryPoint
 class RestaurantActivity : AppCompatActivity() {
@@ -34,7 +34,11 @@ class RestaurantActivity : AppCompatActivity() {
         if (getRestaurantFragment() == null) {
             supportFragmentManager.beginTransaction().add(
                 R.id.restaurant_fragment_placeholder,
-                RestaurantFragment(restaurant),
+                RestaurantFragment().apply {
+                    arguments = Bundle().apply {
+                        putSerializable(RESTAURANT_TAG, restaurant)
+                    }
+                },
                 TAG_RESTAURANT_FRAGMENT
             ).commitNow()
         }

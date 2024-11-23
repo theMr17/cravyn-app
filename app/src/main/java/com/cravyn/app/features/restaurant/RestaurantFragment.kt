@@ -14,7 +14,7 @@ import com.cravyn.app.features.restaurant.models.Restaurant
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RestaurantFragment(private val restaurant: Restaurant?) : Fragment() {
+class RestaurantFragment() : Fragment() {
     private var _binding: FragmentRestaurantBinding? = null
     private val binding get() = _binding!!
 
@@ -25,6 +25,8 @@ class RestaurantFragment(private val restaurant: Restaurant?) : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRestaurantBinding.inflate(inflater, container, false)
+
+        val restaurant = arguments?.getSerializable(RESTAURANT_TAG) as? Restaurant
 
         restaurant?.let {
             restaurantViewModel.getRestaurantMenu(restaurant.restaurantId)
