@@ -15,13 +15,14 @@ import com.cravyn.app.databinding.FragmentHomeBinding
 import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
 import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import com.cravyn.app.features.home.models.FoodItem
+import com.cravyn.app.features.home.models.RestaurantItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
+  
     private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(

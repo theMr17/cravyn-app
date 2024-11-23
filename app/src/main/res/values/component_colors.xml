@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="shared_text_color">@color/black</color>
     <color name="header_text_color">@color/black</color>
     <color name="forgot_password_text_color">@color/black</color>
     <color name="sign_up_text_color">@color/red_1</color>
     <color name="offer_heading_text_color">@color/red_1</color>
     <color name="offer_sub_heading_text_color">@color/black</color>
+    <color name="join_plus_card_border_color">@color/black</color>
 </resources>
