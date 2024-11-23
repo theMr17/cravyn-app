@@ -108,4 +108,12 @@
         <item name="android:layout_marginEnd">8dp</item>
         <item name="backgroundTint">@color/white</item>
     </style>
+
+    <style name="SearchOutlinedTextInputLayoutStyle" parent="OutlinedTextInputLayoutStyle">
+        <item name="endIconMode">custom</item>
+        <item name="endIconDrawable">@drawable/ic_mic</item>
+        <item name="endIconTint">?attr/colorPrimary</item>
+        <item name="startIconDrawable">@drawable/ic_search</item>
+        <item name="startIconTint">?attr/colorPrimary</item>
+    </style>
 </resources>
