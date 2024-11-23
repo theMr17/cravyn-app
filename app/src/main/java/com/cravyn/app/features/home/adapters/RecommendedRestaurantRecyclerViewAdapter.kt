@@ -11,10 +11,15 @@ class RecommendedRestaurantRecyclerViewAdapter(
     private val restaurantItemList: List<RecommendedRestaurantItem>
 ) : RecyclerView.Adapter<RecommendedRestaurantRecyclerViewAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: ItemRecommendedRestaurantBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: ItemRecommendedRestaurantBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemRecommendedRestaurantBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemRecommendedRestaurantBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ViewHolder(binding)
     }
 
@@ -35,8 +40,9 @@ class RecommendedRestaurantRecyclerViewAdapter(
             } ?: run {
                 discountMaxText.isVisible = false
             }
-            
-            ratingDeliveryTimeText.text = "${item.rating.formatted} (${item.ratingCount}) • ${item.minTime}-${item.maxTime} min"
+
+            ratingDeliveryTimeText.text =
+                "${item.rating.formatted} (${item.ratingCount}) • ${item.minTime}-${item.maxTime} min"
             restaurantAddressText.text = "${item.city} | ${item.distance.formatted} km"
         }
     }

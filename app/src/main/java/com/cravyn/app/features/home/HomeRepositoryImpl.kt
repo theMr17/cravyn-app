@@ -17,6 +17,14 @@ class HomeRepositoryImpl @Inject constructor(
         descending: Boolean,
         limit: Int
     ): Response<ApiResponse<RecommendedRestaurantsResponse>> {
-        return homeApi.getRecommendedRestaurants(lat, long, minRating, sortBy, radius, descending, limit)
+        return homeApi.getRecommendedRestaurants(
+            lat,
+            long,
+            minRating,
+            sortBy,
+            radius,
+            descending,
+            limit
+        )
     }
 }

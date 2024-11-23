@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-  
+
     private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -90,14 +90,17 @@ class HomeFragment : Fragment() {
                     homeViewModel.getRecommendedRestaurants(sortBy = "distance")
                     true
                 }
+
                 R.id.rating_option -> {
                     homeViewModel.getRecommendedRestaurants(sortBy = "rating", descending = true)
                     true
                 }
+
                 R.id.discount_option -> {
                     homeViewModel.getRecommendedRestaurants(sortBy = "discount_percent")
                     true
                 }
+
                 else -> false
             }
         }
