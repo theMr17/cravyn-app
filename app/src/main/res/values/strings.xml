@@ -53,4 +53,6 @@
     <string name="restaurant_rating_dummy_text">4.5</string>
     <string name="restaurant_rating_count_dummy_text">9.5K+ ratings</string>
     <string name="restaurant_delivery_estimation_dummy_text">20-25 mins • 2.7 km</string>
+    <string name="searched_foods_header_text">Foods</string>
+    <string name="searched_restaurants_header_text">Restaurants</string>
 </resources>
