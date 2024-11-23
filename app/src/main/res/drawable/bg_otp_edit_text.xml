@@ -9,8 +9,8 @@
         android:color="@color/grey_1" />
 
     <padding
+        android:bottom="@dimen/otp_edit_text_item_padding"
         android:left="@dimen/otp_edit_text_item_padding"
-        android:top="@dimen/otp_edit_text_item_padding"
         android:right="@dimen/otp_edit_text_item_padding"
-        android:bottom="@dimen/otp_edit_text_item_padding" />
+        android:top="@dimen/otp_edit_text_item_padding" />
 </shape>

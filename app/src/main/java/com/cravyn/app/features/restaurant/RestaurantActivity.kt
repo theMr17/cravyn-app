@@ -29,8 +29,8 @@ class RestaurantActivity : AppCompatActivity() {
         setContentView(R.layout.activity_restaurant)
 
         val restaurantId = intent.getStringExtra(RESTAURANT_ID_TAG)
-
-        if (getHomeFragment() == null) {
+        
+        if (getRestaurantFragment() == null) {
             supportFragmentManager.beginTransaction().add(
                 R.id.restaurant_fragment_placeholder,
                 RestaurantFragment(restaurantId),
@@ -39,7 +39,7 @@ class RestaurantActivity : AppCompatActivity() {
         }
     }
 
-    private fun getHomeFragment(): RestaurantFragment? {
+    private fun getRestaurantFragment(): RestaurantFragment? {
         return supportFragmentManager.findFragmentById(
             R.id.restaurant_fragment_placeholder
         ) as RestaurantFragment?

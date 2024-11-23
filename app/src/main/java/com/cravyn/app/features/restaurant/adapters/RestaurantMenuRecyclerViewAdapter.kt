@@ -13,7 +13,11 @@ class RestaurantMenuRecyclerViewAdapter(
     class ViewHolder(val binding: ItemRestaurantMenuBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemRestaurantMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemRestaurantMenuBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ViewHolder(binding)
     }
 
