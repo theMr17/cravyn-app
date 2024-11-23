@@ -77,7 +77,7 @@
             app:layout_constraintTop_toTopOf="@id/send_otp_button"
             app:layout_constraintBottom_toBottomOf="@id/send_otp_button">
 
-            <com.google.android.material.progressindicator.CircularProgressIndicator style="@style/CircularProgressIndicatorStyle" />
+            <com.google.android.material.progressindicator.CircularProgressIndicator style="@style/WhiteCircularProgressIndicatorStyle" />
 
         </com.google.android.material.card.MaterialCardView>
 
