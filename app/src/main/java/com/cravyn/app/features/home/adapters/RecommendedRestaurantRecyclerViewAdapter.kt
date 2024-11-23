@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.databinding.ItemRecommendedRestaurantBinding
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
 import com.cravyn.app.features.home.models.RecommendedRestaurantItem
+import com.cravyn.app.features.restaurant.models.toRestaurant
 
 class RecommendedRestaurantRecyclerViewAdapter(
     private val restaurantItemList: List<RecommendedRestaurantItem>,
@@ -48,7 +49,7 @@ class RecommendedRestaurantRecyclerViewAdapter(
             restaurantAddressText.text = "${item.city} | ${item.distance.formatted} km"
 
             root.setOnClickListener {
-                recommendedRestaurantItemClickListener.onRecommendedRestaurantItemClicked(item.restaurantId)
+                recommendedRestaurantItemClickListener.onRecommendedRestaurantItemClicked(item.toRestaurant())
             }
         }
     }

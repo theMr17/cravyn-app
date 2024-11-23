@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.cravyn.app.R
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
 import com.cravyn.app.features.restaurant.RestaurantActivity.Companion.createRestaurantActivity
+import com.cravyn.app.features.restaurant.models.Restaurant
 import dagger.hilt.android.AndroidEntryPoint
 
 /** Tag for identifying the [HomeFragment] in transactions. */
@@ -40,7 +41,7 @@ class HomeActivity : AppCompatActivity(), RecommendedRestaurantItemClickListener
         ) as HomeFragment?
     }
 
-    override fun onRecommendedRestaurantItemClicked(restaurantId: String) {
-        startActivity(createRestaurantActivity(this, restaurantId))
+    override fun onRecommendedRestaurantItemClicked(restaurant: Restaurant) {
+        startActivity(createRestaurantActivity(this, restaurant))
     }
 }

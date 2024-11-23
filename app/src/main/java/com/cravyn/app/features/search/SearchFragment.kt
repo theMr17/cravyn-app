@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.cravyn.app.data.api.toDisplayableNumber
 import com.cravyn.app.databinding.FragmentSearchBinding
 import com.cravyn.app.features.home.models.FoodItem
 import com.cravyn.app.features.home.models.RecommendedRestaurantItem
-import com.cravyn.app.features.home.models.toDisplayableNumber
 import com.cravyn.app.features.search.adapters.SearchedFoodsRecyclerViewAdapter
 import com.cravyn.app.features.search.adapters.SearchedRestaurantsRecyclerViewAdapter
 

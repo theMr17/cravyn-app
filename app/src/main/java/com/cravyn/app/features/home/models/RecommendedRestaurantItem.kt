@@ -1,7 +1,7 @@
 package com.cravyn.app.features.home.models
 
-import android.icu.text.NumberFormat
-import java.util.Locale
+import com.cravyn.app.data.api.DisplayableNumber
+import com.cravyn.app.data.api.toDisplayableNumber
 
 data class RecommendedRestaurantItem(
     val restaurantId: String,
@@ -30,21 +30,5 @@ fun RecommendedRestaurantsResponse.Restaurant.toRecommendedRestaurantItem(): Rec
         maxDiscountPercent = this.maxDiscountPercent?.toDisplayableNumber(0),
         maxDiscountCap = this.maxDiscountCap?.toDisplayableNumber(0),
         restaurantImageUrl = this.restaurantImageUrl
-    )
-}
-
-data class DisplayableNumber(
-    val value: Double,
-    val formatted: String
-)
-
-fun Double.toDisplayableNumber(digitsAfterDecimal: Int = 2): DisplayableNumber {
-    val formatter = NumberFormat.getNumberInstance(Locale.getDefault()).apply {
-        minimumFractionDigits = digitsAfterDecimal
-        maximumFractionDigits = digitsAfterDecimal
-    }
-    return DisplayableNumber(
-        value = this,
-        formatted = formatter.format(this)
     )
 }

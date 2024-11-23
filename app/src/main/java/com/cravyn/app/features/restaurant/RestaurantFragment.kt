@@ -10,10 +10,11 @@ import androidx.fragment.app.viewModels
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentRestaurantBinding
 import com.cravyn.app.features.restaurant.adapters.RestaurantMenuRecyclerViewAdapter
+import com.cravyn.app.features.restaurant.models.Restaurant
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RestaurantFragment(private val restaurantId: String?) : Fragment() {
+class RestaurantFragment(private val restaurant: Restaurant?) : Fragment() {
     private var _binding: FragmentRestaurantBinding? = null
     private val binding get() = _binding!!
 
@@ -25,8 +26,13 @@ class RestaurantFragment(private val restaurantId: String?) : Fragment() {
     ): View {
         _binding = FragmentRestaurantBinding.inflate(inflater, container, false)
 
-        restaurantId?.let {
-            restaurantViewModel.getRestaurantMenu(restaurantId)
+        restaurant?.let {
+            restaurantViewModel.getRestaurantMenu(restaurant.restaurantId)
+
+            binding.restaurantNameText.text = restaurant.name
+            binding.deliveryEstimationText.text = "${restaurant.minTime}-${restaurant.maxTime} min • ${restaurant.distance.formatted} km"
+            binding.ratingText.text = restaurant.rating.formatted
+            binding.ratingCountText.text = restaurant.ratingCount.toString()
         }
 
         restaurantViewModel.restaurantMenuLiveData.observe(viewLifecycleOwner) {
@@ -46,8 +52,6 @@ class RestaurantFragment(private val restaurantId: String?) : Fragment() {
                         RestaurantMenuRecyclerViewAdapter(
                             it.data?.catalog ?: emptyList()
                         )
-
-                    binding.restaurantNameText.text = it.data?.restaurant?.name
                 }
             }
         }
