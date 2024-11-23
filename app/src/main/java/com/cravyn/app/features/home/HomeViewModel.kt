@@ -26,6 +26,7 @@ class HomeViewModel @Inject constructor(
         minRating: Float = 0.0f,
         sortBy: String = "distance",
         radius: Float = 30.0f,
+        descending: Boolean = false,
         limit: Int = 50
     ) {
         viewModelScope.launch {
@@ -37,6 +38,7 @@ class HomeViewModel @Inject constructor(
                 minRating,
                 sortBy,
                 radius,
+                descending,
                 limit
             )
 
