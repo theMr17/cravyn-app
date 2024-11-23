@@ -55,4 +55,8 @@
     <string name="restaurant_delivery_estimation_dummy_text">20-25 mins • 2.7 km</string>
     <string name="searched_foods_header_text">Foods</string>
     <string name="searched_restaurants_header_text">Restaurants</string>
+    <string name="restaurant_delivery_estimation_text">%1$d-%2$d min • %3$s km</string>
+    <string name="restaurant_rating_count_text">%1$d ratings</string>
+    <string name="restaurant_menu_item_price_text">₹%1$s</string>
+    <string name="restaurant_menu_item_rating_text">%1$s (%2$d)</string>
 </resources>

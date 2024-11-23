@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentRestaurantBinding
 import com.cravyn.app.features.restaurant.adapters.RestaurantMenuRecyclerViewAdapter
@@ -14,7 +15,7 @@ import com.cravyn.app.features.restaurant.models.Restaurant
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RestaurantFragment() : Fragment() {
+class RestaurantFragment : Fragment() {
     private var _binding: FragmentRestaurantBinding? = null
     private val binding get() = _binding!!
 
@@ -31,26 +32,33 @@ class RestaurantFragment() : Fragment() {
         restaurant?.let {
             restaurantViewModel.getRestaurantMenu(restaurant.restaurantId)
 
-            binding.restaurantNameText.text = restaurant.name
-            binding.deliveryEstimationText.text =
-                "${restaurant.minTime}-${restaurant.maxTime} min • ${restaurant.distance.formatted} km"
-            binding.ratingText.text = restaurant.rating.formatted
-            binding.ratingCountText.text = "${restaurant.ratingCount} ratings"
+            binding.apply {
+                restaurantNameText.text = restaurant.name
+                deliveryEstimationText.text =
+                    getString(
+                        R.string.restaurant_delivery_estimation_text,
+                        restaurant.minTime,
+                        restaurant.maxTime,
+                        restaurant.distance.formatted
+                    )
+                ratingText.text = restaurant.rating.formatted
+                ratingCountText.text =
+                    getString(
+                        R.string.restaurant_rating_count_text,
+                        restaurant.ratingCount
+                    )
+            }
         }
 
         restaurantViewModel.restaurantMenuLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {
-                    // binding.recommendedRestaurantsLoadingBar.isVisible = false
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
 
-                is Resource.Loading -> {
-                    // binding.recommendedRestaurantsLoadingBar.isVisible = true
-                }
+                is Resource.Loading -> {}
 
                 is Resource.Success -> {
-                    // binding.recommendedRestaurantsLoadingBar.isVisible = false
                     binding.restaurantMenuRecyclerView.adapter =
                         RestaurantMenuRecyclerViewAdapter(
                             it.data?.catalog ?: emptyList()

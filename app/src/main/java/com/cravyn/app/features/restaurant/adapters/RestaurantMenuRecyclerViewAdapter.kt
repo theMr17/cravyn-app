@@ -31,9 +31,16 @@ class RestaurantMenuRecyclerViewAdapter(
         holder.binding.apply {
             foodNameText.text = item.foodName
             foodDescriptionText.text = item.description
-            priceText.text = "₹${item.price}"
+            priceText.text = holder.itemView.context.getString(
+                R.string.restaurant_menu_item_price_text,
+                item.price
+            )
             ratingText.text =
-                "${item.rating.toDisplayableNumber(1).formatted} (${item.rating_count})"
+                holder.itemView.context.getString(
+                    R.string.restaurant_menu_item_rating_text,
+                    item.rating.toDisplayableNumber(1).formatted,
+                    item.rating_count
+                )
 
             if (!item.foodImageUrl.isNullOrBlank()) {
                 Glide.with(holder.itemView.context)
