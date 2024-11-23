@@ -32,7 +32,7 @@ class RestaurantFragment(private val restaurant: Restaurant?) : Fragment() {
             binding.restaurantNameText.text = restaurant.name
             binding.deliveryEstimationText.text = "${restaurant.minTime}-${restaurant.maxTime} min • ${restaurant.distance.formatted} km"
             binding.ratingText.text = restaurant.rating.formatted
-            binding.ratingCountText.text = restaurant.ratingCount.toString()
+            binding.ratingCountText.text = "${restaurant.ratingCount} ratings"
         }
 
         restaurantViewModel.restaurantMenuLiveData.observe(viewLifecycleOwner) {
