@@ -36,7 +36,7 @@
     <string name="item_recommended_restaurant_discount_max_dummy_text">Up to ₹100</string>
     <string name="item_recommended_restaurant_best_in_item_name_dummy_text">Best in Biryani</string>
     <string name="item_recommended_restaurant_name_dummy_text">Arsalan</string>
-    <string name="item_recommended_restaurant_rating_delivery_time_dummy_text">4.4 (10K+) • 15-20 mins</string>
+    <string name="item_recommended_restaurant_rating_delivery_time_dummy_text">4.4 (10K+) • 15–20 min</string>
     <string name="item_recommended_restaurant_address_dummy_text">Salt Lake | 2.5 km</string>
     <string name="home_recommended_restaurant_list_filter_button_text">Filter</string>
     <string name="home_recommended_restaurant_list_sort_by_button_text">Sort by</string>
@@ -52,7 +52,7 @@
     <string name="restaurant_best_in_item_name_dummy_text">Best in Biryani</string>
     <string name="restaurant_rating_dummy_text">4.5</string>
     <string name="restaurant_rating_count_dummy_text">9.5K+ ratings</string>
-    <string name="restaurant_delivery_estimation_dummy_text">20-25 mins • 2.7 km</string>
+    <string name="restaurant_delivery_estimation_dummy_text">20–25 min • 2.7 km</string>
     <string name="searched_foods_header_text">Foods</string>
     <string name="searched_restaurants_header_text">Restaurants</string>
     <string name="restaurant_delivery_estimation_text">%1$d-%2$d min • %3$s km</string>
