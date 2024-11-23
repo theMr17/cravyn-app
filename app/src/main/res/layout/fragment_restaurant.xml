@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.restaurant.RestaurantFragment">
 
     <LinearLayout
@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_restaurant_header"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -24,8 +24,8 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="24dp"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="24dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_bold"
-                    android:text="Best in Biryani"
+                    android:text="@string/restaurant_best_in_item_name_dummy_text"
                     app:layout_constraintBottom_toBottomOf="@id/rating_count_text"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/rating_text" />
@@ -46,12 +46,12 @@
                     android:id="@+id/rating_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4.5"
-                    android:drawableStart="@drawable/ic_star_solid"
-                    android:drawableTint="@color/white"
-                    android:drawablePadding="4dp"
                     android:background="@drawable/bg_restaurant_rating_text"
+                    android:drawableStart="@drawable/ic_star_solid"
+                    android:drawablePadding="4dp"
+                    android:drawableTint="@color/white"
                     android:fontFamily="@font/nunito_black"
+                    android:text="@string/restaurant_rating_dummy_text"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -61,10 +61,9 @@
                     android:id="@+id/rating_count_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9.5K+ ratings"
-                    android:fontFamily="@font/nunito"
-                    android:textSize="12sp"
                     android:layout_marginTop="4dp"
+                    android:text="@string/restaurant_rating_count_dummy_text"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="@id/rating_text"
                     app:layout_constraintTop_toBottomOf="@id/rating_text" />
 
@@ -72,8 +71,8 @@
                     android:id="@+id/restaurant_name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/item_recommended_restaurant_name_dummy_text"
                     android:fontFamily="@font/nunito_black"
+                    android:text="@string/item_recommended_restaurant_name_dummy_text"
                     android:textColor="@color/shared_text_color"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -83,8 +82,7 @@
                     android:id="@+id/delivery_estimation_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20-25 mins • 2.7 km"
-                    android:fontFamily="@font/nunito"
+                    android:text="@string/restaurant_delivery_estimation_dummy_text"
                     android:textColor="@color/shared_text_color"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -99,16 +97,16 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/search_menu_text_input_layout"
         style="@style/OutlinedTextInputLayoutStyle"
-        android:hint="@string/search_menu_hint_text"
-        app:endIconMode="custom"
-        app:endIconDrawable="@drawable/ic_mic"
-        app:endIconTint="@color/red_1"
-        app:startIconDrawable="@drawable/ic_search"
-        app:startIconTint="@color/red_1"
         android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/restaurant_header_container"
+        android:hint="@string/search_menu_hint_text"
+        app:endIconDrawable="@drawable/ic_mic"
+        app:endIconMode="custom"
+        app:endIconTint="@color/red_1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_header_container"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="@color/red_1">
 
         <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
 
@@ -118,9 +116,9 @@
         android:id="@+id/chip_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="12dp"
         android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_menu_text_input_layout">
 
@@ -140,15 +138,15 @@
         android:id="@+id/restaurant_menu_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingTop="12dp"
-        android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:itemCount="5"
         android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-        app:layout_constraintTop_toBottomOf="@id/chip_container"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:clipToPadding="false"
+        android:paddingTop="12dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chip_container"
+        tools:itemCount="5"
         tools:listitem="@layout/item_restaurant_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

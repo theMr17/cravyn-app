@@ -85,10 +85,10 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/loading_bar"
             style="@style/LoadingBarCardStyle"
+            app:layout_constraintBottom_toBottomOf="@id/lets_eat_button"
             app:layout_constraintEnd_toEndOf="@id/lets_eat_button"
             app:layout_constraintStart_toStartOf="@id/lets_eat_button"
-            app:layout_constraintTop_toTopOf="@id/lets_eat_button"
-            app:layout_constraintBottom_toBottomOf="@id/lets_eat_button">
+            app:layout_constraintTop_toTopOf="@id/lets_eat_button">
 
             <com.google.android.material.progressindicator.CircularProgressIndicator style="@style/WhiteCircularProgressIndicatorStyle" />
 
