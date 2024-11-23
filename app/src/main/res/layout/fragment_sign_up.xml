@@ -16,10 +16,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -74,11 +74,11 @@
                 android:id="@+id/dob_text_input_layout"
                 style="@style/OutlinedTextInputLayoutStyle"
                 android:hint="@string/choose_date_of_birth_hint_text"
+                app:endIconDrawable="@drawable/ic_calender"
+                app:endIconMode="custom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phone_text_input_layout"
-                app:endIconMode="custom"
-                app:endIconDrawable="@drawable/ic_calender">
+                app:layout_constraintTop_toBottomOf="@+id/phone_text_input_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/OutlinedTextInputEditTextStyle"
@@ -90,10 +90,10 @@
                 android:id="@+id/password_text_input_layout"
                 style="@style/OutlinedTextInputLayoutStyle"
                 android:hint="@string/enter_password_hint_text"
+                app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dob_text_input_layout"
-                app:endIconMode="password_toggle">
+                app:layout_constraintTop_toBottomOf="@+id/dob_text_input_layout">
 
                 <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
 
@@ -103,10 +103,10 @@
                 android:id="@+id/confirm_password_text_input_layout"
                 style="@style/OutlinedTextInputLayoutStyle"
                 android:hint="@string/confirm_password_hint_text"
+                app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/password_text_input_layout"
-                app:endIconMode="password_toggle">
+                app:layout_constraintTop_toBottomOf="@+id/password_text_input_layout">
 
                 <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
 
@@ -116,8 +116,8 @@
                 android:id="@+id/grab_a_seat_button"
                 style="@style/ButtonStyle"
                 android:layout_marginTop="@dimen/sign_up_button_margin_top"
-                android:text="@string/sign_up_button_text"
                 android:layout_marginBottom="@dimen/shared_margin_bottom"
+                android:text="@string/sign_up_button_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -8,9 +8,9 @@
         android:id="@+id/food_image"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:importantForAccessibility="no"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_biryani"
-        android:importantForAccessibility="no"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,9 +23,9 @@
         android:fontFamily="@font/nunito_bold"
         android:text="@string/item_recommended_food_name_dummy_text"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/food_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/food_image"
-        app:layout_constraintStart_toStartOf="@+id/food_image" />
+        app:layout_constraintStart_toStartOf="@+id/food_image"
+        app:layout_constraintTop_toBottomOf="@id/food_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

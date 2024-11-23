@@ -49,4 +49,8 @@
     <string name="item_restaurant_menu_dummy_price_text">₹375</string>
     <string name="item_restaurant_menu_dummy_food_name_text">Mutton Biryani</string>
     <string name="item_restaurant_menu_add_to_cart_button_text">Add</string>
+    <string name="restaurant_best_in_item_name_dummy_text">Best in Biryani</string>
+    <string name="restaurant_rating_dummy_text">4.5</string>
+    <string name="restaurant_rating_count_dummy_text">9.5K+ ratings</string>
+    <string name="restaurant_delivery_estimation_dummy_text">20-25 mins • 2.7 km</string>
 </resources>

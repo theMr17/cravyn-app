@@ -9,16 +9,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline_50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guideline_50">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/header_text"
             style="@style/HeaderStyle"
-            android:text="@string/forgot_password_step_2_header_text"
             android:layout_marginTop="0dp"
+            android:text="@string/forgot_password_step_2_header_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,10 +43,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline_50"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.cravyn.app.widget.OtpEditText
             android:id="@+id/otp_edit_text"
@@ -69,10 +69,10 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/loading_bar"
             style="@style/LoadingBarCardStyle"
+            app:layout_constraintBottom_toBottomOf="@id/submit_otp_button"
             app:layout_constraintEnd_toEndOf="@id/submit_otp_button"
             app:layout_constraintStart_toStartOf="@id/submit_otp_button"
-            app:layout_constraintTop_toTopOf="@id/submit_otp_button"
-            app:layout_constraintBottom_toBottomOf="@id/submit_otp_button">
+            app:layout_constraintTop_toTopOf="@id/submit_otp_button">
 
             <com.google.android.material.progressindicator.CircularProgressIndicator style="@style/WhiteCircularProgressIndicatorStyle" />
 
