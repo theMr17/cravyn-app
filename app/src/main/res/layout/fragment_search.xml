@@ -27,9 +27,9 @@
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/foods_header_text"
+                android:id="@+id/searched_foods_header_text"
                 style="@style/HeaderStyle"
-                android:text="Foods" />
+                android:text="@string/searched_foods_header_text" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/searched_foods_recycler_view"
@@ -43,9 +43,9 @@
                 tools:listitem="@layout/item_restaurant_menu" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/restaurants_header_text"
+                android:id="@+id/searched_restaurants_header_text"
                 style="@style/HeaderStyle"
-                android:text="Restaurants" />
+                android:text="@string/searched_restaurants_header_text" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/searched_restaurants_recycler_view"
