@@ -12,7 +12,7 @@ data class Restaurant(
     val maxTime: Int,
     val ratingCount: Int,
     val rating: DisplayableNumber
-): Serializable
+) : Serializable
 
 fun RecommendedRestaurantItem.toRestaurant(): Restaurant {
     return Restaurant(

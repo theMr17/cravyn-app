@@ -24,6 +24,10 @@ data class RestaurantMenuResponse(
         val itemId: String,
         @SerializedName("price")
         val price: String,
+        @SerializedName("rating")
+        val rating: Double,
+        @SerializedName("rating_count")
+        val rating_count: Int,
         @SerializedName("restaurant_id")
         val restaurantId: String,
         @SerializedName("type")

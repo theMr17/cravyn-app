@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.cravyn.app.R
+import com.cravyn.app.data.api.toDisplayableNumber
 import com.cravyn.app.databinding.ItemRestaurantMenuBinding
 import com.cravyn.app.features.restaurant.models.RestaurantMenuResponse
 import com.cravyn.app.util.toHttpsUrl
@@ -31,6 +32,8 @@ class RestaurantMenuRecyclerViewAdapter(
             foodNameText.text = item.foodName
             foodDescriptionText.text = item.description
             priceText.text = "₹${item.price}"
+            ratingText.text =
+                "${item.rating.toDisplayableNumber(1).formatted} (${item.rating_count})"
 
             if (!item.foodImageUrl.isNullOrBlank()) {
                 Glide.with(holder.itemView.context)
@@ -39,7 +42,7 @@ class RestaurantMenuRecyclerViewAdapter(
                     .error(R.drawable.restaurant_sample_image)
                     .into(foodImage)
             } else {
-                Glide.with(holder.itemView.context).clear(foodImage);
+                Glide.with(holder.itemView.context).clear(foodImage)
             }
         }
     }

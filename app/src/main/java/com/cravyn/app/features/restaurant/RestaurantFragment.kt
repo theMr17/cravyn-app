@@ -30,7 +30,8 @@ class RestaurantFragment(private val restaurant: Restaurant?) : Fragment() {
             restaurantViewModel.getRestaurantMenu(restaurant.restaurantId)
 
             binding.restaurantNameText.text = restaurant.name
-            binding.deliveryEstimationText.text = "${restaurant.minTime}-${restaurant.maxTime} min • ${restaurant.distance.formatted} km"
+            binding.deliveryEstimationText.text =
+                "${restaurant.minTime}-${restaurant.maxTime} min • ${restaurant.distance.formatted} km"
             binding.ratingText.text = restaurant.rating.formatted
             binding.ratingCountText.text = "${restaurant.ratingCount} ratings"
         }
