@@ -1,6 +1,5 @@
 package com.cravyn.app.features.home.models
 
-
 import com.google.gson.annotations.SerializedName
 
 data class RecommendedRestaurantsResponse(

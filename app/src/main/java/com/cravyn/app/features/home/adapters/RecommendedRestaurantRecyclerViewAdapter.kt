@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.databinding.ItemRecommendedRestaurantBinding
+import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
 import com.cravyn.app.features.home.models.RecommendedRestaurantItem
+import com.cravyn.app.features.restaurant.models.toRestaurant
 
-open class RecommendedRestaurantRecyclerViewAdapter(
-    private val restaurantItemList: List<RecommendedRestaurantItem>
+class RecommendedRestaurantRecyclerViewAdapter(
+    private val restaurantItemList: List<RecommendedRestaurantItem>,
+    private val recommendedRestaurantItemClickListener: RecommendedRestaurantItemClickListener
 ) : RecyclerView.Adapter<RecommendedRestaurantRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemRecommendedRestaurantBinding) :
@@ -44,6 +47,10 @@ open class RecommendedRestaurantRecyclerViewAdapter(
             ratingDeliveryTimeText.text =
                 "${item.rating.formatted} (${item.ratingCount}) • ${item.minTime}-${item.maxTime} min"
             restaurantAddressText.text = "${item.city} | ${item.distance.formatted} km"
+
+            root.setOnClickListener {
+                recommendedRestaurantItemClickListener.onRecommendedRestaurantItemClicked(item.toRestaurant())
+            }
         }
     }
 
