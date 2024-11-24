@@ -59,6 +59,7 @@
                 tools:listitem="@layout/item_recommended_restaurant" />
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:visibility="gone"
                 android:id="@+id/search_page_loading_bar"
                 style="@style/PrimaryCircularProgressIndicatorStyle"
                 android:layout_marginVertical="40dp"

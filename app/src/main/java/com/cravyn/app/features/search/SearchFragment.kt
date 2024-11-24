@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -22,16 +23,20 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
-    private lateinit var seachedFood: String
+
     private val searchViewModel:SearchViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        seachedFood = binding.searchTextInputLayout.editText.toString()
-        searchViewModel.getSearchedFoodAndRestaurants(seachedFood)
+        binding.searchTextInputLayout.editText?.addTextChangedListener {
+            searchViewModel.getSearchedFoodAndRestaurants(
+                binding.searchTextInputLayout.editText?.text.toString()
+            )
+        }
 
         searchViewModel.searchedFoodAndRestaurantLivedata.observe(viewLifecycleOwner) {
             when(it) {
