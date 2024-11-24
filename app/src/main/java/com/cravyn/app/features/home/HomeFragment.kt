@@ -58,6 +58,10 @@ class HomeFragment : Fragment() {
             showRecommendedRestaurantSortByMenu(view)
         }
 
+        binding.orderNow.setOnClickListener {
+            startActivity(createSearchActivity(requireContext()))
+        }
+
         homeViewModel.getRecommendedRestaurants()
         homeViewModel.recommendedRestaurantsLiveData.observe(viewLifecycleOwner) {
             when (it) {
