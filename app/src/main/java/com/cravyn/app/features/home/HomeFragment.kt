@@ -1,9 +1,11 @@
 package com.cravyn.app.features.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isVisible
@@ -16,14 +18,16 @@ import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
 import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
 import com.cravyn.app.features.home.models.FoodItem
+import com.cravyn.app.features.search.SearchActivity
 import com.cravyn.app.features.search.SearchActivity.Companion.createSearchActivity
+import com.cravyn.app.features.search.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
+    private val searchViewModel:SearchViewModel by viewModels()
     private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -53,6 +57,12 @@ class HomeFragment : Fragment() {
 
         val gridView = binding.recommendedFoodGridView
         gridView.adapter = RecommendedFoodGridViewAdapter(requireContext(), foodItem)
+
+        gridView.setOnItemClickListener { parent, view, position, id ->
+            startActivity(createSearchActivity(requireContext()))
+            val food = foodItem[position].toString()
+            searchViewModel.getSearchedFoodAndRestaurants(food)
+        }
 
         binding.sortByButton.setOnClickListener { view ->
             showRecommendedRestaurantSortByMenu(view)
