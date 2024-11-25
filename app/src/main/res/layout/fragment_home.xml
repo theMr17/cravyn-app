@@ -40,9 +40,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_arrow_down"
+                        android:drawableTint="@color/shared_text_color"
                         android:fontFamily="@font/nunito_black"
                         android:text="@string/selected_address_text"
-                        android:textColor="@color/black"
+                        android:textColor="@color/shared_text_color"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -51,6 +52,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:fontFamily="@font/nunito_bold"
+                        android:textColor="@color/shared_text_color"
                         android:lines="1"
                         android:text="@string/selected_address_dummy_text"
                         android:textSize="12sp" />

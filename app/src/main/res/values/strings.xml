@@ -61,4 +61,6 @@
     <string name="restaurant_menu_item_rating_text">%1$s (%2$d)</string>
     <string name="selected_address_text">Selected Address</string>
     <string name="selected_address_dummy_text">JD Block, Sector 3, Bidhannagar, Kolkata, West Bengal 700106</string>
+    <string name="add_new_address_button_text">Add new address</string>
+    <string name="saved_addresses_header_text">Saved Addresses</string>
 </resources>
