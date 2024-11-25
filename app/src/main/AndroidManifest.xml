@@ -39,6 +39,11 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
+            android:name=".features.address.saved.SavedAddressActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".features.search.SearchActivity"
             android:exported="false"
             android:screenOrientation="portrait"
