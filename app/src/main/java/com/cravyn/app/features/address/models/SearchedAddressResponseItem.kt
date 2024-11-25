@@ -2,7 +2,7 @@ package com.cravyn.app.features.address.models
 
 import com.google.gson.annotations.SerializedName
 
-data class CoordinatesResponseItem(
+data class SearchedAddressResponseItem(
     @SerializedName("boundingbox")
     val boundingBox: List<String>,
     @SerializedName("class")

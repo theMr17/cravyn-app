@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cravyn.app.data.api.Resource
-import com.cravyn.app.features.address.models.CoordinatesResponseItem
+import com.cravyn.app.features.address.models.SearchedAddressResponseItem
 import com.cravyn.app.util.ErrorResponseParserUtil.getErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -17,29 +17,29 @@ import javax.inject.Inject
 class AddressViewModel @Inject constructor(
     private val addressRepository: AddressRepository
 ) : ViewModel() {
-    private val _coordinatesListLiveData: MutableLiveData<Resource<List<CoordinatesResponseItem>>> =
+    private val _searchedAddressListLiveData: MutableLiveData<Resource<List<SearchedAddressResponseItem>>> =
         MutableLiveData()
-    val coordinatesListLiveData: LiveData<Resource<List<CoordinatesResponseItem>>> get() = _coordinatesListLiveData
+    val searchedAddressListLiveData: LiveData<Resource<List<SearchedAddressResponseItem>>> get() = _searchedAddressListLiveData
 
-    private var getCoordinatesJob: Job? = null
+    private var searchAddressesJob: Job? = null
 
-    fun getCoordinates(address: String) {
-        getCoordinatesJob?.cancel()
-        getCoordinatesJob = viewModelScope.launch {
+    fun searchAddresses(address: String) {
+        searchAddressesJob?.cancel()
+        searchAddressesJob = viewModelScope.launch {
             delay(800)
-            _coordinatesListLiveData.postValue(Resource.Loading())
+            _searchedAddressListLiveData.postValue(Resource.Loading())
 
-            val coordinatesListResponse = addressRepository.getCoordinates(address)
+            val coordinatesListResponse = addressRepository.searchAddresses(address)
 
             if (coordinatesListResponse.isSuccessful) {
-                _coordinatesListLiveData.postValue(
+                _searchedAddressListLiveData.postValue(
                     Resource.Success(
                         data = coordinatesListResponse.body()!!.data,
                         message = coordinatesListResponse.body()?.message
                     )
                 )
             } else {
-                _coordinatesListLiveData.postValue(
+                _searchedAddressListLiveData.postValue(
                     Resource.Error(getErrorMessage(coordinatesListResponse))
                 )
             }

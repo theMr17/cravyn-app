@@ -29,10 +29,10 @@ class SearchAddressFragment : Fragment() {
         _binding = FragmentSearchAddressBinding.inflate(inflater, container, false)
 
         binding.searchAddressTextInputLayout.editText?.addTextChangedListener {
-            addressViewModel.getCoordinates(binding.searchAddressTextInputLayout.editText?.text.toString())
+            addressViewModel.searchAddresses(binding.searchAddressTextInputLayout.editText?.text.toString())
         }
 
-        addressViewModel.coordinatesListLiveData.observe(viewLifecycleOwner) {
+        addressViewModel.searchedAddressListLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {
                     binding.searchedAddressLoadingBar.isVisible = false

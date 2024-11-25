@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.databinding.ItemSearchedAddressBinding
-import com.cravyn.app.features.address.models.CoordinatesResponseItem
+import com.cravyn.app.features.address.models.SearchedAddressResponseItem
 
 class SearchedAddressRecyclerViewAdapter(
-    private val searchedAddresses: List<CoordinatesResponseItem>
+    private val searchedAddresses: List<SearchedAddressResponseItem>
 ) : RecyclerView.Adapter<SearchedAddressRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemSearchedAddressBinding) :
