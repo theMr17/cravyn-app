@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".features.address.search.SearchAddressFragment">
 
@@ -15,5 +16,24 @@
         <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_address_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+        android:layout_marginTop="24dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_searched_address" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/searched_address_loading_bar"
+        style="@style/PrimaryCircularProgressIndicatorStyle"
+        android:layout_marginVertical="40dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_address_text_input_layout" />
 
 </LinearLayout>
