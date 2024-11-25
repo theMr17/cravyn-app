@@ -29,7 +29,8 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/searched_foods_header_text"
                 style="@style/HeaderStyle"
-                android:text="@string/searched_foods_header_text" />
+                android:text="@string/searched_foods_header_text"
+                android:visibility="invisible"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/searched_foods_recycler_view"
@@ -45,7 +46,8 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/searched_restaurants_header_text"
                 style="@style/HeaderStyle"
-                android:text="@string/searched_restaurants_header_text" />
+                android:text="@string/searched_restaurants_header_text"
+                android:visibility="invisible"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/searched_restaurants_recycler_view"

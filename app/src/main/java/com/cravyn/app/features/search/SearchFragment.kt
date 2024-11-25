@@ -60,6 +60,14 @@ class SearchFragment : Fragment() {
                         SearchedRestaurantsRecyclerViewAdapter(
                             it.data?.restaurants?: emptyList()
                         )
+
+                    if(!it.data?.foodItems.isNullOrEmpty()) {
+                        binding.searchedFoodsHeaderText.isVisible = true
+                    }
+
+                    if(!it.data?.restaurants.isNullOrEmpty()) {
+                        binding.searchedRestaurantsHeaderText.isVisible = true
+                    }
                 }
             }
         }
