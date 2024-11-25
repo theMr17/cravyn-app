@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_restaurant_menu" />
+        tools:itemCount="3"
+        tools:listitem="@layout/item_saved_address" />
 
 </LinearLayout>

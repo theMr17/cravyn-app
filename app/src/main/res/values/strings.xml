@@ -63,4 +63,5 @@
     <string name="selected_address_dummy_text">JD Block, Sector 3, Bidhannagar, Kolkata, West Bengal 700106</string>
     <string name="add_new_address_button_text">Add new address</string>
     <string name="saved_addresses_header_text">Saved Addresses</string>
+    <string name="search_address_hint_text">Type your address here</string>
 </resources>

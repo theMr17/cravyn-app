@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".features.address.search.SearchAddressFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/search_text_input_layout"
+        style="@style/SearchOutlinedTextInputLayoutStyle"
+        android:layout_marginTop="32dp"
+        android:hint="@string/search_address_hint_text">
+
+        <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>
