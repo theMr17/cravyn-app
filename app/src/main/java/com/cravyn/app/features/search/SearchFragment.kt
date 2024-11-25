@@ -9,12 +9,8 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import com.cravyn.app.data.api.Resource
-import com.cravyn.app.data.api.toDisplayableNumber
 import com.cravyn.app.databinding.FragmentSearchBinding
-import com.cravyn.app.features.home.models.FoodItem
-import com.cravyn.app.features.home.models.RecommendedRestaurantItem
 import com.cravyn.app.features.search.adapters.SearchedFoodsRecyclerViewAdapter
 import com.cravyn.app.features.search.adapters.SearchedRestaurantsRecyclerViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +28,13 @@ class SearchFragment : Fragment() {
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
+        binding.searchTextInputLayout.editText?.requestFocus()
+
+        val searchQuery = arguments?.getString("food_title")
+        searchQuery?.let {
+            binding.searchTextInputLayout.editText?.setText(it)
+            searchViewModel.getSearchedFoodAndRestaurants(it)
+        }
         binding.searchTextInputLayout.editText?.addTextChangedListener {
             searchViewModel.getSearchedFoodAndRestaurants(
                 binding.searchTextInputLayout.editText?.text.toString()
