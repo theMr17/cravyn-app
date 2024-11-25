@@ -7,7 +7,7 @@
     tools:context=".features.address.search.SearchAddressFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/search_text_input_layout"
+        android:id="@+id/search_address_text_input_layout"
         style="@style/SearchOutlinedTextInputLayoutStyle"
         android:layout_marginTop="32dp"
         android:hint="@string/search_address_hint_text">

@@ -6,10 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.cravyn.app.R
 import com.cravyn.app.databinding.ActivitySearchAddressBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /** Tag for identifying the [SearchAddressFragment] in transactions. */
 private const val TAG_SEARCH_ADDRESS_FRAGMENT = "SEARCH_ADDRESS_FRAGMENT"
 
+@AndroidEntryPoint
 class SearchAddressActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchAddressBinding
 

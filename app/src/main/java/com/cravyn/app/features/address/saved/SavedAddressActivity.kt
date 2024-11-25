@@ -6,10 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.cravyn.app.R
 import com.cravyn.app.databinding.ActivitySavedAddressBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /** Tag for identifying the [SavedAddressFragment] in transactions. */
 private const val TAG_SAVED_ADDRESS_FRAGMENT = "SAVED_ADDRESS_FRAGMENT"
 
+@AndroidEntryPoint
 class SavedAddressActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySavedAddressBinding
 

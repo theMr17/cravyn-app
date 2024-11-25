@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cravyn.app.databinding.FragmentSavedAddressBinding
 import com.cravyn.app.features.address.search.SearchAddressActivity.Companion.createSearchAddressActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SavedAddressFragment : Fragment() {
     private var _binding: FragmentSavedAddressBinding? = null
     private val binding get() = _binding!!

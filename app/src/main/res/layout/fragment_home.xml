@@ -52,9 +52,9 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:fontFamily="@font/nunito_bold"
-                        android:textColor="@color/shared_text_color"
                         android:lines="1"
                         android:text="@string/selected_address_dummy_text"
+                        android:textColor="@color/shared_text_color"
                         android:textSize="12sp" />
 
                 </LinearLayout>
