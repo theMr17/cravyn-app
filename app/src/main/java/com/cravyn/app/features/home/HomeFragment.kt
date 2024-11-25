@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentHomeBinding
+import com.cravyn.app.features.address.saved.SavedAddressActivity.Companion.createSavedAddressActivity
 import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
 import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
@@ -31,6 +32,10 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        binding.selectedAddressContainer.setOnClickListener {
+            startActivity(createSavedAddressActivity(requireContext()))
+        }
 
         binding.searchTextInputLayout.editText?.setOnClickListener {
             startActivity(createSearchActivity(requireContext()))

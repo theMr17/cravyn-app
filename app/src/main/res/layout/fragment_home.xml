@@ -25,6 +25,38 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_home_header">
 
+                <LinearLayout
+                    android:id="@+id/selected_address_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@id/your_account_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_down"
+                        android:fontFamily="@font/nunito_black"
+                        android:text="@string/selected_address_text"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/selected_address_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/nunito_bold"
+                        android:lines="1"
+                        android:text="@string/selected_address_dummy_text"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
                 <ImageView
                     android:id="@+id/your_account_button"
                     android:layout_width="44dp"

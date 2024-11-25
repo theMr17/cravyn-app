@@ -59,4 +59,6 @@
     <string name="restaurant_rating_count_text">%1$d ratings</string>
     <string name="restaurant_menu_item_price_text">₹%1$s</string>
     <string name="restaurant_menu_item_rating_text">%1$s (%2$d)</string>
+    <string name="selected_address_text">Selected Address</string>
+    <string name="selected_address_dummy_text">JD Block, Sector 3, Bidhannagar, Kolkata, West Bengal 700106</string>
 </resources>
