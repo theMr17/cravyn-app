@@ -1,172 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.cart.CartFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cart_items_recycler_view"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-        android:layout_marginTop="32dp"
-        android:overScrollMode="never"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_cart" />
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/shared_margin_bottom">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/cart_summary_header_text"
-        style="@style/HeaderStyle"
-        android:layout_marginTop="0dp"
-        android:text="Cart Summary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cart_items_recycler_view" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cart_summary_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-        android:layout_marginTop="12dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cart_summary_header_text"
-        app:strokeColor="@color/join_plus_card_border_color"
-        app:strokeWidth="1dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cart_items_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+            android:layout_marginTop="32dp"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_cart" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/total_price_label_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Price"
-                app:layout_constraintEnd_toStartOf="@id/total_price_text"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cart_summary_header_text"
+            style="@style/HeaderStyle"
+            android:layout_marginTop="0dp"
+            android:text="Cart Summary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cart_items_recycler_view" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/total_price_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="₹800.00"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/total_price_label_text" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cart_summary_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+            android:layout_marginTop="12dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cart_summary_header_text"
+            app:strokeColor="@color/join_plus_card_border_color"
+            app:strokeWidth="1dp">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/total_discount_label_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Discount"
-                app:layout_constraintEnd_toStartOf="@id/total_discount_text"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/total_price_label_text" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/total_discount_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="- ₹100.00"
-                android:textColor="@color/discounted_price_text_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/total_discount_label_text" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/delivery_charge_label_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Delivery Charge"
-                app:layout_constraintEnd_toStartOf="@id/delivery_charge_text"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/total_discount_label_text" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/delivery_charge_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="₹30.00"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/delivery_charge_label_text" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/platform_charge_label_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Platform Charge"
-                app:layout_constraintEnd_toStartOf="@id/platform_charge_text"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/delivery_charge_label_text" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/platform_charge_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="₹5.00"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/platform_charge_label_text" />
-
-            <View
-                android:id="@+id/cart_summary_divider"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="12dp"
-                android:background="@color/shared_text_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/platform_charge_label_text" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/final_price_label_text"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="Final Price"
-                android:textColor="@color/shared_text_color"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@id/final_price_text"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cart_summary_divider" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/final_price_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_bold"
-                android:text="₹735.00"
-                android:textColor="@color/shared_text_color"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/final_price_label_text" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/total_price_label_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Price"
+                    app:layout_constraintEnd_toStartOf="@id/total_price_text"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/total_price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₹800.00"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/total_price_label_text" />
 
-    </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/total_discount_label_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Discount"
+                    app:layout_constraintEnd_toStartOf="@id/total_discount_text"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/total_price_label_text" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/place_order_button"
-        style="@style/ButtonStyle"
-        android:layout_marginTop="@dimen/login_button_margin_top"
-        android:text="Place Order"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cart_summary_container" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/total_discount_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="- ₹100.00"
+                    android:textColor="@color/discounted_price_text_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/total_discount_label_text" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/delivery_charge_label_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery Charge"
+                    app:layout_constraintEnd_toStartOf="@id/delivery_charge_text"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/total_discount_label_text" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/delivery_charge_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₹30.00"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/delivery_charge_label_text" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/platform_charge_label_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Platform Charge"
+                    app:layout_constraintEnd_toStartOf="@id/platform_charge_text"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/delivery_charge_label_text" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/platform_charge_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₹5.00"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/platform_charge_label_text" />
+
+                <View
+                    android:id="@+id/cart_summary_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/shared_text_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/platform_charge_label_text" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/final_price_label_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="Final Price"
+                    android:textColor="@color/shared_text_color"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@id/final_price_text"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cart_summary_divider" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/final_price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="₹735.00"
+                    android:textColor="@color/shared_text_color"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/final_price_label_text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/place_order_button"
+            style="@style/ButtonStyle"
+            android:layout_marginTop="@dimen/login_button_margin_top"
+            android:text="Place Order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cart_summary_container" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
