@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SavedAddressesResponse(
     @SerializedName("address")
-    val address: List<Address>
+    val addresses: List<Address>
 ) {
     data class Address(
         @SerializedName("address_id")

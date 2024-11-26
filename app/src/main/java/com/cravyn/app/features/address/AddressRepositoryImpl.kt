@@ -35,9 +35,9 @@ class AddressRepositoryImpl @Inject constructor(
     }
 
     override suspend fun removeAddress(
-        removeAddressRequestBody: RemoveAddressRequestBody
+        addressId: String
     ): Response<ApiResponse<Unit>> {
-        return addressApi.removeAddress(removeAddressRequestBody)
+        return addressApi.removeAddress(addressId)
     }
 
     override suspend fun setDefaultAddress(

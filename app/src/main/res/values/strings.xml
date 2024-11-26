@@ -65,4 +65,5 @@
     <string name="saved_addresses_header_text">Saved Addresses</string>
     <string name="search_address_hint_text">Type your address here</string>
     <string name="save_button_text">Save</string>
+    <string name="set_as_default_button_text">Set as default</string>
 </resources>

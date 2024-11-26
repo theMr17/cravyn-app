@@ -24,7 +24,7 @@ interface AddressRepository {
     ): Response<ApiResponse<SaveAddressResponse>>
 
     suspend fun removeAddress(
-        removeAddressRequestBody: RemoveAddressRequestBody
+        addressId: String
     ): Response<ApiResponse<Unit>>
 
     suspend fun setDefaultAddress(

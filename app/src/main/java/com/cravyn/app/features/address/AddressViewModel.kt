@@ -142,11 +142,11 @@ class AddressViewModel @Inject constructor(
         }
     }
 
-    fun removeAddress(removeAddressRequestBody: RemoveAddressRequestBody) {
+    fun removeAddress(addressId: String) {
         viewModelScope.launch {
             _removeAddressLiveData.postValue(Resource.Loading())
 
-            val response = addressRepository.removeAddress(removeAddressRequestBody)
+            val response = addressRepository.removeAddress(addressId)
 
             if (response.isSuccessful) {
                 _removeAddressLiveData.postValue(
@@ -163,9 +163,11 @@ class AddressViewModel @Inject constructor(
         }
     }
 
-    fun setDefaultAddress(setDefaultAddressRequestBody: SetDefaultAddressRequestBody) {
+    fun setDefaultAddress(addressId: String) {
         viewModelScope.launch {
             _setDefaultAddressLiveData.postValue(Resource.Loading())
+
+            val setDefaultAddressRequestBody = SetDefaultAddressRequestBody(addressId)
 
             val response = addressRepository.setDefaultAddress(setDefaultAddressRequestBody)
 

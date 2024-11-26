@@ -37,7 +37,7 @@ interface AddressApi {
 
     @DELETE("customer/address")
     suspend fun removeAddress(
-        @Body removeAddressRequestBody: RemoveAddressRequestBody
+        @Query("addressId") addressId: String
     ): Response<ApiResponse<Unit>>
 
     @PATCH("customer/address")
