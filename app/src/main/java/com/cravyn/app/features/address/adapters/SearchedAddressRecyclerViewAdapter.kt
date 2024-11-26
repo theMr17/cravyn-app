@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.databinding.ItemSearchedAddressBinding
+import com.cravyn.app.features.address.listeners.SaveAddressItemClickListener
 import com.cravyn.app.features.address.models.SearchedAddressResponseItem
 
 class SearchedAddressRecyclerViewAdapter(
-    private val searchedAddresses: List<SearchedAddressResponseItem>
+    private val searchedAddresses: List<SearchedAddressResponseItem>,
+    private val saveAddressItemClickListener: SaveAddressItemClickListener
 ) : RecyclerView.Adapter<SearchedAddressRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemSearchedAddressBinding) :
@@ -27,6 +29,13 @@ class SearchedAddressRecyclerViewAdapter(
 
         holder.binding.apply {
             addressText.text = item.displayName
+            saveAddressButton.setOnClickListener {
+                saveAddressItemClickListener.onSaveButtonClicked(
+                    item.lat.toDouble(),
+                    item.lon.toDouble(),
+                    item.displayName
+                )
+            }
         }
     }
 

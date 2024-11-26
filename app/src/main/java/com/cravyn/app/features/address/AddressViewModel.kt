@@ -115,9 +115,15 @@ class AddressViewModel @Inject constructor(
         }
     }
 
-    fun saveAddress(saveAddressRequestBody: SaveAddressRequestBody) {
+    fun saveAddress(latitude: Double, longitude: Double, displayAddress: String) {
         viewModelScope.launch {
             _saveAddressLiveData.postValue(Resource.Loading())
+
+            val saveAddressRequestBody = SaveAddressRequestBody(
+                latitude = latitude,
+                longitude = longitude,
+                displayAddress = displayAddress
+            )
 
             val response = addressRepository.saveAddress(saveAddressRequestBody)
 
