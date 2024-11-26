@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="My Cart" />
+        app:title="@string/cart_toolbar_title" />
 
     <FrameLayout
         android:id="@+id/cart_fragment_placeholder"
