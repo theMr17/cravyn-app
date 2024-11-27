@@ -17,7 +17,6 @@ import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAd
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
 import com.cravyn.app.features.home.models.FoodItem
 import com.cravyn.app.features.search.SearchActivity.Companion.createSearchActivity
-import com.cravyn.app.features.search.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -55,7 +54,7 @@ class HomeFragment : Fragment() {
         val gridView = binding.recommendedFoodGridView
         gridView.adapter = RecommendedFoodGridViewAdapter(requireContext(), foodItem)
 
-        gridView.setOnItemClickListener { parent, view, position, id ->
+        gridView.setOnItemClickListener { _, _, position, _ ->
             startActivity(createSearchActivity(requireContext(), foodItem[position].title))
         }
 
@@ -63,7 +62,7 @@ class HomeFragment : Fragment() {
             showRecommendedRestaurantSortByMenu(view)
         }
 
-        binding.orderNow.setOnClickListener {
+        binding.orderNowButton.setOnClickListener {
             startActivity(createSearchActivity(requireContext()))
         }
 

@@ -25,7 +25,7 @@ class SearchViewModel @Inject constructor(
     fun getSearchedFoodAndRestaurants(search: String) {
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
-            delay(1000L)
+            delay(800L)
             _searchedFoodAndRestaurantLivedata.postValue(Resource.Loading())
 
             val searchedFoodResponse = searchRepository.getSearchedFoodAndRestaurants(search)

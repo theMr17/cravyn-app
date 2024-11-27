@@ -94,7 +94,7 @@
                 android:textColor="@color/offer_sub_heading_text_color" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/order_now"
+                android:id="@+id/order_now_button"
                 style="@style/SmallButtonStyle"
                 android:layout_marginTop="8dp"
                 android:text="@string/offer_action_button_text" />
