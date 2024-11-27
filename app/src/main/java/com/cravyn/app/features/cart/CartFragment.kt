@@ -18,7 +18,6 @@ class CartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 

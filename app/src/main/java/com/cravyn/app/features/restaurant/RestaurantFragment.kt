@@ -10,16 +10,20 @@ import androidx.fragment.app.viewModels
 import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentRestaurantBinding
+import com.cravyn.app.features.cart.CartViewModel
+import com.cravyn.app.features.cart.listener.AddItemToCartItemClickListener
 import com.cravyn.app.features.restaurant.adapters.RestaurantMenuRecyclerViewAdapter
 import com.cravyn.app.features.restaurant.models.Restaurant
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RestaurantFragment : Fragment() {
+class
+RestaurantFragment : Fragment(), AddItemToCartItemClickListener{
     private var _binding: FragmentRestaurantBinding? = null
     private val binding get() = _binding!!
 
     private val restaurantViewModel: RestaurantViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,8 +65,23 @@ class RestaurantFragment : Fragment() {
                 is Resource.Success -> {
                     binding.restaurantMenuRecyclerView.adapter =
                         RestaurantMenuRecyclerViewAdapter(
-                            it.data?.catalog ?: emptyList()
+                            it.data?.catalog ?: emptyList(),
+                            this as AddItemToCartItemClickListener
                         )
+                }
+            }
+        }
+
+        cartViewModel.addItemToCartLiveData.observe(viewLifecycleOwner) {
+            when(it) {
+                is Resource.Loading -> {}
+
+                is Resource.Success -> {
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -77,5 +96,9 @@ class RestaurantFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun addItemToCartClicked(itemId: String) {
+        cartViewModel.addItemtoCart(itemId)
     }
 }
