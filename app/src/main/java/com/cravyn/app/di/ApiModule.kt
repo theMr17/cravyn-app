@@ -10,6 +10,7 @@ import com.cravyn.app.features.auth.AuthRepositoryImpl
 import com.cravyn.app.features.auth.JwtTokenRepository
 import com.cravyn.app.features.auth.JwtTokenRepositoryImpl
 import com.cravyn.app.features.cart.CartApi
+import com.cravyn.app.features.cart.CartRepository
 import com.cravyn.app.features.cart.CartRepositoryImpl
 import com.cravyn.app.features.home.HomeApi
 import com.cravyn.app.features.home.HomeRepository
@@ -92,7 +93,7 @@ object ApiModule {
     fun providesSearchRepository(impl: SearchRepositoryImpl): SearchRepository = impl
 
     @Provides
-    fun providesCartRepository(impl: CartRepositoryImpl): CartRepositoryImpl =  impl
+    fun providesCartRepository(impl: CartRepositoryImpl): CartRepository =  impl
 
     @Provides
     @Singleton
