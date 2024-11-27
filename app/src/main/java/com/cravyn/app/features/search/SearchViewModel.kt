@@ -16,12 +16,13 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchRepository: SearchRepository
-):ViewModel() {
+) : ViewModel() {
     private var searchJob: Job? = null
-    private val _searchedFoodAndRestaurantLivedata: MutableLiveData<Resource<SearchResponse>> = MutableLiveData()
-    val searchedFoodAndRestaurantLivedata:LiveData<Resource<SearchResponse>> get() = _searchedFoodAndRestaurantLivedata
+    private val _searchedFoodAndRestaurantLivedata: MutableLiveData<Resource<SearchResponse>> =
+        MutableLiveData()
+    val searchedFoodAndRestaurantLivedata: LiveData<Resource<SearchResponse>> get() = _searchedFoodAndRestaurantLivedata
 
-    fun getSearchedFoodAndRestaurants(search:String) {
+    fun getSearchedFoodAndRestaurants(search: String) {
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(1000L)
@@ -29,11 +30,13 @@ class SearchViewModel @Inject constructor(
 
             val searchedFoodResponse = searchRepository.getSearchedFoodAndRestaurants(search)
 
-            if(searchedFoodResponse.isSuccessful) {
-                _searchedFoodAndRestaurantLivedata.postValue(Resource.Success(
-                    data = searchedFoodResponse.body()!!.data,
-                    message = searchedFoodResponse.body()?.message
-                ))
+            if (searchedFoodResponse.isSuccessful) {
+                _searchedFoodAndRestaurantLivedata.postValue(
+                    Resource.Success(
+                        data = searchedFoodResponse.body()!!.data,
+                        message = searchedFoodResponse.body()?.message
+                    )
+                )
             } else {
                 _searchedFoodAndRestaurantLivedata.postValue(
                     Resource.Error(getErrorMessage(searchedFoodResponse))

@@ -10,5 +10,5 @@ interface SearchApi {
     @GET("search")
     suspend fun getSearchedFoodAndRestaurant(
         @Query("search") search: String
-    ):Response<ApiResponse<SearchResponse>>
+    ): Response<ApiResponse<SearchResponse>>
 }

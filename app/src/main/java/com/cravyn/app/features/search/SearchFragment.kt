@@ -20,7 +20,7 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private val searchViewModel:SearchViewModel by viewModels()
+    private val searchViewModel: SearchViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +43,7 @@ class SearchFragment : Fragment() {
         }
 
         searchViewModel.searchedFoodAndRestaurantLivedata.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is Resource.Loading -> {
                     binding.searchPageLoadingBar.isVisible = true
                     binding.searchedFoodsHeaderText.isVisible = false
@@ -51,14 +51,16 @@ class SearchFragment : Fragment() {
                     binding.searchedRestaurantsHeaderText.isVisible = false
                     binding.searchedRestaurantsRecyclerView.isVisible = false
                 }
+
                 is Resource.Error -> {
                     binding.searchPageLoadingBar.isVisible = false
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
+
                 is Resource.Success -> {
                     binding.searchPageLoadingBar.isVisible = false
 
-                    if(!it.data?.foodItems.isNullOrEmpty()) {
+                    if (!it.data?.foodItems.isNullOrEmpty()) {
                         binding.searchedFoodsHeaderText.isVisible = true
                         binding.searchedFoodsRecyclerView.apply {
                             isVisible = true
@@ -66,7 +68,7 @@ class SearchFragment : Fragment() {
                         }
                     }
 
-                    if(!it.data?.restaurants.isNullOrEmpty()) {
+                    if (!it.data?.restaurants.isNullOrEmpty()) {
                         binding.searchedRestaurantsHeaderText.isVisible = true
                         binding.searchedRestaurantsRecyclerView.apply {
                             isVisible = true

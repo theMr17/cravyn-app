@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class SearchRepositoryImpl @Inject constructor(
     private val searchApi: SearchApi
-):SearchRepository {
+) : SearchRepository {
     override suspend fun getSearchedFoodAndRestaurants(search: String): Response<ApiResponse<SearchResponse>> {
         return searchApi.getSearchedFoodAndRestaurant(search)
     }

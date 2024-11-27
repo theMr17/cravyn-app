@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.R
 import com.cravyn.app.data.api.toDisplayableNumber
 import com.cravyn.app.databinding.ItemRecommendedRestaurantBinding
-import com.cravyn.app.features.home.models.RecommendedRestaurantItem
 import com.cravyn.app.features.search.models.SearchResponse
 
 class SearchedRestaurantsRecyclerViewAdapter(

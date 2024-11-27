@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.cravyn.app.R
-import com.cravyn.app.features.home.models.FoodItem
 import dagger.hilt.android.AndroidEntryPoint
 
 /** Tag for identifying the [SearchFragment] in transactions. */
