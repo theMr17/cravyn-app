@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide
 import com.cravyn.app.R
 import com.cravyn.app.data.api.toDisplayableNumber
 import com.cravyn.app.databinding.ItemRestaurantMenuBinding
-import com.cravyn.app.features.home.models.FoodItem
 import com.cravyn.app.features.search.models.SearchResponse
 import com.cravyn.app.util.toHttpsUrl
 
@@ -27,10 +26,22 @@ class SearchedFoodsRecyclerViewAdapter(
         val item = searchedFoodsItemList[position]
 
         holder.binding.apply {
-            foodDescriptionText.text = item.description
             foodNameText.text = item.foodName
-            priceText.text = "${item.price}"
-            ratingText.text = "${item.rating}"
+
+            priceText.text = holder.itemView.context.getString(
+                R.string.search_food_item_price_text,
+                item.price
+            )
+
+            ratingText.text =
+                holder.itemView.context.getString(
+                    R.string.search_food_item_rating_text,
+                    item.rating.toDisplayableNumber(1).formatted,
+                    item.ratingCount
+                )
+
+            foodDescriptionText.text = item.restaurantName
+
             if (!item.foodImageUrl.isNullOrBlank()) {
                 Glide.with(holder.itemView.context)
                     .load(item.foodImageUrl.toHttpsUrl())

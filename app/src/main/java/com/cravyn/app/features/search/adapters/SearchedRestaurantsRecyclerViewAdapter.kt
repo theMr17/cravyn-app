@@ -31,9 +31,32 @@ class SearchedRestaurantsRecyclerViewAdapter(
 
         holder.binding.apply {
             restaurantNameText.text = item.name
-            restaurantAddressText.text = item.city
-            ratingDeliveryTimeText.text = "${item.rating}"
 
+            item.maxDiscountPercent?.let { maxDiscount ->
+                discountPercentText.text = holder.itemView.context.getString(
+                    R.string.item_restaurant_discount_percent_text,
+                    maxDiscount.toDisplayableNumber(0).formatted
+                )
+            } ?: run {
+                discountPercentText.isVisible = false
+            }
+
+            item.maxDiscountCap?.toDisplayableNumber(0)?.formatted?.let { maxDiscountCap ->
+                discountMaxText.text = holder.itemView.context.getString(
+                    R.string.item_restaurant_discount_max_text,
+                    maxDiscountCap
+                )
+            } ?: run {
+                discountMaxText.isVisible = false
+            }
+
+            ratingDeliveryTimeText.text =
+                holder.itemView.context.getString(
+                    R.string.item_restaurant_rating_text,
+                    item.rating.toDisplayableNumber(2).formatted,
+                    item.ratingCount
+                )
+            restaurantAddressText.isVisible = false
         }
     }
 

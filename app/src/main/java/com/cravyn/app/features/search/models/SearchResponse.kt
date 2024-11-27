@@ -17,7 +17,7 @@ data class SearchResponse(
         @SerializedName("discount_percent")
         val discountPercent: Any?,
         @SerializedName("food_image_url")
-        val foodImageUrl: String,
+        val foodImageUrl: String?,
         @SerializedName("food_name")
         val foodName: String,
         @SerializedName("item_id")
@@ -27,47 +27,43 @@ data class SearchResponse(
         @SerializedName("rating")
         val rating: Double,
         @SerializedName("rating_count")
-        val rating_count: Int,
+        val ratingCount: Int,
         @SerializedName("restaurant_id")
         val restaurantId: String,
+        @SerializedName("restaurant_name")
+        val restaurantName: String,
         @SerializedName("type")
         val type: String
     )
 
     data class Restaurant(
+        @SerializedName("availability_status")
+        val availabilityStatus: Boolean,
+        @SerializedName("avg_rating")
+        val avgRating: Double,
         @SerializedName("city")
         val city: String,
-        @SerializedName("email")
-        val email: String,
-        @SerializedName("gstin_url")
-        val gstinUrl: Any?,
-        @SerializedName("landmark")
-        val landmark: String,
         @SerializedName("latitude")
-        val latitude: String,
-        @SerializedName("license_url")
-        val licenseUrl: String,
+        val latitude: Double,
         @SerializedName("longitude")
-        val longitude: String,
+        val longitude: Double,
+        @SerializedName("max_discount_cap")
+        val maxDiscountCap: Double?,
+        @SerializedName("max_discount_percent")
+        val maxDiscountPercent: Double?,
         @SerializedName("name")
         val name: String,
-        @SerializedName("owner_id")
-        val ownerId: String,
-        @SerializedName("phone_number")
-        val phoneNumber: String,
         @SerializedName("pin_code")
         val pinCode: String,
         @SerializedName("rating")
         val rating: Double,
         @SerializedName("rating_count")
-        val rating_count: Int,
-        @SerializedName("registration_no")
-        val registrationNo: String,
+        val ratingCount: Int,
         @SerializedName("restaurant_id")
         val restaurantId: String,
+        @SerializedName("restaurant_image_url")
+        val restaurantImageUrl: String?,
         @SerializedName("street")
-        val street: String,
-        @SerializedName("verify_status")
-        val verifyStatus: String
+        val street: String
     )
 }
