@@ -67,4 +67,11 @@
     <string name="item_cart_minus_button_text">-</string>
     <string name="item_cart_quantity_dummy_text">1</string>
     <string name="item_cart_plus_button_text">+</string>
+    <string name="search_food_item_price_text">₹%1$s</string>
+    <string name="search_food_item_rating_text">%1$s (%2$d)</string>
+    <string name="item_restaurant_discount_percent_text">%1$s%% OFF</string>
+    <string name="item_restaurant_discount_max_text">Up to ₹%1$s</string>
+    <string name="item_restaurant_rating_delivery_time_text">%1$s (%2$d) • %3$d-%4$d min</string>
+    <string name="item_restaurant_address_text">%1$s | %2$s km</string>
+    <string name="item_restaurant_rating_text">%1$s (%2$d)</string>
 </resources>

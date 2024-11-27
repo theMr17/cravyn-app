@@ -12,7 +12,7 @@ import com.cravyn.app.features.home.models.FoodItem
 
 class RecommendedFoodGridViewAdapter(
     private val context: Context,
-    private val items: List<FoodItem>
+    private val items: List<FoodItem>,
 ) : BaseAdapter() {
     override fun getCount(): Int {
         return items.size
@@ -40,4 +40,5 @@ class RecommendedFoodGridViewAdapter(
 
         return view
     }
+
 }

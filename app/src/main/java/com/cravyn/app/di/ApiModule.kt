@@ -15,6 +15,9 @@ import com.cravyn.app.features.home.HomeRepositoryImpl
 import com.cravyn.app.features.restaurant.RestaurantApi
 import com.cravyn.app.features.restaurant.RestaurantRepository
 import com.cravyn.app.features.restaurant.RestaurantRepositoryImpl
+import com.cravyn.app.features.search.SearchApi
+import com.cravyn.app.features.search.SearchRepository
+import com.cravyn.app.features.search.SearchRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -84,6 +87,9 @@ object ApiModule {
     fun providesRestaurantRepository(impl: RestaurantRepositoryImpl): RestaurantRepository = impl
 
     @Provides
+    fun providesSearchRepository(impl: SearchRepositoryImpl): SearchRepository = impl
+
+    @Provides
     @Singleton
     fun providesAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
@@ -99,5 +105,11 @@ object ApiModule {
     @Singleton
     fun providesRestaurantApi(retrofit: Retrofit): RestaurantApi {
         return retrofit.create(RestaurantApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesSearchApi(retrofit: Retrofit): SearchApi {
+        return retrofit.create(SearchApi::class.java)
     }
 }
