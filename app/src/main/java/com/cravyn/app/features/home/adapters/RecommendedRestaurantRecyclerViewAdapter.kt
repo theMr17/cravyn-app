@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.cravyn.app.R
 import com.cravyn.app.databinding.ItemRecommendedRestaurantBinding
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
 import com.cravyn.app.features.home.models.RecommendedRestaurantItem
@@ -33,20 +34,37 @@ class RecommendedRestaurantRecyclerViewAdapter(
             restaurantNameText.text = item.name
 
             item.maxDiscountPercent?.let { maxDiscount ->
-                discountPercentText.text = "${maxDiscount.formatted}% OFF"
+                discountPercentText.text = holder.itemView.context.getString(
+                    R.string.item_restaurant_discount_percent_text,
+                    maxDiscount.formatted
+                )
             } ?: run {
                 discountPercentText.isVisible = false
             }
 
             item.maxDiscountCap?.formatted?.let { maxDiscountCap ->
-                discountMaxText.text = "Up to ₹$maxDiscountCap"
+                discountMaxText.text =
+                    holder.itemView.context.getString(
+                        R.string.item_restaurant_discount_max_text,
+                        maxDiscountCap
+                    )
             } ?: run {
                 discountMaxText.isVisible = false
             }
 
             ratingDeliveryTimeText.text =
-                "${item.rating.formatted} (${item.ratingCount}) • ${item.minTime}-${item.maxTime} min"
-            restaurantAddressText.text = "${item.city} | ${item.distance.formatted} km"
+                holder.itemView.context.getString(
+                    R.string.item_restaurant_rating_delivery_time_text,
+                    item.rating.formatted,
+                    item.ratingCount,
+                    item.minTime,
+                    item.maxTime
+                )
+            restaurantAddressText.text = holder.itemView.context.getString(
+                R.string.item_restaurant_address_text,
+                item.city,
+                item.distance.formatted
+            )
 
             root.setOnClickListener {
                 recommendedRestaurantItemClickListener.onRecommendedRestaurantItemClicked(item.toRestaurant())

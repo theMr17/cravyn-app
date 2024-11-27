@@ -1,21 +1,21 @@
-package com.cravyn.app.features.restaurant.models
+package com.cravyn.app.features.search.models
 
 
 import com.google.gson.annotations.SerializedName
 
-data class RestaurantMenuResponse(
-    @SerializedName("catalog")
-    val catalog: List<Catalog>,
-    @SerializedName("restaurant")
-    val restaurant: Restaurant
+data class SearchResponse(
+    @SerializedName("foodItems")
+    val foodItems: List<FoodItem>,
+    @SerializedName("restaurants")
+    val restaurants: List<Restaurant>
 ) {
-    data class Catalog(
+    data class FoodItem(
         @SerializedName("description")
         val description: String,
         @SerializedName("discount_cap")
-        val discountCap: String?,
+        val discountCap: Any?,
         @SerializedName("discount_percent")
-        val discountPercent: String?,
+        val discountPercent: Any?,
         @SerializedName("food_image_url")
         val foodImageUrl: String?,
         @SerializedName("food_name")
@@ -30,31 +30,39 @@ data class RestaurantMenuResponse(
         val ratingCount: Int,
         @SerializedName("restaurant_id")
         val restaurantId: String,
+        @SerializedName("restaurant_name")
+        val restaurantName: String,
         @SerializedName("type")
         val type: String
     )
 
     data class Restaurant(
+        @SerializedName("availability_status")
+        val availabilityStatus: Boolean,
+        @SerializedName("avg_rating")
+        val avgRating: Double,
         @SerializedName("city")
         val city: String,
-        @SerializedName("landmark")
-        val landmark: String,
         @SerializedName("latitude")
-        val latitude: String,
-        @SerializedName("license_url")
-        val licenseUrl: String,
+        val latitude: Double,
         @SerializedName("longitude")
-        val longitude: String,
+        val longitude: Double,
+        @SerializedName("max_discount_cap")
+        val maxDiscountCap: Double?,
+        @SerializedName("max_discount_percent")
+        val maxDiscountPercent: Double?,
         @SerializedName("name")
         val name: String,
-        @SerializedName("owner_id")
-        val ownerId: String,
         @SerializedName("pin_code")
         val pinCode: String,
-        @SerializedName("registration_no")
-        val registrationNo: String,
+        @SerializedName("rating")
+        val rating: Double,
+        @SerializedName("rating_count")
+        val ratingCount: Int,
         @SerializedName("restaurant_id")
         val restaurantId: String,
+        @SerializedName("restaurant_image_url")
+        val restaurantImageUrl: String?,
         @SerializedName("street")
         val street: String
     )
