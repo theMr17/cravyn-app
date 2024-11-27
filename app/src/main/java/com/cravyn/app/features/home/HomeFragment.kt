@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
         gridView.adapter = RecommendedFoodGridViewAdapter(requireContext(), foodItem)
 
         gridView.setOnItemClickListener { parent, view, position, id ->
-            startActivity(createSearchActivity(requireContext(), foodItem[position]))
+            startActivity(createSearchActivity(requireContext(), foodItem[position].title))
         }
 
         binding.sortByButton.setOnClickListener { view ->

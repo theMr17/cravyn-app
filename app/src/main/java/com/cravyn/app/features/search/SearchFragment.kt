@@ -30,11 +30,12 @@ class SearchFragment : Fragment() {
 
         binding.searchTextInputLayout.editText?.requestFocus()
 
-        val searchQuery = arguments?.getString("food_title")
+        val searchQuery = arguments?.getString(SEARCH_QUERY_TAG)
         searchQuery?.let {
             binding.searchTextInputLayout.editText?.setText(it)
             searchViewModel.getSearchedFoodAndRestaurants(it)
         }
+
         binding.searchTextInputLayout.editText?.addTextChangedListener {
             searchViewModel.getSearchedFoodAndRestaurants(
                 binding.searchTextInputLayout.editText?.text.toString()
@@ -45,6 +46,10 @@ class SearchFragment : Fragment() {
             when(it) {
                 is Resource.Loading -> {
                     binding.searchPageLoadingBar.isVisible = true
+                    binding.searchedFoodsHeaderText.isVisible = false
+                    binding.searchedFoodsRecyclerView.isVisible = false
+                    binding.searchedRestaurantsHeaderText.isVisible = false
+                    binding.searchedRestaurantsRecyclerView.isVisible = false
                 }
                 is Resource.Error -> {
                     binding.searchPageLoadingBar.isVisible = false
@@ -52,21 +57,21 @@ class SearchFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.searchPageLoadingBar.isVisible = false
-                    binding.searchedFoodsRecyclerView.adapter =
-                        SearchedFoodsRecyclerViewAdapter(
-                            it.data?.foodItems?: emptyList()
-                        )
-                    binding.searchedRestaurantsRecyclerView.adapter =
-                        SearchedRestaurantsRecyclerViewAdapter(
-                            it.data?.restaurants?: emptyList()
-                        )
 
                     if(!it.data?.foodItems.isNullOrEmpty()) {
                         binding.searchedFoodsHeaderText.isVisible = true
+                        binding.searchedFoodsRecyclerView.apply {
+                            isVisible = true
+                            adapter = SearchedFoodsRecyclerViewAdapter(it.data?.foodItems!!)
+                        }
                     }
 
                     if(!it.data?.restaurants.isNullOrEmpty()) {
                         binding.searchedRestaurantsHeaderText.isVisible = true
+                        binding.searchedRestaurantsRecyclerView.apply {
+                            isVisible = true
+                            adapter = SearchedRestaurantsRecyclerViewAdapter(it.data?.restaurants!!)
+                        }
                     }
                 }
             }

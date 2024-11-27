@@ -30,9 +30,10 @@
                 android:id="@+id/searched_foods_header_text"
                 style="@style/HeaderStyle"
                 android:text="@string/searched_foods_header_text"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
                 android:id="@+id/searched_foods_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,9 +48,10 @@
                 android:id="@+id/searched_restaurants_header_text"
                 style="@style/HeaderStyle"
                 android:text="@string/searched_restaurants_header_text"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
                 android:id="@+id/searched_restaurants_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
