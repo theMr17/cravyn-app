@@ -39,7 +39,7 @@ class RestaurantMenuRecyclerViewAdapter(
                 holder.itemView.context.getString(
                     R.string.restaurant_menu_item_rating_text,
                     item.rating.toDisplayableNumber(1).formatted,
-                    item.rating_count
+                    item.ratingCount
                 )
 
             if (!item.foodImageUrl.isNullOrBlank()) {

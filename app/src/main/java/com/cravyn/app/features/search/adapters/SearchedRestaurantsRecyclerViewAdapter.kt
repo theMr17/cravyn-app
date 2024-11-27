@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.cravyn.app.R
+import com.cravyn.app.data.api.toDisplayableNumber
 import com.cravyn.app.databinding.ItemRecommendedRestaurantBinding
-import com.cravyn.app.features.home.models.RecommendedRestaurantItem
+import com.cravyn.app.features.search.models.SearchResponse
 
 class SearchedRestaurantsRecyclerViewAdapter(
-    private val searchedRestaurantsItemList: List<RecommendedRestaurantItem>
+    private val searchedRestaurantsItemList: List<SearchResponse.Restaurant>
 ) : RecyclerView.Adapter<SearchedRestaurantsRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemRecommendedRestaurantBinding) :
@@ -30,20 +32,30 @@ class SearchedRestaurantsRecyclerViewAdapter(
             restaurantNameText.text = item.name
 
             item.maxDiscountPercent?.let { maxDiscount ->
-                discountPercentText.text = "${maxDiscount.formatted}% OFF"
+                discountPercentText.text = holder.itemView.context.getString(
+                    R.string.item_restaurant_discount_percent_text,
+                    maxDiscount.toDisplayableNumber(0).formatted
+                )
             } ?: run {
                 discountPercentText.isVisible = false
             }
 
-            item.maxDiscountCap?.formatted?.let { maxDiscountCap ->
-                discountMaxText.text = "Up to ₹$maxDiscountCap"
+            item.maxDiscountCap?.toDisplayableNumber(0)?.formatted?.let { maxDiscountCap ->
+                discountMaxText.text = holder.itemView.context.getString(
+                    R.string.item_restaurant_discount_max_text,
+                    maxDiscountCap
+                )
             } ?: run {
                 discountMaxText.isVisible = false
             }
 
             ratingDeliveryTimeText.text =
-                "${item.rating.formatted} (${item.ratingCount}) • ${item.minTime}-${item.maxTime} min"
-            restaurantAddressText.text = "${item.city} | ${item.distance.formatted} km"
+                holder.itemView.context.getString(
+                    R.string.item_restaurant_rating_text,
+                    item.rating.toDisplayableNumber(2).formatted,
+                    item.ratingCount
+                )
+            restaurantAddressText.isVisible = false
         }
     }
 
