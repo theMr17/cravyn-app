@@ -54,8 +54,16 @@ class HomeFragment : Fragment() {
         val gridView = binding.recommendedFoodGridView
         gridView.adapter = RecommendedFoodGridViewAdapter(requireContext(), foodItem)
 
+        gridView.setOnItemClickListener { _, _, position, _ ->
+            startActivity(createSearchActivity(requireContext(), foodItem[position].title))
+        }
+
         binding.sortByButton.setOnClickListener { view ->
             showRecommendedRestaurantSortByMenu(view)
+        }
+
+        binding.orderNowButton.setOnClickListener {
+            startActivity(createSearchActivity(requireContext()))
         }
 
         homeViewModel.getRecommendedRestaurants()
