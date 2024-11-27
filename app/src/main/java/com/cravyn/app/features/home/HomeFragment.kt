@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentHomeBinding
+import com.cravyn.app.features.cart.CartActivity.Companion.createCartActivity
 import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
 import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
@@ -57,7 +58,9 @@ class HomeFragment : Fragment() {
         binding.sortByButton.setOnClickListener { view ->
             showRecommendedRestaurantSortByMenu(view)
         }
-
+        binding.yourAccountButton.setOnClickListener { view ->
+            startActivity(createCartActivity(requireContext()))
+        }
         homeViewModel.getRecommendedRestaurants()
         homeViewModel.recommendedRestaurantsLiveData.observe(viewLifecycleOwner) {
             when (it) {
