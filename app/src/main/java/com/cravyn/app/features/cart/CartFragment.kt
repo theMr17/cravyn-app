@@ -64,7 +64,6 @@ class CartFragment : Fragment() {
                                 data.finalPrice.toString()
                             )
                         }
-
                     }
                 }
             }
