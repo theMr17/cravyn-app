@@ -74,9 +74,8 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/final_price_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
-                android:ellipsize="end"
                 android:fontFamily="@font/nunito_black"
                 android:lines="1"
                 android:text="@string/item_cart_final_price_dummy_text"

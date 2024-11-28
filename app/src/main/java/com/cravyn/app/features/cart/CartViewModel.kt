@@ -5,12 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cravyn.app.data.api.Resource
-import com.cravyn.app.features.cart.model.AddItemToCartResponse
 import com.cravyn.app.features.cart.model.AddItemtoCartRequestBody
+import com.cravyn.app.features.cart.model.GetCartResponse
 import com.cravyn.app.util.ErrorResponseParserUtil.getErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,6 +18,9 @@ class CartViewModel @Inject constructor(
 ): ViewModel() {
     private val _addItemToCartLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
     val addItemToCartLiveData: LiveData<Resource<Unit>> = _addItemToCartLiveData
+
+    private val _getCartLiveData: MutableLiveData<Resource<GetCartResponse>> = MutableLiveData()
+    val getCartLiveData: LiveData<Resource<GetCartResponse>> = _getCartLiveData
 
     fun addItemtoCart(itemId: String) {
        viewModelScope.launch {
@@ -39,6 +41,27 @@ class CartViewModel @Inject constructor(
                )
            }
        }
+    }
+
+    fun getCart() {
+        viewModelScope.launch {
+            _getCartLiveData.postValue((Resource.Loading()))
+
+            val getCartResponse = cartRepository.getCart()
+
+            if(getCartResponse.isSuccessful) {
+                _getCartLiveData.postValue(
+                    Resource.Success(
+                        data = getCartResponse.body()?.data!!,
+                        message = getCartResponse.body()?.message
+                    )
+                )
+            } else {
+                _getCartLiveData.postValue(
+                    Resource.Error(getErrorMessage(getCartResponse))
+                )
+            }
+        }
     }
 
 }

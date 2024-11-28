@@ -11,16 +11,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentSearchBinding
+import com.cravyn.app.features.cart.CartViewModel
+import com.cravyn.app.features.cart.listener.AddItemToCartItemClickListener
 import com.cravyn.app.features.search.adapters.SearchedFoodsRecyclerViewAdapter
 import com.cravyn.app.features.search.adapters.SearchedRestaurantsRecyclerViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), AddItemToCartItemClickListener{
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
     private val searchViewModel: SearchViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +67,10 @@ class SearchFragment : Fragment() {
                         binding.searchedFoodsHeaderText.isVisible = true
                         binding.searchedFoodsRecyclerView.apply {
                             isVisible = true
-                            adapter = SearchedFoodsRecyclerViewAdapter(it.data?.foodItems!!)
+                            adapter = SearchedFoodsRecyclerViewAdapter(
+                                it.data?.foodItems!!,
+                                this@SearchFragment
+                            )
                         }
                     }
 
@@ -79,11 +85,29 @@ class SearchFragment : Fragment() {
             }
         }
 
+        cartViewModel.addItemToCartLiveData.observe(viewLifecycleOwner) {
+            when(it) {
+                is Resource.Loading -> {}
+
+                is Resource.Success -> {
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun addItemToCartClicked(itemId: String) {
+        cartViewModel.addItemtoCart(itemId)
     }
 }
