@@ -4,6 +4,9 @@ import android.content.Context
 import com.cravyn.app.BuildConfig
 import com.cravyn.app.data.api.AuthInterceptor
 import com.cravyn.app.data.api.TokenAuthenticator
+import com.cravyn.app.features.address.AddressApi
+import com.cravyn.app.features.address.AddressRepository
+import com.cravyn.app.features.address.AddressRepositoryImpl
 import com.cravyn.app.features.auth.AuthApi
 import com.cravyn.app.features.auth.AuthRepository
 import com.cravyn.app.features.auth.AuthRepositoryImpl
@@ -90,6 +93,10 @@ object ApiModule {
     fun providesSearchRepository(impl: SearchRepositoryImpl): SearchRepository = impl
 
     @Provides
+    fun providesAddressRepository(impl: AddressRepositoryImpl): AddressRepository = impl
+
+
+    @Provides
     @Singleton
     fun providesAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
@@ -111,5 +118,11 @@ object ApiModule {
     @Singleton
     fun providesSearchApi(retrofit: Retrofit): SearchApi {
         return retrofit.create(SearchApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesAddressApi(retrofit: Retrofit): AddressApi {
+        return retrofit.create(AddressApi::class.java)
     }
 }

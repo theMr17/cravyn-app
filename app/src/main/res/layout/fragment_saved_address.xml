@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".features.address.saved.SavedAddressFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/add_new_address_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_add"
+        android:drawableEnd="@drawable/ic_arrow_forward"
+        android:drawablePadding="12dp"
+        android:drawableTint="?attr/colorPrimary"
+        android:fontFamily="@font/nunito_bold"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="16dp"
+        android:text="@string/add_new_address_button_text"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/grey_1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/saved_addresses_header_text"
+        style="@style/HeaderStyle"
+        android:text="@string/saved_addresses_header_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/saved_addresses_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+        android:layout_marginTop="32dp"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_saved_address" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/saved_address_loading_bar"
+        style="@style/PrimaryCircularProgressIndicatorStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/saved_addresses_header_text" />
+
+</LinearLayout>

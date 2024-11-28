@@ -12,6 +12,8 @@ import androidx.fragment.app.viewModels
 import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentHomeBinding
+import com.cravyn.app.features.address.AddressViewModel
+import com.cravyn.app.features.address.saved.SavedAddressActivity.Companion.createSavedAddressActivity
 import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
 import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
@@ -25,12 +27,17 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val homeViewModel: HomeViewModel by viewModels()
+    private val addressViewModel: AddressViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        binding.selectedAddressContainer.setOnClickListener {
+            startActivity(createSavedAddressActivity(requireContext()))
+        }
 
         binding.searchTextInputLayout.editText?.setOnClickListener {
             startActivity(createSearchActivity(requireContext()))
@@ -89,12 +96,31 @@ class HomeFragment : Fragment() {
             }
         }
 
+        addressViewModel.defaultAddressLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+
+                is Resource.Loading -> {}
+
+                is Resource.Success -> {
+                    binding.selectedAddressText.text = it.data?.addresses?.get(0)?.displayAddress
+                }
+            }
+        }
+
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        addressViewModel.getDefaultAddress()
     }
 
     private fun showRecommendedRestaurantSortByMenu(view: View) {
