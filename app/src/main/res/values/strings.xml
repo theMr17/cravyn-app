@@ -77,4 +77,16 @@
     <string name="formatted_price_text">₹%1$s</string>
     <string name="formatted_discount_text">-₹%1$s</string>
     <string name="item_cart_final_price_text">₹%1$f</string>
+    <string name="cart_summary_header_text">Cart Summary</string>
+    <string name="total_price_label_text">Total Price</string>
+    <string name="total_price_dummy_text">₹800.00</string>
+    <string name="total_discount_label_text">Total Discount</string>
+    <string name="delivery_charge_label_text">Delivery Charge</string>
+    <string name="platform_charge_label_text">Platform Charge</string>
+    <string name="final_price_label_text">Final Price</string>
+    <string name="final_price_dummy_text">₹735.00</string>
+    <string name="place_order_button_text">Place Order</string>
+    <string name="platform_charge_dummy_text">₹5.00</string>
+    <string name="delivery_charge_dummy_text">₹30.00</string>
+    <string name="total_discount_dummy_text">- ₹100.00</string>
 </resources>
