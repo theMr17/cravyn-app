@@ -29,7 +29,7 @@
             android:id="@+id/cart_summary_header_text"
             style="@style/HeaderStyle"
             android:layout_marginTop="0dp"
-            android:text="Cart Summary"
+            android:text="@string/cart_summary_header_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cart_items_recycler_view" />
@@ -57,7 +57,7 @@
                     android:id="@+id/total_price_label_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Price"
+                    android:text="@string/total_price_label_text"
                     app:layout_constraintEnd_toStartOf="@id/total_price_text"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
                     android:id="@+id/total_price_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="₹800.00"
+                    android:text="@string/total_price_dummy_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/total_price_label_text" />
 
@@ -75,7 +75,7 @@
                     android:id="@+id/total_discount_label_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Discount"
+                    android:text="@string/total_discount_label_text"
                     app:layout_constraintEnd_toStartOf="@id/total_discount_text"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +85,7 @@
                     android:id="@+id/total_discount_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="- ₹100.00"
+                    android:text="@string/total_discount_dummy_text"
                     android:textColor="@color/discounted_price_text_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/total_discount_label_text" />
@@ -94,7 +94,7 @@
                     android:id="@+id/delivery_charge_label_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delivery Charge"
+                    android:text="@string/delivery_charge_label_text"
                     app:layout_constraintEnd_toStartOf="@id/delivery_charge_text"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +104,7 @@
                     android:id="@+id/delivery_charge_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="₹30.00"
+                    android:text="@string/delivery_charge_dummy_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/delivery_charge_label_text" />
 
@@ -112,7 +112,7 @@
                     android:id="@+id/platform_charge_label_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Platform Charge"
+                    android:text="@string/platform_charge_label_text"
                     app:layout_constraintEnd_toStartOf="@id/platform_charge_text"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +122,7 @@
                     android:id="@+id/platform_charge_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="₹5.00"
+                    android:text="@string/platform_charge_dummy_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/platform_charge_label_text" />
 
@@ -142,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/nunito_bold"
-                    android:text="Final Price"
+                    android:text="@string/final_price_label_text"
                     android:textColor="@color/shared_text_color"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@id/final_price_text"
@@ -155,7 +155,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_bold"
-                    android:text="₹735.00"
+                    android:text="@string/final_price_dummy_text"
                     android:textColor="@color/shared_text_color"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -169,7 +169,7 @@
             android:id="@+id/place_order_button"
             style="@style/ButtonStyle"
             android:layout_marginTop="@dimen/login_button_margin_top"
-            android:text="Place Order"
+            android:text="@string/place_order_button_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cart_summary_container" />
