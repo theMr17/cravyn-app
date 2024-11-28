@@ -6,7 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.features.cart.model.AddItemtoCartRequestBody
+import com.cravyn.app.features.cart.model.DecrementItemCountRequestBody
+import com.cravyn.app.features.cart.model.DeleteItemFomCartRequestBody
 import com.cravyn.app.features.cart.model.GetCartResponse
+import com.cravyn.app.features.cart.model.IncrementItemCountRequestBody
 import com.cravyn.app.util.ErrorResponseParserUtil.getErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -64,4 +67,70 @@ class CartViewModel @Inject constructor(
         }
     }
 
+    fun incrementItemCount(itemId: String) {
+        viewModelScope.launch {
+            _getCartLiveData.postValue((Resource.Loading()))
+
+            val incrementItemCountRequestBody = IncrementItemCountRequestBody(itemId)
+            val getCartResponse = cartRepository.incrementItemCount(incrementItemCountRequestBody)
+
+            if(getCartResponse.isSuccessful) {
+                _getCartLiveData.postValue(
+                    Resource.Success(
+                        data = getCartResponse.body()?.data!!,
+                        message = getCartResponse.body()?.message
+                    )
+                )
+            } else {
+                _getCartLiveData.postValue(
+                    Resource.Error(getErrorMessage(getCartResponse))
+                )
+            }
+        }
+    }
+
+    fun decrementItemCount(itemId: String) {
+        viewModelScope.launch {
+            _getCartLiveData.postValue((Resource.Loading()))
+
+            val decrementItemCountRequestBody = DecrementItemCountRequestBody(itemId)
+            val getCartResponse = cartRepository.decrementItemCount(decrementItemCountRequestBody)
+
+            if(getCartResponse.isSuccessful) {
+                _getCartLiveData.postValue(
+                    Resource.Success(
+                        data = getCartResponse.body()?.data!!,
+                        message = getCartResponse.body()?.message
+                    )
+                )
+            } else {
+                _getCartLiveData.postValue(
+                    Resource.Error(getErrorMessage(getCartResponse))
+                )
+            }
+        }
+    }
+
+    fun deleteItemFromCart(itemId: String) {
+        viewModelScope.launch {
+            _getCartLiveData.postValue((Resource.Loading()))
+
+            val deleteItemFomCartRequestBody = DeleteItemFomCartRequestBody(itemId)
+            val getCartResponse = cartRepository.deleteItemFromCart(deleteItemFomCartRequestBody)
+
+            if(getCartResponse.isSuccessful) {
+                _getCartLiveData.postValue(
+                    Resource.Success(
+                        data = getCartResponse.body()?.data!!,
+                        message = getCartResponse.body()?.message
+                    )
+                )
+            } else {
+                _getCartLiveData.postValue(
+                    Resource.Error(getErrorMessage(getCartResponse))
+                )
+            }
+        }
+    }
 }
+

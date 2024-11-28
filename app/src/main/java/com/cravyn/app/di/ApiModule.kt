@@ -96,7 +96,7 @@ object ApiModule {
     fun providesSearchRepository(impl: SearchRepositoryImpl): SearchRepository = impl
 
     @Provides
-    fun providesCartRepository(impl: CartRepositoryImpl): CartRepository =  impl
+    fun providesCartRepository(impl: CartRepositoryImpl): CartRepository = impl
 
     @Provides
     fun providesAddressRepository(impl: AddressRepositoryImpl): AddressRepository = impl
@@ -129,6 +129,7 @@ object ApiModule {
     @Singleton
     fun providesCartApi(retrofit: Retrofit): CartApi {
         return retrofit.create(CartApi::class.java)
+    }
 
     @Provides
     @Singleton

@@ -11,10 +11,11 @@ import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentCartBinding
 import com.cravyn.app.features.cart.adapters.CartRecyclerViewAdapter
+import com.cravyn.app.features.cart.listener.UpdateItemStatusListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CartFragment : Fragment() {
+class CartFragment : Fragment(), UpdateItemStatusListener {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
 
@@ -39,7 +40,8 @@ class CartFragment : Fragment() {
                 is Resource.Success -> {
                     binding.cartItemsRecyclerView.adapter =
                         CartRecyclerViewAdapter(
-                            it.data?.cart ?: emptyList()
+                            it.data?.cart ?: emptyList(),
+                            this as UpdateItemStatusListener
                         )
                     it.data?.let { data ->
                         binding.apply {
@@ -63,6 +65,7 @@ class CartFragment : Fragment() {
                                             R.string.formatted_price_text,
                                 data.finalPrice.toString()
                             )
+
                         }
                     }
                 }
@@ -75,5 +78,17 @@ class CartFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun incrementItemClicked(itemId: String) {
+        cartViewModel.incrementItemCount(itemId)
+    }
+
+    override fun decrementItemClicked(itemId: String) {
+        cartViewModel.decrementItemCount(itemId)
+    }
+
+    override fun deleteItemClicked(itemId: String) {
+        cartViewModel.deleteItemFromCart(itemId)
     }
 }
