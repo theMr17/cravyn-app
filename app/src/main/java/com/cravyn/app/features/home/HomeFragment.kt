@@ -12,13 +12,13 @@ import androidx.fragment.app.viewModels
 import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentHomeBinding
-import com.cravyn.app.features.cart.CartActivity.Companion.createCartActivity
 import com.cravyn.app.features.address.AddressViewModel
 import com.cravyn.app.features.address.saved.SavedAddressActivity.Companion.createSavedAddressActivity
 import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
 import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
 import com.cravyn.app.features.home.models.FoodItem
+import com.cravyn.app.features.profile.ProfileActivity.Companion.createProfileActivity
 import com.cravyn.app.features.search.SearchActivity.Companion.createSearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -70,8 +70,8 @@ class HomeFragment : Fragment() {
             showRecommendedRestaurantSortByMenu(view)
         }
 
-        binding.yourAccountButton.setOnClickListener { view ->
-            startActivity(createCartActivity(requireContext()))
+        binding.yourAccountButton.setOnClickListener {
+            startActivity(createProfileActivity(requireContext()))
         }
 
         binding.orderNowButton.setOnClickListener {
