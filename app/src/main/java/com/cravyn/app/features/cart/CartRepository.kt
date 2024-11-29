@@ -19,6 +19,6 @@ interface CartRepository {
 
     suspend fun decrementItemCount(body: DecrementItemCountRequestBody): Response<ApiResponse<GetCartResponse>>
 
-    suspend fun deleteItemFromCart(body: DeleteItemFomCartRequestBody): Response<ApiResponse<GetCartResponse>>
+    suspend fun deleteItemFromCart(itemId : String): Response<ApiResponse<GetCartResponse>>
 
 }

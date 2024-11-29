@@ -115,8 +115,7 @@ class CartViewModel @Inject constructor(
         viewModelScope.launch {
             _getCartLiveData.postValue((Resource.Loading()))
 
-            val deleteItemFomCartRequestBody = DeleteItemFomCartRequestBody(itemId)
-            val getCartResponse = cartRepository.deleteItemFromCart(deleteItemFomCartRequestBody)
+            val getCartResponse = cartRepository.deleteItemFromCart(itemId)
 
             if(getCartResponse.isSuccessful) {
                 _getCartLiveData.postValue(

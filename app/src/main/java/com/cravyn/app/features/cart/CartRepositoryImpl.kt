@@ -29,7 +29,7 @@ class CartRepositoryImpl @Inject constructor(
         return cartApi.decrementItemCount(body)
     }
 
-    override suspend fun deleteItemFromCart(body: DeleteItemFomCartRequestBody): Response<ApiResponse<GetCartResponse>> {
-        return cartApi.deleteItemFromCart(body)
+    override suspend fun deleteItemFromCart(itemId : String): Response<ApiResponse<GetCartResponse>> {
+        return cartApi.deleteItemFromCart(itemId)
     }
 }

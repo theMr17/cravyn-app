@@ -13,6 +13,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface CartApi {
     @POST("customer/cart/item")
@@ -35,6 +36,6 @@ interface CartApi {
 
     @DELETE("customer/cart/item")
     suspend fun deleteItemFromCart(
-        @Body body: DeleteItemFomCartRequestBody
+        @Query("itemId") itemId : String
     ): Response<ApiResponse<GetCartResponse>>
 }
