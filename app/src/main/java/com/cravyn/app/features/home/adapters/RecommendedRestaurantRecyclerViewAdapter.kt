@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.cravyn.app.R
 import com.cravyn.app.databinding.ItemRecommendedRestaurantBinding
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
 import com.cravyn.app.features.home.models.RecommendedRestaurantItem
 import com.cravyn.app.features.restaurant.models.toRestaurant
+import com.cravyn.app.util.toHttpsUrl
 
 class RecommendedRestaurantRecyclerViewAdapter(
     private val restaurantItemList: List<RecommendedRestaurantItem>,
@@ -65,6 +67,16 @@ class RecommendedRestaurantRecyclerViewAdapter(
                 item.city,
                 item.distance.formatted
             )
+
+            if (!item.restaurantImageUrl.isNullOrBlank()) {
+                Glide.with(holder.itemView.context)
+                    .load(item.restaurantImageUrl.toHttpsUrl())
+                    .placeholder(R.drawable.restaurant_sample_image)
+                    .error(R.drawable.restaurant_sample_image)
+                    .into(restaurantImage)
+            } else {
+                Glide.with(holder.itemView.context).clear(restaurantImage)
+            }
 
             root.setOnClickListener {
                 recommendedRestaurantItemClickListener.onRecommendedRestaurantItemClicked(item.toRestaurant())
