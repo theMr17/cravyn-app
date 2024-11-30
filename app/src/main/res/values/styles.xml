@@ -116,4 +116,14 @@
         <item name="startIconDrawable">@drawable/ic_search</item>
         <item name="startIconTint">?attr/colorPrimary</item>
     </style>
+
+    <style name="ButtonCardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_marginStart">@dimen/shared_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/shared_horizontal_margin</item>
+        <item name="android:fontFamily">@font/nunito</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:strokeColor">?attr/colorPrimary</item>
+    </style>
+
 </resources>
