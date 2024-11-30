@@ -43,7 +43,11 @@ class CartFragment : Fragment(), UpdateCartItemStatusListener {
                     addressId
                 )
             } ?: run {
-                Toast.makeText(requireContext(), "Please select a delivery address.", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Please select a delivery address.",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
