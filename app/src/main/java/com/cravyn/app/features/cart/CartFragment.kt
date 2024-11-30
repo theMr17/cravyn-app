@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
+import com.cravyn.app.data.api.toDisplayableNumber
 import com.cravyn.app.databinding.FragmentCartBinding
 import com.cravyn.app.features.cart.adapters.CartRecyclerViewAdapter
 import com.cravyn.app.features.cart.listeners.UpdateCartItemStatusListener
@@ -58,29 +59,27 @@ class CartFragment : Fragment(), UpdateCartItemStatusListener {
                             cartSummaryHeaderText.isVisible = true
                             cartSummaryContainer.isVisible = true
                             placeOrderButton.isVisible = true
-                        }
 
-                        it.data?.let { data ->
-                            binding.apply {
+                            it.data?.let { data ->
                                 totalPriceText.text = requireContext().getString(
                                     R.string.formatted_price_text,
-                                    data.totalPrice.toString()
+                                    data.totalPrice.toDisplayableNumber().formatted
                                 )
                                 totalDiscountText.text = requireContext().getString(
                                     R.string.formatted_discount_text,
-                                    data.totalDiscount.toString()
+                                    data.totalDiscount.toDisplayableNumber().formatted
                                 )
                                 deliveryChargeText.text = requireContext().getString(
                                     R.string.formatted_price_text,
-                                    data.deliveryCharge.toString()
+                                    data.deliveryCharge.toDouble().toDisplayableNumber().formatted
                                 )
                                 platformChargeText.text = requireContext().getString(
                                     R.string.formatted_price_text,
-                                    data.platformCharge.toString()
+                                    data.platformCharge.toDouble().toDisplayableNumber().formatted
                                 )
                                 finalPriceText.text = requireContext().getString(
                                     R.string.formatted_price_text,
-                                    data.finalPrice.toString()
+                                    data.finalPrice.toDisplayableNumber().formatted
                                 )
                             }
                         }

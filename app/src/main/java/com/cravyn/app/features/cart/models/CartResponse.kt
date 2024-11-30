@@ -15,7 +15,7 @@ data class CartResponse(
     @SerializedName("totalDiscount")
     val totalDiscount: Double,
     @SerializedName("totalPrice")
-    val totalPrice: Int
+    val totalPrice: Double
 ) {
     data class Cart(
         @SerializedName("final_discounted_price")
