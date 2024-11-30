@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cravyn.app.data.api.Resource
-import com.cravyn.app.features.address.models.RemoveAddressRequestBody
 import com.cravyn.app.features.address.models.SaveAddressRequestBody
 import com.cravyn.app.features.address.models.SaveAddressResponse
 import com.cravyn.app.features.address.models.SavedAddressesResponse

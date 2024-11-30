@@ -1,7 +1,6 @@
 package com.cravyn.app.features.address
 
 import com.cravyn.app.data.api.ApiResponse
-import com.cravyn.app.features.address.models.RemoveAddressRequestBody
 import com.cravyn.app.features.address.models.SaveAddressRequestBody
 import com.cravyn.app.features.address.models.SaveAddressResponse
 import com.cravyn.app.features.address.models.SavedAddressesResponse
