@@ -107,4 +107,5 @@
     <string name="answered_by_dummy_text">Answered by: Team Cravyn</string>
     <string name="query_answer_not_available_text">Not Available.</string>
     <string name="answered_by_text">Answered by: %1$s</string>
+    <string name="question_input_hint_text">Enter your question</string>
 </resources>
