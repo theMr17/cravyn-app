@@ -105,4 +105,6 @@
     <string name="answer_dummy_text">One food craving at a time, please! But hey, if you really want that sushi-taco-pizza-burger combo, we’re here to make it happen. Just brace yourself for the wait… 🚴‍♀️🍣🌮🍕</string>
     <string name="answer_label_text">Answer</string>
     <string name="answered_by_dummy_text">Answered by: Team Cravyn</string>
+    <string name="query_answer_not_available_text">Not Available.</string>
+    <string name="answered_by_text">Answered by: %1$s</string>
 </resources>
