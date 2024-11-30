@@ -97,4 +97,7 @@
     <string name="save_button_text">Save</string>
     <string name="set_as_default_button_text">Set as default</string>
     <string name="empty_cart_text">Oops! Your cart is empty.</string>
+    <string name="specifications_header_text">Specifications</string>
+    <string name="specifications_input_hint_text">Enter any special request for the restaurant</string>
+    <string name="delivery_address_header_text">Delivery Address</string>
 </resources>

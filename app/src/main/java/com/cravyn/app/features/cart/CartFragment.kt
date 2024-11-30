@@ -12,6 +12,8 @@ import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.data.api.toDisplayableNumber
 import com.cravyn.app.databinding.FragmentCartBinding
+import com.cravyn.app.features.address.AddressViewModel
+import com.cravyn.app.features.address.saved.SavedAddressActivity.Companion.createSavedAddressActivity
 import com.cravyn.app.features.cart.adapters.CartRecyclerViewAdapter
 import com.cravyn.app.features.cart.listeners.UpdateCartItemStatusListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +24,7 @@ class CartFragment : Fragment(), UpdateCartItemStatusListener {
     private val binding get() = _binding!!
 
     private val cartViewModel: CartViewModel by viewModels()
+    private val addressViewModel: AddressViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,8 +32,29 @@ class CartFragment : Fragment(), UpdateCartItemStatusListener {
     ): View {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
 
+        binding.deliveryAddressHeaderText.setOnClickListener {
+            startActivity(createSavedAddressActivity(requireContext()))
+        }
+
+        binding.placeOrderButton.setOnClickListener {
+            addressViewModel.defaultAddressLiveData.value?.data?.addresses?.get(0)?.addressId?.let { addressId ->
+                cartViewModel.placeOrder(
+                    binding.specificationsTextInputLayout.editText?.text.toString(),
+                    addressId
+                )
+            } ?: run {
+                Toast.makeText(requireContext(), "Please select a delivery address.", Toast.LENGTH_LONG).show()
+            }
+        }
+
         cartViewModel.getCart()
 
+        initObservers()
+
+        return binding.root
+    }
+
+    private fun initObservers() {
         cartViewModel.cartLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {}
@@ -49,16 +73,12 @@ class CartFragment : Fragment(), UpdateCartItemStatusListener {
                     if (it.data?.cart.isNullOrEmpty()) {
                         binding.apply {
                             emptyCartText.isVisible = true
-                            cartSummaryHeaderText.isVisible = false
-                            cartSummaryContainer.isVisible = false
-                            placeOrderButton.isVisible = false
+                            cartItemsContainer.isVisible = false
                         }
                     } else {
                         binding.apply {
                             emptyCartText.isVisible = false
-                            cartSummaryHeaderText.isVisible = true
-                            cartSummaryContainer.isVisible = true
-                            placeOrderButton.isVisible = true
+                            cartItemsContainer.isVisible = true
 
                             it.data?.let { data ->
                                 totalPriceText.text = requireContext().getString(
@@ -88,12 +108,44 @@ class CartFragment : Fragment(), UpdateCartItemStatusListener {
             }
         }
 
-        return binding.root
+        cartViewModel.placeOrderLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+
+                is Resource.Loading -> {}
+
+                is Resource.Success -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    requireActivity().finish()
+                }
+            }
+        }
+
+        addressViewModel.defaultAddressLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+
+                is Resource.Loading -> {}
+
+                is Resource.Success -> {
+                    binding.deliveryAddressText.text = it.data?.addresses?.get(0)?.displayAddress
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        addressViewModel.getDefaultAddress()
     }
 
     override fun onPlusButtonClicked(itemId: String) {
