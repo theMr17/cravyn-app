@@ -12,7 +12,7 @@ import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentCartBinding
 import com.cravyn.app.features.cart.adapters.CartRecyclerViewAdapter
-import com.cravyn.app.features.cart.listener.UpdateCartItemStatusListener
+import com.cravyn.app.features.cart.listeners.UpdateCartItemStatusListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

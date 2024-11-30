@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.cravyn.app.R
 import com.cravyn.app.data.api.toDisplayableNumber
 import com.cravyn.app.databinding.ItemRestaurantMenuBinding
-import com.cravyn.app.features.cart.listener.AddItemToCartItemClickListener
+import com.cravyn.app.features.cart.listeners.AddItemToCartItemClickListener
 import com.cravyn.app.features.restaurant.models.RestaurantMenuResponse
 import com.cravyn.app.util.toHttpsUrl
 

@@ -1,4 +1,4 @@
-package com.cravyn.app.features.cart.listener
+package com.cravyn.app.features.cart.listeners
 
 interface UpdateCartItemStatusListener {
 

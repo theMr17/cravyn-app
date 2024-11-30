@@ -1,8 +1,8 @@
-package com.cravyn.app.features.cart.model
+package com.cravyn.app.features.cart.models
 
 import com.google.gson.annotations.SerializedName
 
-data class DecrementItemCountRequestBody(
+data class IncrementItemCountRequestBody(
     @SerializedName("itemId")
     val itemId: String
 )

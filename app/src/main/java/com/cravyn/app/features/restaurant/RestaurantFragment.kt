@@ -11,7 +11,7 @@ import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentRestaurantBinding
 import com.cravyn.app.features.cart.CartViewModel
-import com.cravyn.app.features.cart.listener.AddItemToCartItemClickListener
+import com.cravyn.app.features.cart.listeners.AddItemToCartItemClickListener
 import com.cravyn.app.features.restaurant.adapters.RestaurantMenuRecyclerViewAdapter
 import com.cravyn.app.features.restaurant.models.Restaurant
 import dagger.hilt.android.AndroidEntryPoint

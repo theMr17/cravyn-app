@@ -12,7 +12,7 @@ import androidx.fragment.app.viewModels
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentSearchBinding
 import com.cravyn.app.features.cart.CartViewModel
-import com.cravyn.app.features.cart.listener.AddItemToCartItemClickListener
+import com.cravyn.app.features.cart.listeners.AddItemToCartItemClickListener
 import com.cravyn.app.features.search.adapters.SearchedFoodsRecyclerViewAdapter
 import com.cravyn.app.features.search.adapters.SearchedRestaurantsRecyclerViewAdapter
 import dagger.hilt.android.AndroidEntryPoint

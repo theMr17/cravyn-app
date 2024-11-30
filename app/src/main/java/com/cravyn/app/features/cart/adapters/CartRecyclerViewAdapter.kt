@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.cravyn.app.R
 import com.cravyn.app.databinding.ItemCartBinding
-import com.cravyn.app.features.cart.listener.UpdateCartItemStatusListener
-import com.cravyn.app.features.cart.model.CartResponse
+import com.cravyn.app.features.cart.listeners.UpdateCartItemStatusListener
+import com.cravyn.app.features.cart.models.CartResponse
 import com.cravyn.app.util.toHttpsUrl
 
 class CartRecyclerViewAdapter(
