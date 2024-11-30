@@ -11,11 +11,11 @@ import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentCartBinding
 import com.cravyn.app.features.cart.adapters.CartRecyclerViewAdapter
-import com.cravyn.app.features.cart.listener.UpdateItemStatusListener
+import com.cravyn.app.features.cart.listener.UpdateCartItemStatusListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CartFragment : Fragment(), UpdateItemStatusListener {
+class CartFragment : Fragment(), UpdateCartItemStatusListener {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
 
@@ -29,7 +29,7 @@ class CartFragment : Fragment(), UpdateItemStatusListener {
 
         cartViewModel.getCart()
 
-        cartViewModel.getCartLiveData.observe(viewLifecycleOwner) {
+        cartViewModel.cartLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {}
 
@@ -41,8 +41,9 @@ class CartFragment : Fragment(), UpdateItemStatusListener {
                     binding.cartItemsRecyclerView.adapter =
                         CartRecyclerViewAdapter(
                             it.data?.cart ?: emptyList(),
-                            this as UpdateItemStatusListener
+                            this as UpdateCartItemStatusListener
                         )
+
                     it.data?.let { data ->
                         binding.apply {
                             totalPriceText.text = requireContext().getString(
@@ -50,7 +51,8 @@ class CartFragment : Fragment(), UpdateItemStatusListener {
                                 data.totalPrice.toString()
                             )
                             totalDiscountText.text = requireContext().getString(
-                                R.string.formatted_discount_text, data.totalDiscount.toString()
+                                R.string.formatted_discount_text,
+                                data.totalDiscount.toString()
                             )
                             deliveryChargeText.text = requireContext().getString(
                                 R.string.formatted_price_text,
@@ -79,15 +81,15 @@ class CartFragment : Fragment(), UpdateItemStatusListener {
         _binding = null
     }
 
-    override fun incrementItemClicked(itemId: String) {
+    override fun onPlusButtonClicked(itemId: String) {
         cartViewModel.incrementItemCount(itemId)
     }
 
-    override fun decrementItemClicked(itemId: String) {
+    override fun onMinusButtonClicked(itemId: String) {
         cartViewModel.decrementItemCount(itemId)
     }
 
-    override fun deleteItemClicked(itemId: String) {
+    override fun onRemoveItemButtonClicked(itemId: String) {
         cartViewModel.deleteItemFromCart(itemId)
     }
 }

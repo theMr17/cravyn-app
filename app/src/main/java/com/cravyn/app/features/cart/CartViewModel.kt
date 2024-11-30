@@ -21,8 +21,8 @@ class CartViewModel @Inject constructor(
     private val _addItemToCartLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
     val addItemToCartLiveData: LiveData<Resource<Unit>> = _addItemToCartLiveData
 
-    private val _getCartLiveData: MutableLiveData<Resource<CartResponse>> = MutableLiveData()
-    val getCartLiveData: LiveData<Resource<CartResponse>> = _getCartLiveData
+    private val _cartLiveData: MutableLiveData<Resource<CartResponse>> = MutableLiveData()
+    val cartLiveData: LiveData<Resource<CartResponse>> = _cartLiveData
 
     fun addItemToCart(itemId: String) {
         viewModelScope.launch {
@@ -48,19 +48,19 @@ class CartViewModel @Inject constructor(
 
     fun getCart() {
         viewModelScope.launch {
-            _getCartLiveData.postValue((Resource.Loading()))
+            _cartLiveData.postValue((Resource.Loading()))
 
             val getCartResponse = cartRepository.getCart()
 
             if (getCartResponse.isSuccessful) {
-                _getCartLiveData.postValue(
+                _cartLiveData.postValue(
                     Resource.Success(
                         data = getCartResponse.body()?.data!!,
                         message = getCartResponse.body()?.message
                     )
                 )
             } else {
-                _getCartLiveData.postValue(
+                _cartLiveData.postValue(
                     Resource.Error(getErrorMessage(getCartResponse))
                 )
             }
@@ -69,20 +69,20 @@ class CartViewModel @Inject constructor(
 
     fun incrementItemCount(itemId: String) {
         viewModelScope.launch {
-            _getCartLiveData.postValue((Resource.Loading()))
+            _cartLiveData.postValue((Resource.Loading()))
 
             val incrementItemCountRequestBody = IncrementItemCountRequestBody(itemId)
             val getCartResponse = cartRepository.incrementItemCount(incrementItemCountRequestBody)
 
             if (getCartResponse.isSuccessful) {
-                _getCartLiveData.postValue(
+                _cartLiveData.postValue(
                     Resource.Success(
                         data = getCartResponse.body()?.data!!,
                         message = getCartResponse.body()?.message
                     )
                 )
             } else {
-                _getCartLiveData.postValue(
+                _cartLiveData.postValue(
                     Resource.Error(getErrorMessage(getCartResponse))
                 )
             }
@@ -91,20 +91,20 @@ class CartViewModel @Inject constructor(
 
     fun decrementItemCount(itemId: String) {
         viewModelScope.launch {
-            _getCartLiveData.postValue((Resource.Loading()))
+            _cartLiveData.postValue((Resource.Loading()))
 
             val decrementItemCountRequestBody = DecrementItemCountRequestBody(itemId)
             val getCartResponse = cartRepository.decrementItemCount(decrementItemCountRequestBody)
 
             if (getCartResponse.isSuccessful) {
-                _getCartLiveData.postValue(
+                _cartLiveData.postValue(
                     Resource.Success(
                         data = getCartResponse.body()?.data!!,
                         message = getCartResponse.body()?.message
                     )
                 )
             } else {
-                _getCartLiveData.postValue(
+                _cartLiveData.postValue(
                     Resource.Error(getErrorMessage(getCartResponse))
                 )
             }
@@ -113,19 +113,19 @@ class CartViewModel @Inject constructor(
 
     fun deleteItemFromCart(itemId: String) {
         viewModelScope.launch {
-            _getCartLiveData.postValue((Resource.Loading()))
+            _cartLiveData.postValue((Resource.Loading()))
 
             val getCartResponse = cartRepository.deleteItemFromCart(itemId)
 
             if (getCartResponse.isSuccessful) {
-                _getCartLiveData.postValue(
+                _cartLiveData.postValue(
                     Resource.Success(
                         data = getCartResponse.body()?.data!!,
                         message = getCartResponse.body()?.message
                     )
                 )
             } else {
-                _getCartLiveData.postValue(
+                _cartLiveData.postValue(
                     Resource.Error(getErrorMessage(getCartResponse))
                 )
             }
