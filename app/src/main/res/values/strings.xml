@@ -75,7 +75,7 @@
     <string name="item_restaurant_address_text">%1$s | %2$s km</string>
     <string name="item_restaurant_rating_text">%1$s (%2$d)</string>
     <string name="formatted_price_text">₹%1$s</string>
-    <string name="formatted_discount_text">-₹%1$s</string>
+    <string name="formatted_discount_text">- ₹%1$s</string>
     <string name="item_cart_final_price_text">₹%1$f</string>
     <string name="cart_summary_header_text">Cart Summary</string>
     <string name="total_price_label_text">Total Price</string>
@@ -96,4 +96,5 @@
     <string name="search_address_hint_text">Type your address here</string>
     <string name="save_button_text">Save</string>
     <string name="set_as_default_button_text">Set as default</string>
+    <string name="empty_cart_text">Oops! Your cart is empty.</string>
 </resources>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.cravyn.app.R
@@ -44,29 +45,44 @@ class CartFragment : Fragment(), UpdateCartItemStatusListener {
                             this as UpdateCartItemStatusListener
                         )
 
-                    it.data?.let { data ->
+                    if (it.data?.cart.isNullOrEmpty()) {
                         binding.apply {
-                            totalPriceText.text = requireContext().getString(
-                                R.string.formatted_price_text,
-                                data.totalPrice.toString()
-                            )
-                            totalDiscountText.text = requireContext().getString(
-                                R.string.formatted_discount_text,
-                                data.totalDiscount.toString()
-                            )
-                            deliveryChargeText.text = requireContext().getString(
-                                R.string.formatted_price_text,
-                                data.deliveryCharge.toString()
-                            )
-                            platformChargeText.text = requireContext().getString(
-                                R.string.formatted_price_text,
-                                data.platformCharge.toString()
-                            )
-                            finalPriceText.text = requireContext().getString(
-                                R.string.formatted_price_text,
-                                data.finalPrice.toString()
-                            )
+                            emptyCartText.isVisible = true
+                            cartSummaryHeaderText.isVisible = false
+                            cartSummaryContainer.isVisible = false
+                            placeOrderButton.isVisible = false
+                        }
+                    } else {
+                        binding.apply {
+                            emptyCartText.isVisible = false
+                            cartSummaryHeaderText.isVisible = true
+                            cartSummaryContainer.isVisible = true
+                            placeOrderButton.isVisible = true
+                        }
 
+                        it.data?.let { data ->
+                            binding.apply {
+                                totalPriceText.text = requireContext().getString(
+                                    R.string.formatted_price_text,
+                                    data.totalPrice.toString()
+                                )
+                                totalDiscountText.text = requireContext().getString(
+                                    R.string.formatted_discount_text,
+                                    data.totalDiscount.toString()
+                                )
+                                deliveryChargeText.text = requireContext().getString(
+                                    R.string.formatted_price_text,
+                                    data.deliveryCharge.toString()
+                                )
+                                platformChargeText.text = requireContext().getString(
+                                    R.string.formatted_price_text,
+                                    data.platformCharge.toString()
+                                )
+                                finalPriceText.text = requireContext().getString(
+                                    R.string.formatted_price_text,
+                                    data.finalPrice.toString()
+                                )
+                            }
                         }
                     }
                 }

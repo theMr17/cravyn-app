@@ -17,8 +17,7 @@ import com.cravyn.app.features.restaurant.models.Restaurant
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class
-RestaurantFragment : Fragment(), AddItemToCartItemClickListener {
+class RestaurantFragment : Fragment(), AddItemToCartItemClickListener {
     private var _binding: FragmentRestaurantBinding? = null
     private val binding get() = _binding!!
 
