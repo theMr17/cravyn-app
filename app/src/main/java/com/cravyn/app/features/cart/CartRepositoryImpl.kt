@@ -6,6 +6,7 @@ import com.cravyn.app.features.cart.models.AddItemtoCartRequestBody
 import com.cravyn.app.features.cart.models.CartResponse
 import com.cravyn.app.features.cart.models.DecrementItemCountRequestBody
 import com.cravyn.app.features.cart.models.IncrementItemCountRequestBody
+import com.cravyn.app.features.cart.models.PlaceOrderRequestBody
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -30,5 +31,9 @@ class CartRepositoryImpl @Inject constructor(
 
     override suspend fun deleteItemFromCart(itemId: String): Response<ApiResponse<CartResponse>> {
         return cartApi.deleteItemFromCart(itemId)
+    }
+
+    override suspend fun placeOrder(body: PlaceOrderRequestBody): Response<ApiResponse<Unit>> {
+        return cartApi.placeOrder(body)
     }
 }

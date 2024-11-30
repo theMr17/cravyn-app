@@ -6,6 +6,7 @@ import com.cravyn.app.features.cart.models.AddItemtoCartRequestBody
 import com.cravyn.app.features.cart.models.CartResponse
 import com.cravyn.app.features.cart.models.DecrementItemCountRequestBody
 import com.cravyn.app.features.cart.models.IncrementItemCountRequestBody
+import com.cravyn.app.features.cart.models.PlaceOrderRequestBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -37,4 +38,9 @@ interface CartApi {
     suspend fun deleteItemFromCart(
         @Query("itemId") itemId: String
     ): Response<ApiResponse<CartResponse>>
+
+    @POST("customer/place-order")
+    suspend fun placeOrder(
+        @Body body: PlaceOrderRequestBody
+    ): Response<ApiResponse<Unit>>
 }

@@ -9,6 +9,7 @@ import com.cravyn.app.features.cart.models.AddItemtoCartRequestBody
 import com.cravyn.app.features.cart.models.CartResponse
 import com.cravyn.app.features.cart.models.DecrementItemCountRequestBody
 import com.cravyn.app.features.cart.models.IncrementItemCountRequestBody
+import com.cravyn.app.features.cart.models.PlaceOrderRequestBody
 import com.cravyn.app.util.ErrorResponseParserUtil.getErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -23,6 +24,9 @@ class CartViewModel @Inject constructor(
 
     private val _cartLiveData: MutableLiveData<Resource<CartResponse>> = MutableLiveData()
     val cartLiveData: LiveData<Resource<CartResponse>> = _cartLiveData
+
+    private val _placeOrderLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
+    val placeOrderLiveData: LiveData<Resource<Unit>> = _placeOrderLiveData
 
     fun addItemToCart(itemId: String) {
         viewModelScope.launch {
@@ -131,5 +135,26 @@ class CartViewModel @Inject constructor(
             }
         }
     }
-}
 
+    fun placeOrder(specifications: String, addressId: String) {
+        viewModelScope.launch {
+            _placeOrderLiveData.postValue(Resource.Loading())
+
+            val placeOrderRequestBody = PlaceOrderRequestBody(specifications, addressId)
+            val placeOrderResponse = cartRepository.placeOrder(placeOrderRequestBody)
+
+            if (placeOrderResponse.isSuccessful) {
+                _placeOrderLiveData.postValue(
+                    Resource.Success(
+                        data = Unit,
+                        message = placeOrderResponse.body()?.message
+                    )
+                )
+            } else {
+                _placeOrderLiveData.postValue(
+                    Resource.Error(getErrorMessage(placeOrderResponse))
+                )
+            }
+        }
+    }
+}
