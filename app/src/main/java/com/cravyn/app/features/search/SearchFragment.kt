@@ -18,7 +18,7 @@ import com.cravyn.app.features.search.adapters.SearchedRestaurantsRecyclerViewAd
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment : Fragment(), AddItemToCartItemClickListener{
+class SearchFragment : Fragment(), AddItemToCartItemClickListener {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
@@ -86,15 +86,15 @@ class SearchFragment : Fragment(), AddItemToCartItemClickListener{
         }
 
         cartViewModel.addItemToCartLiveData.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is Resource.Loading -> {}
 
                 is Resource.Success -> {
-                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
 
                 is Resource.Error -> {
-                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
             }
         }

@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class
-RestaurantFragment : Fragment(), AddItemToCartItemClickListener{
+RestaurantFragment : Fragment(), AddItemToCartItemClickListener {
     private var _binding: FragmentRestaurantBinding? = null
     private val binding get() = _binding!!
 
@@ -73,15 +73,15 @@ RestaurantFragment : Fragment(), AddItemToCartItemClickListener{
         }
 
         cartViewModel.addItemToCartLiveData.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is Resource.Loading -> {}
 
                 is Resource.Success -> {
-                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
 
                 is Resource.Error -> {
-                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
             }
         }

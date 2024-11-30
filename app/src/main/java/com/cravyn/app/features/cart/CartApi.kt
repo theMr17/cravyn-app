@@ -1,8 +1,8 @@
 package com.cravyn.app.features.cart
 
 import com.cravyn.app.data.api.ApiResponse
-import com.cravyn.app.features.cart.model.AddItemtoCartRequestBody
 import com.cravyn.app.features.cart.model.AddItemToCartResponse
+import com.cravyn.app.features.cart.model.AddItemtoCartRequestBody
 import com.cravyn.app.features.cart.model.DecrementItemCountRequestBody
 import com.cravyn.app.features.cart.model.GetCartResponse
 import com.cravyn.app.features.cart.model.IncrementItemCountRequestBody
@@ -35,6 +35,6 @@ interface CartApi {
 
     @DELETE("customer/cart/item")
     suspend fun deleteItemFromCart(
-        @Query("itemId") itemId : String
+        @Query("itemId") itemId: String
     ): Response<ApiResponse<GetCartResponse>>
 }

@@ -30,7 +30,7 @@ class CartFragment : Fragment(), UpdateItemStatusListener {
         cartViewModel.getCart()
 
         cartViewModel.getCartLiveData.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is Resource.Loading -> {}
 
                 is Resource.Error -> {
@@ -50,19 +50,18 @@ class CartFragment : Fragment(), UpdateItemStatusListener {
                                 data.totalPrice.toString()
                             )
                             totalDiscountText.text = requireContext().getString(
-                                R.string.formatted_discount_text,data.
-                                totalDiscount.toString()
+                                R.string.formatted_discount_text, data.totalDiscount.toString()
                             )
                             deliveryChargeText.text = requireContext().getString(
-                                    R.string.formatted_price_text,
-                                    data.deliveryCharge.toString()
+                                R.string.formatted_price_text,
+                                data.deliveryCharge.toString()
                             )
                             platformChargeText.text = requireContext().getString(
-                                        R.string.formatted_price_text,
+                                R.string.formatted_price_text,
                                 data.platformCharge.toString()
                             )
                             finalPriceText.text = requireContext().getString(
-                                            R.string.formatted_price_text,
+                                R.string.formatted_price_text,
                                 data.finalPrice.toString()
                             )
 
@@ -71,7 +70,7 @@ class CartFragment : Fragment(), UpdateItemStatusListener {
                 }
             }
         }
-        
+
         return binding.root
     }
 

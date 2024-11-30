@@ -38,7 +38,7 @@ class CartRecyclerViewAdapter(
                     R.string.formatted_price_text,
                     item.foodPrice
                 )
-            if(item.foodDiscountPercent.isNullOrBlank()) {
+            if (item.foodDiscountPercent.isNullOrBlank()) {
                 finalPriceText.isVisible = false
                 originalPriceText.foreground = null
             } else {

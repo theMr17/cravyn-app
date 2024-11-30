@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CartViewModel @Inject constructor(
     private val cartRepository: CartRepository
-): ViewModel() {
+) : ViewModel() {
     private val _addItemToCartLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
     val addItemToCartLiveData: LiveData<Resource<Unit>> = _addItemToCartLiveData
 
@@ -25,24 +25,25 @@ class CartViewModel @Inject constructor(
     val getCartLiveData: LiveData<Resource<GetCartResponse>> = _getCartLiveData
 
     fun addItemtoCart(itemId: String) {
-       viewModelScope.launch {
-           _addItemToCartLiveData.postValue(Resource.Loading())
+        viewModelScope.launch {
+            _addItemToCartLiveData.postValue(Resource.Loading())
 
-           val addItemToCartRequestBody = AddItemtoCartRequestBody(itemId)
-           val addItemToCartResponse = cartRepository.addItemtoCart(addItemToCartRequestBody)
+            val addItemToCartRequestBody = AddItemtoCartRequestBody(itemId)
+            val addItemToCartResponse = cartRepository.addItemtoCart(addItemToCartRequestBody)
 
-           if(addItemToCartResponse.isSuccessful) {
-                _addItemToCartLiveData.postValue(Resource.Success(
-                    data = Unit,
-                    message = addItemToCartResponse.body()?.message
-                ))
-           }
-           else {
-               _addItemToCartLiveData.postValue(
-                   Resource.Error(getErrorMessage(addItemToCartResponse))
-               )
-           }
-       }
+            if (addItemToCartResponse.isSuccessful) {
+                _addItemToCartLiveData.postValue(
+                    Resource.Success(
+                        data = Unit,
+                        message = addItemToCartResponse.body()?.message
+                    )
+                )
+            } else {
+                _addItemToCartLiveData.postValue(
+                    Resource.Error(getErrorMessage(addItemToCartResponse))
+                )
+            }
+        }
     }
 
     fun getCart() {
@@ -51,7 +52,7 @@ class CartViewModel @Inject constructor(
 
             val getCartResponse = cartRepository.getCart()
 
-            if(getCartResponse.isSuccessful) {
+            if (getCartResponse.isSuccessful) {
                 _getCartLiveData.postValue(
                     Resource.Success(
                         data = getCartResponse.body()?.data!!,
@@ -73,7 +74,7 @@ class CartViewModel @Inject constructor(
             val incrementItemCountRequestBody = IncrementItemCountRequestBody(itemId)
             val getCartResponse = cartRepository.incrementItemCount(incrementItemCountRequestBody)
 
-            if(getCartResponse.isSuccessful) {
+            if (getCartResponse.isSuccessful) {
                 _getCartLiveData.postValue(
                     Resource.Success(
                         data = getCartResponse.body()?.data!!,
@@ -95,7 +96,7 @@ class CartViewModel @Inject constructor(
             val decrementItemCountRequestBody = DecrementItemCountRequestBody(itemId)
             val getCartResponse = cartRepository.decrementItemCount(decrementItemCountRequestBody)
 
-            if(getCartResponse.isSuccessful) {
+            if (getCartResponse.isSuccessful) {
                 _getCartLiveData.postValue(
                     Resource.Success(
                         data = getCartResponse.body()?.data!!,
@@ -116,7 +117,7 @@ class CartViewModel @Inject constructor(
 
             val getCartResponse = cartRepository.deleteItemFromCart(itemId)
 
-            if(getCartResponse.isSuccessful) {
+            if (getCartResponse.isSuccessful) {
                 _getCartLiveData.postValue(
                     Resource.Success(
                         data = getCartResponse.body()?.data!!,

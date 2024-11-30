@@ -1,8 +1,8 @@
 package com.cravyn.app.features.cart
 
 import com.cravyn.app.data.api.ApiResponse
-import com.cravyn.app.features.cart.model.AddItemtoCartRequestBody
 import com.cravyn.app.features.cart.model.AddItemToCartResponse
+import com.cravyn.app.features.cart.model.AddItemtoCartRequestBody
 import com.cravyn.app.features.cart.model.DecrementItemCountRequestBody
 import com.cravyn.app.features.cart.model.GetCartResponse
 import com.cravyn.app.features.cart.model.IncrementItemCountRequestBody
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class CartRepositoryImpl @Inject constructor(
     private val cartApi: CartApi
-): CartRepository {
+) : CartRepository {
     override suspend fun addItemtoCart(body: AddItemtoCartRequestBody): Response<ApiResponse<AddItemToCartResponse>> {
         return cartApi.addItemtoCart(body)
     }
@@ -28,7 +28,7 @@ class CartRepositoryImpl @Inject constructor(
         return cartApi.decrementItemCount(body)
     }
 
-    override suspend fun deleteItemFromCart(itemId : String): Response<ApiResponse<GetCartResponse>> {
+    override suspend fun deleteItemFromCart(itemId: String): Response<ApiResponse<GetCartResponse>> {
         return cartApi.deleteItemFromCart(itemId)
     }
 }

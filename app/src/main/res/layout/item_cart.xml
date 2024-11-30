@@ -14,13 +14,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/food_image"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:importantForAccessibility="no"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/restaurant_sample_image" />
+        <ImageView
+            android:id="@+id/food_image"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/restaurant_sample_image" />
 
     </com.google.android.material.card.MaterialCardView>
 
