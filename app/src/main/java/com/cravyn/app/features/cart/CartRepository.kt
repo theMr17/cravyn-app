@@ -10,7 +10,7 @@ import retrofit2.Response
 
 interface CartRepository {
 
-    suspend fun addItemtoCart(body: AddItemtoCartRequestBody): Response<ApiResponse<AddItemToCartResponse>>
+    suspend fun addItemToCart(body: AddItemtoCartRequestBody): Response<ApiResponse<AddItemToCartResponse>>
 
     suspend fun getCart(): Response<ApiResponse<CartResponse>>
 

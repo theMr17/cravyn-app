@@ -108,6 +108,6 @@ class SearchFragment : Fragment(), AddItemToCartItemClickListener {
     }
 
     override fun addItemToCartClicked(itemId: String) {
-        cartViewModel.addItemtoCart(itemId)
+        cartViewModel.addItemToCart(itemId)
     }
 }

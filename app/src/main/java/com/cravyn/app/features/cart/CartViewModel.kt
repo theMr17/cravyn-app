@@ -24,12 +24,12 @@ class CartViewModel @Inject constructor(
     private val _getCartLiveData: MutableLiveData<Resource<CartResponse>> = MutableLiveData()
     val getCartLiveData: LiveData<Resource<CartResponse>> = _getCartLiveData
 
-    fun addItemtoCart(itemId: String) {
+    fun addItemToCart(itemId: String) {
         viewModelScope.launch {
             _addItemToCartLiveData.postValue(Resource.Loading())
 
             val addItemToCartRequestBody = AddItemtoCartRequestBody(itemId)
-            val addItemToCartResponse = cartRepository.addItemtoCart(addItemToCartRequestBody)
+            val addItemToCartResponse = cartRepository.addItemToCart(addItemToCartRequestBody)
 
             if (addItemToCartResponse.isSuccessful) {
                 _addItemToCartLiveData.postValue(

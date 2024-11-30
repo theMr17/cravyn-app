@@ -16,7 +16,7 @@ import retrofit2.http.Query
 
 interface CartApi {
     @POST("customer/cart/item")
-    suspend fun addItemtoCart(
+    suspend fun addItemToCart(
         @Body body: AddItemtoCartRequestBody
     ): Response<ApiResponse<AddItemToCartResponse>>
 

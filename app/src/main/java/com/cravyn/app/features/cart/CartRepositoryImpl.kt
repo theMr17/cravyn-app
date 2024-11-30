@@ -12,8 +12,8 @@ import javax.inject.Inject
 class CartRepositoryImpl @Inject constructor(
     private val cartApi: CartApi
 ) : CartRepository {
-    override suspend fun addItemtoCart(body: AddItemtoCartRequestBody): Response<ApiResponse<AddItemToCartResponse>> {
-        return cartApi.addItemtoCart(body)
+    override suspend fun addItemToCart(body: AddItemtoCartRequestBody): Response<ApiResponse<AddItemToCartResponse>> {
+        return cartApi.addItemToCart(body)
     }
 
     override suspend fun getCart(): Response<ApiResponse<CartResponse>> {
