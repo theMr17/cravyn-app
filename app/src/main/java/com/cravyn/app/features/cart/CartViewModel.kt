@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.features.cart.model.AddItemtoCartRequestBody
 import com.cravyn.app.features.cart.model.DecrementItemCountRequestBody
-import com.cravyn.app.features.cart.model.GetCartResponse
+import com.cravyn.app.features.cart.model.CartResponse
 import com.cravyn.app.features.cart.model.IncrementItemCountRequestBody
 import com.cravyn.app.util.ErrorResponseParserUtil.getErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,8 +21,8 @@ class CartViewModel @Inject constructor(
     private val _addItemToCartLiveData: MutableLiveData<Resource<Unit>> = MutableLiveData()
     val addItemToCartLiveData: LiveData<Resource<Unit>> = _addItemToCartLiveData
 
-    private val _getCartLiveData: MutableLiveData<Resource<GetCartResponse>> = MutableLiveData()
-    val getCartLiveData: LiveData<Resource<GetCartResponse>> = _getCartLiveData
+    private val _getCartLiveData: MutableLiveData<Resource<CartResponse>> = MutableLiveData()
+    val getCartLiveData: LiveData<Resource<CartResponse>> = _getCartLiveData
 
     fun addItemtoCart(itemId: String) {
         viewModelScope.launch {

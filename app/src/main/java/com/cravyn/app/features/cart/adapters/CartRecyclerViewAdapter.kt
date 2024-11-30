@@ -8,11 +8,11 @@ import com.bumptech.glide.Glide
 import com.cravyn.app.R
 import com.cravyn.app.databinding.ItemCartBinding
 import com.cravyn.app.features.cart.listener.UpdateItemStatusListener
-import com.cravyn.app.features.cart.model.GetCartResponse
+import com.cravyn.app.features.cart.model.CartResponse
 import com.cravyn.app.util.toHttpsUrl
 
 class CartRecyclerViewAdapter(
-    private val cartItemList: List<GetCartResponse.Cart>,
+    private val cartItemList: List<CartResponse.Cart>,
     private val updateItemStatusListener: UpdateItemStatusListener
 ) : RecyclerView.Adapter<CartRecyclerViewAdapter.ViewHolder>() {
 

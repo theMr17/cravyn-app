@@ -3,7 +3,7 @@ package com.cravyn.app.features.cart.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GetCartResponse(
+data class CartResponse(
     @SerializedName("cart")
     val cart: List<Cart>,
     @SerializedName("deliveryCharge")

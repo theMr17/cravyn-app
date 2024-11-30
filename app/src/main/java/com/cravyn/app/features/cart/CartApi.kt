@@ -4,7 +4,7 @@ import com.cravyn.app.data.api.ApiResponse
 import com.cravyn.app.features.cart.model.AddItemToCartResponse
 import com.cravyn.app.features.cart.model.AddItemtoCartRequestBody
 import com.cravyn.app.features.cart.model.DecrementItemCountRequestBody
-import com.cravyn.app.features.cart.model.GetCartResponse
+import com.cravyn.app.features.cart.model.CartResponse
 import com.cravyn.app.features.cart.model.IncrementItemCountRequestBody
 import retrofit2.Response
 import retrofit2.http.Body
@@ -21,20 +21,20 @@ interface CartApi {
     ): Response<ApiResponse<AddItemToCartResponse>>
 
     @GET("customer/cart/")
-    suspend fun getCart(): Response<ApiResponse<GetCartResponse>>
+    suspend fun getCart(): Response<ApiResponse<CartResponse>>
 
     @PATCH("customer/cart/item/plus")
     suspend fun incrementItemCount(
         @Body body: IncrementItemCountRequestBody
-    ): Response<ApiResponse<GetCartResponse>>
+    ): Response<ApiResponse<CartResponse>>
 
     @PATCH("customer/cart/item/minus")
     suspend fun decrementItemCount(
         @Body body: DecrementItemCountRequestBody
-    ): Response<ApiResponse<GetCartResponse>>
+    ): Response<ApiResponse<CartResponse>>
 
     @DELETE("customer/cart/item")
     suspend fun deleteItemFromCart(
         @Query("itemId") itemId: String
-    ): Response<ApiResponse<GetCartResponse>>
+    ): Response<ApiResponse<CartResponse>>
 }
