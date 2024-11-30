@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.cravyn.app.R
 import com.cravyn.app.data.api.Resource
+import com.cravyn.app.databinding.DialogRaiseQueryBinding
 import com.cravyn.app.databinding.FragmentQueryBinding
 import com.cravyn.app.features.query.adapters.QueriesRecyclerViewAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,14 +28,13 @@ class QueryFragment : Fragment() {
         _binding = FragmentQueryBinding.inflate(inflater, container, false)
 
         binding.raiseQueryButton.setOnClickListener {
-            val view =
-                LayoutInflater.from(requireContext()).inflate(R.layout.dialog_raise_query, null)
+            val binding = DialogRaiseQueryBinding.inflate(LayoutInflater.from(requireContext()))
             MaterialAlertDialogBuilder(requireActivity())
                 .setTitle("Raise Query")
-                .setView(view)
+                .setView(binding.root)
                 .setPositiveButton("Submit") { dialog, _ ->
                     queryViewModel.raiseQuery(
-                        view.findViewById<TextInputLayout>(R.id.question_text_input_layout).editText?.text.toString()
+                        binding.questionTextInputLayout.editText?.text.toString()
                     )
                     dialog.dismiss()
                 }
