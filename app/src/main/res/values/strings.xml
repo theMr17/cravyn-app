@@ -100,4 +100,12 @@
     <string name="specifications_header_text">Specifications</string>
     <string name="specifications_input_hint_text">Enter any special request for the restaurant</string>
     <string name="delivery_address_header_text">Delivery Address</string>
+    <string name="question_label_text">Question</string>
+    <string name="question_dummy_text">Can I order from multiple restaurants?</string>
+    <string name="answer_dummy_text">One food craving at a time, please! But hey, if you really want that sushi-taco-pizza-burger combo, we’re here to make it happen. Just brace yourself for the wait… 🚴‍♀️🍣🌮🍕</string>
+    <string name="answer_label_text">Answer</string>
+    <string name="answered_by_dummy_text">Answered by: Team Cravyn</string>
+    <string name="query_answer_not_available_text">Not Available.</string>
+    <string name="answered_by_text">Answered by: %1$s</string>
+    <string name="question_input_hint_text">Enter your question</string>
 </resources>

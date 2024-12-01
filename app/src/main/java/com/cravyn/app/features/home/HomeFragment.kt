@@ -19,6 +19,7 @@ import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
 import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
 import com.cravyn.app.features.home.models.FoodItem
+import com.cravyn.app.features.query.QueryActivity.Companion.createQueryActivity
 import com.cravyn.app.features.search.SearchActivity.Companion.createSearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,6 +43,10 @@ class HomeFragment : Fragment() {
 
         binding.searchTextInputLayout.editText?.setOnClickListener {
             startActivity(createSearchActivity(requireContext()))
+        }
+
+        binding.recommendedFoodHeaderText.setOnClickListener {
+            startActivity(createQueryActivity(requireContext()))
         }
 
         val foodItem = listOf(

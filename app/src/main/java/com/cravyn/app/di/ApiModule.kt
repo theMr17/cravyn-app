@@ -18,6 +18,9 @@ import com.cravyn.app.features.cart.CartRepositoryImpl
 import com.cravyn.app.features.home.HomeApi
 import com.cravyn.app.features.home.HomeRepository
 import com.cravyn.app.features.home.HomeRepositoryImpl
+import com.cravyn.app.features.query.QueryApi
+import com.cravyn.app.features.query.QueryRepository
+import com.cravyn.app.features.query.QueryRepositoryImpl
 import com.cravyn.app.features.restaurant.RestaurantApi
 import com.cravyn.app.features.restaurant.RestaurantRepository
 import com.cravyn.app.features.restaurant.RestaurantRepositoryImpl
@@ -102,6 +105,9 @@ object ApiModule {
     fun providesAddressRepository(impl: AddressRepositoryImpl): AddressRepository = impl
 
     @Provides
+    fun providesQueryRepository(impl: QueryRepositoryImpl): QueryRepository = impl
+
+    @Provides
     @Singleton
     fun providesAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
@@ -135,5 +141,11 @@ object ApiModule {
     @Singleton
     fun providesAddressApi(retrofit: Retrofit): AddressApi {
         return retrofit.create(AddressApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesQueryApi(retrofit: Retrofit): QueryApi {
+        return retrofit.create(QueryApi::class.java)
     }
 }
