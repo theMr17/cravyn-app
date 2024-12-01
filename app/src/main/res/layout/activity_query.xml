@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".features.cart.CartActivity">
+    tools:context=".features.query.QueryActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -13,10 +13,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/cart_toolbar_title" />
+        app:title="My Queries" />
 
     <FrameLayout
-        android:id="@+id/cart_fragment_placeholder"
+        android:id="@+id/query_fragment_placeholder"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

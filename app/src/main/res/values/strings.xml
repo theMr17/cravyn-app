@@ -74,6 +74,9 @@
     <string name="item_restaurant_rating_delivery_time_text">%1$s (%2$d) • %3$d-%4$d min</string>
     <string name="item_restaurant_address_text">%1$s | %2$s km</string>
     <string name="item_restaurant_rating_text">%1$s (%2$d)</string>
+    <string name="formatted_price_text">₹%1$s</string>
+    <string name="formatted_discount_text">- ₹%1$s</string>
+    <string name="item_cart_final_price_text">₹%1$f</string>
     <string name="cart_summary_header_text">Cart Summary</string>
     <string name="total_price_label_text">Total Price</string>
     <string name="total_price_dummy_text">₹800.00</string>
@@ -93,6 +96,16 @@
     <string name="search_address_hint_text">Type your address here</string>
     <string name="save_button_text">Save</string>
     <string name="set_as_default_button_text">Set as default</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="empty_cart_text">Oops! Your cart is empty.</string>
+    <string name="specifications_header_text">Specifications</string>
+    <string name="specifications_input_hint_text">Enter any special request for the restaurant</string>
+    <string name="delivery_address_header_text">Delivery Address</string>
+    <string name="question_label_text">Question</string>
+    <string name="question_dummy_text">Can I order from multiple restaurants?</string>
+    <string name="answer_dummy_text">One food craving at a time, please! But hey, if you really want that sushi-taco-pizza-burger combo, we’re here to make it happen. Just brace yourself for the wait… 🚴‍♀️🍣🌮🍕</string>
+    <string name="answer_label_text">Answer</string>
+    <string name="answered_by_dummy_text">Answered by: Team Cravyn</string>
+    <string name="query_answer_not_available_text">Not Available.</string>
+    <string name="answered_by_text">Answered by: %1$s</string>
+    <string name="question_input_hint_text">Enter your question</string>
 </resources>

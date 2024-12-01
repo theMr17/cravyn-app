@@ -7,11 +7,13 @@ import com.bumptech.glide.Glide
 import com.cravyn.app.R
 import com.cravyn.app.data.api.toDisplayableNumber
 import com.cravyn.app.databinding.ItemRestaurantMenuBinding
+import com.cravyn.app.features.cart.listeners.AddItemToCartItemClickListener
 import com.cravyn.app.features.search.models.SearchResponse
 import com.cravyn.app.util.toHttpsUrl
 
 class SearchedFoodsRecyclerViewAdapter(
-    private val searchedFoodsItemList: List<SearchResponse.FoodItem>
+    private val searchedFoodsItemList: List<SearchResponse.FoodItem>,
+    private val addItemToCartItemClickListener: AddItemToCartItemClickListener
 ) : RecyclerView.Adapter<SearchedFoodsRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemRestaurantMenuBinding) : RecyclerView.ViewHolder(binding.root)
@@ -50,6 +52,10 @@ class SearchedFoodsRecyclerViewAdapter(
                     .into(foodImage)
             } else {
                 Glide.with(holder.itemView.context).clear(foodImage)
+            }
+
+            addToCartButton.setOnClickListener {
+                addItemToCartItemClickListener.addItemToCartClicked(item.itemId)
             }
         }
     }

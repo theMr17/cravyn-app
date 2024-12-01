@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/question_text_input_layout"
+        style="@style/OutlinedTextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="@string/question_input_hint_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/OutlinedTextInputEditTextStyle"
+            android:singleLine="false" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

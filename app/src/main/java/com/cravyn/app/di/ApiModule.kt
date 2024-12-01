@@ -12,9 +12,15 @@ import com.cravyn.app.features.auth.AuthRepository
 import com.cravyn.app.features.auth.AuthRepositoryImpl
 import com.cravyn.app.features.auth.JwtTokenRepository
 import com.cravyn.app.features.auth.JwtTokenRepositoryImpl
+import com.cravyn.app.features.cart.CartApi
+import com.cravyn.app.features.cart.CartRepository
+import com.cravyn.app.features.cart.CartRepositoryImpl
 import com.cravyn.app.features.home.HomeApi
 import com.cravyn.app.features.home.HomeRepository
 import com.cravyn.app.features.home.HomeRepositoryImpl
+import com.cravyn.app.features.query.QueryApi
+import com.cravyn.app.features.query.QueryRepository
+import com.cravyn.app.features.query.QueryRepositoryImpl
 import com.cravyn.app.features.restaurant.RestaurantApi
 import com.cravyn.app.features.restaurant.RestaurantRepository
 import com.cravyn.app.features.restaurant.RestaurantRepositoryImpl
@@ -93,8 +99,13 @@ object ApiModule {
     fun providesSearchRepository(impl: SearchRepositoryImpl): SearchRepository = impl
 
     @Provides
+    fun providesCartRepository(impl: CartRepositoryImpl): CartRepository = impl
+
+    @Provides
     fun providesAddressRepository(impl: AddressRepositoryImpl): AddressRepository = impl
 
+    @Provides
+    fun providesQueryRepository(impl: QueryRepositoryImpl): QueryRepository = impl
 
     @Provides
     @Singleton
@@ -122,7 +133,19 @@ object ApiModule {
 
     @Provides
     @Singleton
+    fun providesCartApi(retrofit: Retrofit): CartApi {
+        return retrofit.create(CartApi::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun providesAddressApi(retrofit: Retrofit): AddressApi {
         return retrofit.create(AddressApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesQueryApi(retrofit: Retrofit): QueryApi {
+        return retrofit.create(QueryApi::class.java)
     }
 }
