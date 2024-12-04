@@ -6,10 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.cravyn.app.R
 import com.cravyn.app.databinding.ActivityProfileBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /** Tag for identifying the [ProfileFragment] in transactions. */
 private const val TAG_PROFILE_FRAGMENT = "PROFILE_FRAGMENT"
 
+@AndroidEntryPoint
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
 
