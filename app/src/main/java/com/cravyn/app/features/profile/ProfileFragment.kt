@@ -14,6 +14,7 @@ import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentProfileBinding
 import com.cravyn.app.features.auth.AuthViewModel
 import com.cravyn.app.features.auth.login.LoginActivity.Companion.createLoginActivity
+import com.cravyn.app.features.history.OrderHistoryActivity.Companion.createOrderHistoryActivity
 import com.cravyn.app.util.toHttpsUrl
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,6 +38,10 @@ class ProfileFragment : Fragment() {
                 "Sorry, this feature is not available yet.",
                 Toast.LENGTH_LONG
             ).show()
+        }
+
+        binding.orderHistoryButton.setOnClickListener {
+            startActivity(createOrderHistoryActivity(requireContext()))
         }
 
         binding.logoutButton.setOnClickListener {
