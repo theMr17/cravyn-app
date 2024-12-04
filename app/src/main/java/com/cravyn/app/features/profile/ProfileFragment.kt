@@ -31,6 +31,14 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
+        binding.updateProfileButton.setOnClickListener {
+            Toast.makeText(
+                requireContext(),
+                "Sorry, this feature is not available yet.",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+
         binding.logoutButton.setOnClickListener {
             authViewModel.logout()
         }
