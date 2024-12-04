@@ -113,4 +113,8 @@
     <string name="logout_button_text">Logout</string>
     <string name="plus_member_text">Plus Member</string>
     <string name="profile_name_text">Name</string>
+    <string name="item_home_text">Home</string>
+    <string name="item_search_text">Search</string>
+    <string name="item_query_text">Queries</string>
+    <string name="item_cart_text">Cart</string>
 </resources>

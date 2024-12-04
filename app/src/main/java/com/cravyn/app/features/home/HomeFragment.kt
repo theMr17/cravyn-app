@@ -14,6 +14,7 @@ import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentHomeBinding
 import com.cravyn.app.features.address.AddressViewModel
 import com.cravyn.app.features.address.saved.SavedAddressActivity.Companion.createSavedAddressActivity
+import com.cravyn.app.features.cart.CartActivity.Companion.createCartActivity
 import com.cravyn.app.features.home.adapters.RecommendedFoodGridViewAdapter
 import com.cravyn.app.features.home.adapters.RecommendedRestaurantRecyclerViewAdapter
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
@@ -45,9 +46,7 @@ class HomeFragment : Fragment() {
             startActivity(createSearchActivity(requireContext()))
         }
 
-        binding.recommendedFoodHeaderText.setOnClickListener {
-            startActivity(createQueryActivity(requireContext()))
-        }
+        setupBottomNav()
 
         val foodItem = listOf(
             FoodItem(R.drawable.ic_kebab, "Kebab"),
@@ -160,5 +159,34 @@ class HomeFragment : Fragment() {
         popup.setOnDismissListener { }
 
         popup.show()
+    }
+
+    private fun setupBottomNav() {
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.item_home -> {
+                    true
+                }
+
+                R.id.item_search -> {
+                    startActivity(createSearchActivity(requireContext()))
+                    false
+                }
+
+                R.id.item_query -> {
+                    startActivity(createQueryActivity(requireContext()))
+                    false
+                }
+
+                R.id.item_cart -> {
+                    startActivity(createCartActivity(requireContext()))
+                    false
+                }
+
+                else -> {
+                    false
+                }
+            }
+        }
     }
 }
