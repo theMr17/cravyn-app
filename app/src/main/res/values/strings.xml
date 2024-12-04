@@ -108,4 +108,13 @@
     <string name="query_answer_not_available_text">Not Available.</string>
     <string name="answered_by_text">Answered by: %1$s</string>
     <string name="question_input_hint_text">Enter your question</string>
+    <string name="update_profile_button_text">Update profile</string>
+    <string name="order_history_button_text">Order History</string>
+    <string name="logout_button_text">Logout</string>
+    <string name="plus_member_text">Plus Member</string>
+    <string name="profile_name_text">Name</string>
+    <string name="item_home_text">Home</string>
+    <string name="item_search_text">Search</string>
+    <string name="item_query_text">Queries</string>
+    <string name="item_cart_text">Cart</string>
 </resources>

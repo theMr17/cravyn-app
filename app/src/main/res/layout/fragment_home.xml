@@ -1,269 +1,292 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".features.home.HomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/header_container"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/header_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_home_header">
+                app:cardCornerRadius="0dp"
+                app:cardElevation="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:id="@+id/selected_address_container"
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-                    android:layout_marginTop="20dp"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toStartOf="@id/your_account_button"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:background="@drawable/bg_home_header">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/selected_address_container"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_down"
-                        android:drawableTint="@color/shared_text_color"
-                        android:fontFamily="@font/nunito_black"
-                        android:text="@string/selected_address_text"
-                        android:textColor="@color/shared_text_color"
-                        android:textSize="16sp" />
+                        android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@id/your_account_button"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/selected_address_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/nunito_bold"
-                        android:lines="1"
-                        android:text="@string/selected_address_dummy_text"
-                        android:textColor="@color/shared_text_color"
-                        android:textSize="12sp" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_arrow_down"
+                            android:drawableTint="@color/shared_text_color"
+                            android:fontFamily="@font/nunito_black"
+                            android:text="@string/selected_address_text"
+                            android:textColor="@color/shared_text_color"
+                            android:textSize="16sp" />
 
-                </LinearLayout>
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/selected_address_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/nunito_bold"
+                            android:lines="1"
+                            android:text="@string/selected_address_dummy_text"
+                            android:textColor="@color/shared_text_color"
+                            android:textSize="12sp" />
 
-                <ImageView
-                    android:id="@+id/your_account_button"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/ic_account"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/search_text_input_layout"
-                    style="@style/SearchOutlinedTextInputLayoutStyle"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="20dp"
-                    android:hint="@string/search_hint_text"
-                    android:textColorHint="@color/grey_2"
-                    app:boxBackgroundColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/your_account_button"
-                    app:startIconDrawable="@drawable/ic_search"
-                    app:startIconTint="@color/red_1">
+                    <ImageView
+                        android:id="@+id/your_account_button"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/ic_account"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/OutlinedTextInputEditTextStyle"
-                        android:clickable="true"
-                        android:focusable="false"
-                        tools:ignore="KeyboardInaccessibleWidget" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/search_text_input_layout"
+                        style="@style/SearchOutlinedTextInputLayoutStyle"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="20dp"
+                        android:hint="@string/search_hint_text"
+                        android:textColorHint="@color/grey_2"
+                        app:boxBackgroundColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/your_account_button"
+                        app:startIconDrawable="@drawable/ic_search"
+                        app:startIconTint="@color/red_1">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/OutlinedTextInputEditTextStyle"
+                            android:clickable="true"
+                            android:focusable="false"
+                            tools:ignore="KeyboardInaccessibleWidget" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/offer_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_home_offer_container"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_container">
+            </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/offer_heading_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/offer_heading_text"
-                android:textAlignment="center"
-                android:textColor="@color/offer_heading_text_color"
-                android:textSize="24sp"
-                app:fontFamily="@font/permanent_marker" />
-
-            <TextView
-                android:id="@+id/offer_sub_heading_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/offer_sub_heading_Text"
-                android:textColor="@color/offer_sub_heading_text_color" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/order_now_button"
-                style="@style/SmallButtonStyle"
-                android:layout_marginTop="8dp"
-                android:text="@string/offer_action_button_text" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/recommended_food_header_text"
-            style="@style/HeaderStyle"
-            android:text="@string/recommended_food_header_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/offer_container" />
-
-        <GridView
-            android:id="@+id/recommended_food_grid_view"
-            android:layout_width="match_parent"
-            android:layout_height="570dp"
-            android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-            android:layout_marginTop="16dp"
-            android:horizontalSpacing="6dp"
-            android:numColumns="3"
-            android:verticalSpacing="6dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recommended_food_header_text"
-            tools:listitem="@layout/item_recommended_food" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/join_plus_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-            android:layout_marginTop="32dp"
-            android:elevation="8dp"
-            app:cardCornerRadius="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recommended_food_grid_view"
-            app:strokeColor="@color/join_plus_card_border_color"
-            app:strokeWidth="1dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:id="@+id/offer_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_home_join_plus_card"
-                android:padding="20dp">
+                android:background="@drawable/bg_home_offer_container"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_container">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/join_plus_button"
-                    style="@style/SmallButtonStyle"
-                    android:backgroundTint="@color/black"
-                    android:drawableEnd="@drawable/ic_star"
-                    android:drawableTint="@color/yellow_2"
-                    android:text="@string/join_plus_text"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/get_free_delivery_text"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/get_free_delivery_text"
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/offer_heading_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/nunito"
-                    android:text="Get free delivery on\norders above Rs.199"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/offer_heading_text"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/join_plus_button"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textColor="@color/offer_heading_text_color"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/permanent_marker" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/offer_sub_heading_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/offer_sub_heading_Text"
+                    android:textColor="@color/offer_sub_heading_text_color" />
 
-        </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/order_now_button"
+                    style="@style/SmallButtonStyle"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/offer_action_button_text" />
 
-        <TextView
-            android:id="@+id/recommended_restaurant_header"
-            style="@style/HeaderStyle"
-            android:text="@string/recommended_restaurant_header_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/join_plus_card" />
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/chip_container"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recommended_restaurant_header">
+            <TextView
+                android:id="@+id/recommended_food_header_text"
+                style="@style/HeaderStyle"
+                android:text="@string/recommended_food_header_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/offer_container" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/sort_by_button"
-                style="@style/FilterButtonStyle"
-                android:drawableEnd="@drawable/ic_arrow_down"
-                android:text="@string/home_recommended_restaurant_list_sort_by_button_text" />
+            <GridView
+                android:id="@+id/recommended_food_grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="570dp"
+                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+                android:layout_marginTop="16dp"
+                android:horizontalSpacing="6dp"
+                android:numColumns="3"
+                android:verticalSpacing="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recommended_food_header_text"
+                tools:listitem="@layout/item_recommended_food" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/plus_offer_button"
-                style="@style/FilterButtonStyle"
-                android:text="@string/home_recommended_restaurant_list_plus_filter_button_text" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/join_plus_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+                android:layout_marginTop="32dp"
+                android:elevation="8dp"
+                app:cardCornerRadius="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recommended_food_grid_view"
+                app:strokeColor="@color/join_plus_card_border_color"
+                app:strokeWidth="1dp">
 
-        </LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_home_join_plus_card"
+                    android:padding="20dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recommended_restaurant_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="@dimen/shared_margin_bottom"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chip_container"
-            tools:itemCount="4"
-            tools:listitem="@layout/item_recommended_restaurant" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/join_plus_button"
+                        style="@style/SmallButtonStyle"
+                        android:backgroundTint="@color/black"
+                        android:drawableEnd="@drawable/ic_star"
+                        android:drawableTint="@color/yellow_2"
+                        android:text="@string/join_plus_text"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/get_free_delivery_text"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/recommended_restaurants_loading_bar"
-            style="@style/PrimaryCircularProgressIndicatorStyle"
-            android:layout_marginVertical="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chip_container" />
+                    <TextView
+                        android:id="@+id/get_free_delivery_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/nunito"
+                        android:text="Get free delivery on\norders above Rs.199"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/join_plus_button"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/recommended_restaurant_header"
+                style="@style/HeaderStyle"
+                android:text="@string/recommended_restaurant_header_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/join_plus_card" />
+
+            <LinearLayout
+                android:id="@+id/chip_container"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recommended_restaurant_header">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sort_by_button"
+                    style="@style/FilterButtonStyle"
+                    android:drawableEnd="@drawable/ic_arrow_down"
+                    android:text="@string/home_recommended_restaurant_list_sort_by_button_text" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/plus_offer_button"
+                    style="@style/FilterButtonStyle"
+                    android:text="@string/home_recommended_restaurant_list_plus_filter_button_text" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recommended_restaurant_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="@dimen/shared_margin_bottom"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chip_container"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_recommended_restaurant" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/recommended_restaurants_loading_bar"
+                style="@style/PrimaryCircularProgressIndicatorStyle"
+                android:layout_marginVertical="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chip_container" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/backgroundColor"
+        android:paddingVertical="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
