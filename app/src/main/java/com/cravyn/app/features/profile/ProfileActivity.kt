@@ -5,15 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.cravyn.app.R
-import com.cravyn.app.features.search.SearchActivity
-import com.cravyn.app.features.splash.SplashFragment
+import com.cravyn.app.databinding.ActivityProfileBinding
 
 /** Tag for identifying the [ProfileFragment] in transactions. */
 private const val TAG_PROFILE_FRAGMENT = "PROFILE_FRAGMENT"
 
 class ProfileActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityProfileBinding
+
     companion object {
-        /** Returns a new [Intent] to route to [SearchActivity]. */
+        /** Returns a new [Intent] to route to [ProfileActivity]. */
         fun createProfileActivity(context: Context): Intent {
             return Intent(context, ProfileActivity::class.java)
         }
@@ -21,9 +22,14 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
+        binding = ActivityProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        if (getSplashFragment() == null) {
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        if (getProfileFragment() == null) {
             supportFragmentManager.beginTransaction().add(
                 R.id.profile_fragment_placeholder,
                 ProfileFragment(),
@@ -32,9 +38,9 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun getSplashFragment(): SplashFragment? {
+    private fun getProfileFragment(): ProfileFragment? {
         return supportFragmentManager.findFragmentById(
             R.id.profile_fragment_placeholder
-        ) as SplashFragment?
+        ) as ProfileFragment?
     }
 }

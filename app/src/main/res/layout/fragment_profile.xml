@@ -1,194 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".features.profile.ProfileFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/profile_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-        app:strokeColor="@color/red_1"
-        app:strokeWidth="4dp"
-        app:cardCornerRadius="72dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_margin="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0">
+        app:strokeColor="?attr/colorPrimary"
+        app:strokeWidth="4dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/user_profile"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@drawable/baseline_account_circle_24"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_account_solid" />
 
     </com.google.android.material.card.MaterialCardView>
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
+        android:fontFamily="@font/nunito_black"
+        android:text="@string/profile_name_text"
+        android:textColor="@color/shared_text_color"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/profile_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/profile_background"
+        app:layout_constraintTop_toTopOf="@id/profile_background" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/plus_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_star"
+        android:drawableTint="?attr/colorPrimary"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/plus_member_text"
+        android:textColor="@color/shared_text_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/profile_name"
+        app:layout_constraintTop_toBottomOf="@id/profile_name" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_background">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-            app:strokeColor="?attr/colorPrimary"
-            app:strokeWidth="2dp"
-            android:layout_marginTop="52dp"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_background">
+            android:id="@+id/update_profile_button"
+            style="@style/ButtonCardStyle">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="16dp">
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/ButtonCardTextStyle"
+                android:drawableStart="@drawable/ic_edit"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:text="@string/update_profile_button_text" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/update_profile_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito"
-                    android:text="Update profile"
-                    android:textSize="18sp"
-                    android:drawableEnd="@drawable/baseline_arrow_forward_24"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/order_background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-            app:strokeColor="?attr/colorPrimary"
-            app:strokeWidth="2dp"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView">
+            android:id="@+id/order_history_button"
+            style="@style/ButtonCardStyle">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="16dp">
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/ButtonCardTextStyle"
+                android:drawableStart="@drawable/ic_history"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:text="@string/order_history_button_text" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/order_history_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito"
-                    android:text="Orders"
-                    android:textColor="@color/shared_text_color"
-                    android:textSize="18sp"
-                    android:drawableStart="@drawable/baseline_history_24"
-                    android:drawablePadding="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/logout_background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/shared_horizontal_margin"
-            app:strokeColor="?attr/colorPrimary"
-            app:strokeWidth="2dp"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/order_background">
+            android:id="@+id/logout_button"
+            style="@style/ButtonCardStyle">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="16dp">
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/ButtonCardTextStyle"
+                android:drawableStart="@drawable/ic_login"
+                android:text="@string/logout_button_text" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/logout_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito"
-                    android:text="Logout"
-                    android:textColor="@color/shared_text_color"
-                    android:textSize="18sp"
-                    android:drawableStart="@drawable/baseline_login_24"
-                    android:drawablePadding="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/Username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name"
-            android:layout_marginStart="32dp"
-            android:fontFamily="@font/nunito_bold"
-            android:textColor="@color/shared_text_color"
-            android:textSize="20sp"
-            app:layout_constraintTop_toTopOf="@id/profile_background"
-            app:layout_constraintStart_toEndOf="@id/profile_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/profile_background"
-            app:layout_constraintHorizontal_bias="0.0"/>
+    </LinearLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/plus_member"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PLUS MEMBER"
-            android:layout_marginStart="32dp"
-            android:fontFamily="@font/nunito_bold"
-            android:textSize="20sp"
-            android:layout_marginTop="12dp"
-            android:drawableEnd="@drawable/ic_star"
-            android:drawableTint="@color/red_1"
-            android:backgroundTint="@color/black"
-            android:textColor="@color/shared_text_color"
-            app:layout_constraintTop_toTopOf="@id/Username"
-            app:layout_constraintStart_toEndOf="@id/profile_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/profile_background"
-            app:layout_constraintHorizontal_bias="0.0"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
