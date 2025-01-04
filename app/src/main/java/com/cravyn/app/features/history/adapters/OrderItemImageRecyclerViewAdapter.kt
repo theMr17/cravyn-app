@@ -31,8 +31,8 @@ class OrderItemImageRecyclerViewAdapter(
             if (!item.foodImageUrl.isNullOrBlank()) {
                 Glide.with(holder.itemView.context)
                     .load(item.foodImageUrl.toHttpsUrl())
-                    .placeholder(R.drawable.restaurant_sample_image)
-                    .error(R.drawable.restaurant_sample_image)
+                    .placeholder(R.drawable.sample_image)
+                    .error(R.drawable.sample_image)
                     .into(orderItemImage)
             } else {
                 Glide.with(holder.itemView.context).clear(orderItemImage)

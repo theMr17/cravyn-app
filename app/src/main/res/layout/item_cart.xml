@@ -20,7 +20,7 @@
             android:layout_height="125dp"
             android:importantForAccessibility="no"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/restaurant_sample_image" />
+            app:srcCompat="@drawable/sample_image" />
 
     </com.google.android.material.card.MaterialCardView>
 
