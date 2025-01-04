@@ -42,6 +42,7 @@ class OrderHistoryFragment : Fragment(), CancelOrderItemClickListener {
                             it.data?.orders ?: emptyList(),
                             this@OrderHistoryFragment
                         )
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
             }
         }
