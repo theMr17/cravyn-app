@@ -124,4 +124,7 @@
     <string name="status_dummy_text">Packed</string>
     <string name="cancel_order_button_text">Cancel</string>
     <string name="order_item_count_dummy_text">x2</string>
+    <string name="order_item_count_text">x%1$d</string>
+    <string name="order_id_text">#%1$s</string>
+    <string name="order_no_text">Order No: %1$s</string>
 </resources>

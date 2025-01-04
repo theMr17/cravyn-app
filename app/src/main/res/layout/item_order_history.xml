@@ -85,6 +85,7 @@
             android:text="@string/status_dummy_text"
             android:textColor="@color/shared_text_color"
             android:textSize="14sp"
+            android:layout_marginStart="4dp"
             app:layout_constraintBottom_toBottomOf="@id/status_label_text"
             app:layout_constraintStart_toEndOf="@id/status_label_text"
             app:layout_constraintTop_toTopOf="@id/status_label_text" />

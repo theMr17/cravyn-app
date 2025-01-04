@@ -8,11 +8,11 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface OrderHistoryApi {
-    @GET("/customer/order-history")
-    fun getOrderHistory(): Response<ApiResponse<OrderHistoryResponse>>
+    @GET("customer/order-history")
+    suspend fun getOrderHistory(): Response<ApiResponse<OrderHistoryResponse>>
 
-    @POST("/customer/cancel-order")
-    fun cancelOrder(
+    @POST("customer/cancel-order")
+    suspend fun cancelOrder(
         @Query("orderId") orderId: String
     ): Response<ApiResponse<Unit>>
 }

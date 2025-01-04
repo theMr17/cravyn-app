@@ -47,7 +47,7 @@ data class OrderHistoryResponse(
     ) {
         data class Item(
             @SerializedName("food_image_url")
-            val foodImageUrl: String,
+            val foodImageUrl: String?,
             @SerializedName("quantity")
             val quantity: Int
         )
