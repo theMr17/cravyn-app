@@ -8,8 +8,10 @@
         android:id="@+id/order_row_item_holder"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:cardCornerRadius="12dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -18,10 +20,10 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/order_row_item"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:foreground="@drawable/fg_home_restaurant_image"
+                android:id="@+id/order_item_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:importantForAccessibility="no"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -30,21 +32,19 @@
                 app:srcCompat="@drawable/restaurant_sample_image" />
 
             <TextView
-                android:id="@+id/order_item_count"
+                android:id="@+id/order_item_count_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginBottom="8dp"
-                android:ellipsize="end"
-                android:fontFamily="@font/nunito_black"
-                android:lines="1"
-                android:text="x2"
+                android:background="@drawable/bg_order_history_item_count"
+                android:fontFamily="@font/nunito_bold"
+                android:paddingStart="24dp"
+                android:paddingTop="24dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="4dp"
+                android:text="@string/order_item_count_dummy_text"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/order_row_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0" />
-
-
+                app:layout_constraintBottom_toBottomOf="@+id/order_item_image"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

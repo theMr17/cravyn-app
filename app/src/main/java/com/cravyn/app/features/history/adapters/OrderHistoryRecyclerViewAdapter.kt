@@ -4,11 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.databinding.ItemOrderHistoryBinding
 
-class OrderHistoryRecyclerViewAdapter (
+class OrderHistoryRecyclerViewAdapter : RecyclerView.Adapter<OrderHistoryRecyclerViewAdapter.ViewHolder>() {
 
-): RecyclerView.Adapter<OrderHistoryRecyclerViewAdapter.ViewHolder>() {
-
-    class ViewHolder(val binding: ItemOrderHistoryBinding): RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: ItemOrderHistoryBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         TODO("Not yet implemented")
