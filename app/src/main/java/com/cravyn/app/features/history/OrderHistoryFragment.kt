@@ -10,10 +10,11 @@ import androidx.fragment.app.viewModels
 import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentOrderHistoryBinding
 import com.cravyn.app.features.history.adapters.OrderHistoryRecyclerViewAdapter
+import com.cravyn.app.features.history.listeners.CancelOrderItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OrderHistoryFragment : Fragment() {
+class OrderHistoryFragment : Fragment(), CancelOrderItemClickListener {
     private var _binding: FragmentOrderHistoryBinding? = null
     private val binding get() = _binding!!
 
@@ -37,7 +38,24 @@ class OrderHistoryFragment : Fragment() {
 
                 is Resource.Success -> {
                     binding.orderHistoryRecyclerView.adapter =
-                        OrderHistoryRecyclerViewAdapter(it.data?.orders ?: emptyList())
+                        OrderHistoryRecyclerViewAdapter(
+                            it.data?.orders ?: emptyList(),
+                            this@OrderHistoryFragment
+                        )
+                }
+            }
+        }
+
+        orderHistoryViewModel.cancelOrderLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+
+                is Resource.Loading -> {}
+
+                is Resource.Success -> {
+                    orderHistoryViewModel.getOrderHistory()
                 }
             }
         }
@@ -48,5 +66,9 @@ class OrderHistoryFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onCancelOrderItemClicked(orderId: String) {
+        orderHistoryViewModel.cancelOrder(orderId)
     }
 }

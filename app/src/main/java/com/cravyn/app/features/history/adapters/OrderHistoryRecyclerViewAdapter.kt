@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.R
 import com.cravyn.app.databinding.ItemOrderHistoryBinding
+import com.cravyn.app.features.history.listeners.CancelOrderItemClickListener
 import com.cravyn.app.features.history.models.OrderHistoryResponse
 
 class OrderHistoryRecyclerViewAdapter(
-    private val orderHistoryList: List<OrderHistoryResponse.Order>
+    private val orderHistoryList: List<OrderHistoryResponse.Order>,
+    private val cancelOrderItemClickListener: CancelOrderItemClickListener
 ) : RecyclerView.Adapter<OrderHistoryRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemOrderHistoryBinding) : RecyclerView.ViewHolder(binding.root)
@@ -38,6 +40,10 @@ class OrderHistoryRecyclerViewAdapter(
                 cancelOrderButton.visibility = View.VISIBLE
             } else {
                 cancelOrderButton.visibility = View.INVISIBLE
+            }
+
+            cancelOrderButton.setOnClickListener {
+                cancelOrderItemClickListener.onCancelOrderItemClicked(item.orderId)
             }
 
             orderHistoryImagesRecyclerView.adapter = OrderItemImageRecyclerViewAdapter(item.items)
