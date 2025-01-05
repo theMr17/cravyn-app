@@ -71,8 +71,8 @@ class RecommendedRestaurantRecyclerViewAdapter(
             if (!item.restaurantImageUrl.isNullOrBlank()) {
                 Glide.with(holder.itemView.context)
                     .load(item.restaurantImageUrl.toHttpsUrl())
-                    .placeholder(R.drawable.restaurant_sample_image)
-                    .error(R.drawable.restaurant_sample_image)
+                    .placeholder(R.drawable.sample_image)
+                    .error(R.drawable.sample_image)
                     .into(restaurantImage)
             } else {
                 Glide.with(holder.itemView.context).clear(restaurantImage)

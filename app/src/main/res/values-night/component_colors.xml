@@ -7,4 +7,5 @@
     <color name="offer_sub_heading_text_color">@color/white</color>
     <color name="join_plus_card_border_color">@color/white</color>
     <color name="discounted_price_text_color">@color/green_2</color>
+    <color name="order_history_images_list_end_color">@color/black_2</color>
 </resources>

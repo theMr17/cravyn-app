@@ -15,6 +15,9 @@ import com.cravyn.app.features.auth.JwtTokenRepositoryImpl
 import com.cravyn.app.features.cart.CartApi
 import com.cravyn.app.features.cart.CartRepository
 import com.cravyn.app.features.cart.CartRepositoryImpl
+import com.cravyn.app.features.history.OrderHistoryApi
+import com.cravyn.app.features.history.OrderHistoryRepository
+import com.cravyn.app.features.history.OrderHistoryRepositoryImpl
 import com.cravyn.app.features.home.HomeApi
 import com.cravyn.app.features.home.HomeRepository
 import com.cravyn.app.features.home.HomeRepositoryImpl
@@ -114,6 +117,10 @@ object ApiModule {
     fun providesProfileRepository(impl: ProfileRepositoryImpl): ProfileRepository = impl
 
     @Provides
+    fun providesOrderHistoryRepository(impl: OrderHistoryRepositoryImpl): OrderHistoryRepository =
+        impl
+
+    @Provides
     @Singleton
     fun providesAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
@@ -159,5 +166,11 @@ object ApiModule {
     @Singleton
     fun providesProfileApi(retrofit: Retrofit): ProfileApi {
         return retrofit.create(ProfileApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesOrderHistoryApi(retrofit: Retrofit): OrderHistoryApi {
+        return retrofit.create(OrderHistoryApi::class.java)
     }
 }

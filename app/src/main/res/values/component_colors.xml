@@ -8,4 +8,5 @@
     <color name="offer_sub_heading_text_color">@color/black</color>
     <color name="join_plus_card_border_color">@color/black</color>
     <color name="discounted_price_text_color">@color/green_1</color>
+    <color name="order_history_images_list_end_color">@color/white</color>
 </resources>
