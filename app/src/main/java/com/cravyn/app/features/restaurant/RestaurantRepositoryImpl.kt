@@ -1,6 +1,7 @@
 package com.cravyn.app.features.restaurant
 
 import com.cravyn.app.data.api.ApiResponse
+import com.cravyn.app.data.api.safeCall
 import com.cravyn.app.features.restaurant.models.RestaurantMenuResponse
 import retrofit2.Response
 import javax.inject.Inject
@@ -12,6 +13,8 @@ class RestaurantRepositoryImpl @Inject constructor(
         restaurantId: String,
         limit: Int
     ): Response<ApiResponse<RestaurantMenuResponse>> {
-        return restaurantApi.getRestaurantMenu(restaurantId, limit)
+        return safeCall {
+            restaurantApi.getRestaurantMenu(restaurantId, limit)
+        }
     }
 }
