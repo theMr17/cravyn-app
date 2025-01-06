@@ -42,7 +42,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/join_the_feast">
 
-                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/OutlinedTextInputEditTextStyle"
+                    android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,7 +56,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name_text_input_layout">
 
-                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/OutlinedTextInputEditTextStyle"
+                    android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +70,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email_text_input_layout">
 
-                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/OutlinedTextInputEditTextStyle"
+                    android:inputType="phone" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +101,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dob_text_input_layout">
 
-                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/OutlinedTextInputEditTextStyle"
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,7 +116,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password_text_input_layout">
 
-                <com.google.android.material.textfield.TextInputEditText style="@style/OutlinedTextInputEditTextStyle" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/OutlinedTextInputEditTextStyle"
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
