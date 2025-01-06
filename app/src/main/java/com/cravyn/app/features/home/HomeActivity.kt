@@ -3,6 +3,7 @@ package com.cravyn.app.features.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.cravyn.app.R
 import com.cravyn.app.features.home.listeners.RecommendedRestaurantItemClickListener
@@ -32,6 +33,10 @@ class HomeActivity : AppCompatActivity(), RecommendedRestaurantItemClickListener
                 HomeFragment(),
                 TAG_HOME_FRAGMENT
             ).commitNow()
+        }
+
+        onBackPressedDispatcher.addCallback {
+            moveTaskToBack(true)
         }
     }
 

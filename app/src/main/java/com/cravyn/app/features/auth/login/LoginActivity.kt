@@ -3,6 +3,7 @@ package com.cravyn.app.features.auth.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.cravyn.app.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,10 @@ class LoginActivity : AppCompatActivity() {
                 LoginFragment(),
                 TAG_LOGIN_FRAGMENT
             ).commitNow()
+        }
+
+        onBackPressedDispatcher.addCallback {
+            moveTaskToBack(true)
         }
     }
 
