@@ -1,6 +1,7 @@
 package com.cravyn.app.features.home
 
 import com.cravyn.app.data.api.ApiResponse
+import com.cravyn.app.data.api.safeCall
 import com.cravyn.app.features.home.models.RecommendedRestaurantsResponse
 import retrofit2.Response
 import javax.inject.Inject
@@ -17,14 +18,16 @@ class HomeRepositoryImpl @Inject constructor(
         descending: Boolean,
         limit: Int
     ): Response<ApiResponse<RecommendedRestaurantsResponse>> {
-        return homeApi.getRecommendedRestaurants(
-            lat,
-            long,
-            minRating,
-            sortBy,
-            radius,
-            descending,
-            limit
-        )
+        return safeCall {
+            homeApi.getRecommendedRestaurants(
+                lat,
+                long,
+                minRating,
+                sortBy,
+                radius,
+                descending,
+                limit
+            )
+        }
     }
 }

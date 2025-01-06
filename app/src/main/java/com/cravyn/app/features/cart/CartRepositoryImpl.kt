@@ -1,6 +1,7 @@
 package com.cravyn.app.features.cart
 
 import com.cravyn.app.data.api.ApiResponse
+import com.cravyn.app.data.api.safeCall
 import com.cravyn.app.features.cart.models.AddItemToCartResponse
 import com.cravyn.app.features.cart.models.AddItemtoCartRequestBody
 import com.cravyn.app.features.cart.models.CartResponse
@@ -14,26 +15,38 @@ class CartRepositoryImpl @Inject constructor(
     private val cartApi: CartApi
 ) : CartRepository {
     override suspend fun addItemToCart(body: AddItemtoCartRequestBody): Response<ApiResponse<AddItemToCartResponse>> {
-        return cartApi.addItemToCart(body)
+        return safeCall {
+            cartApi.addItemToCart(body)
+        }
     }
 
     override suspend fun getCart(): Response<ApiResponse<CartResponse>> {
-        return cartApi.getCart()
+        return safeCall {
+            cartApi.getCart()
+        }
     }
 
     override suspend fun incrementItemCount(body: IncrementItemCountRequestBody): Response<ApiResponse<CartResponse>> {
-        return cartApi.incrementItemCount(body)
+        return safeCall {
+            cartApi.incrementItemCount(body)
+        }
     }
 
     override suspend fun decrementItemCount(body: DecrementItemCountRequestBody): Response<ApiResponse<CartResponse>> {
-        return cartApi.decrementItemCount(body)
+        return safeCall {
+            cartApi.decrementItemCount(body)
+        }
     }
 
     override suspend fun deleteItemFromCart(itemId: String): Response<ApiResponse<CartResponse>> {
-        return cartApi.deleteItemFromCart(itemId)
+        return safeCall {
+            cartApi.deleteItemFromCart(itemId)
+        }
     }
 
     override suspend fun placeOrder(body: PlaceOrderRequestBody): Response<ApiResponse<Unit>> {
-        return cartApi.placeOrder(body)
+        return safeCall {
+            cartApi.placeOrder(body)
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.cravyn.app.features.auth
 
 import com.cravyn.app.data.api.ApiResponse
 import com.cravyn.app.data.api.Resource
+import com.cravyn.app.data.api.safeCall
 import com.cravyn.app.features.auth.models.ForgotPasswordRequestBody
 import com.cravyn.app.features.auth.models.ForgotPasswordResponse
 import com.cravyn.app.features.auth.models.LoginRequestBody
@@ -26,27 +27,39 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun login(body: LoginRequestBody): Response<ApiResponse<LoginResponse>> {
-        return authApi.login(body)
+        return safeCall {
+            authApi.login(body)
+        }
     }
 
     override suspend fun logout(): Response<ApiResponse<Unit>> {
-        return authApi.logout()
+        return safeCall {
+            authApi.logout()
+        }
     }
 
     override suspend fun register(body: RegisterRequestBody): Response<ApiResponse<RegisterResponse>> {
-        return authApi.register(body)
+        return safeCall {
+            authApi.register(body)
+        }
     }
 
     override suspend fun forgotPassword(body: ForgotPasswordRequestBody): Response<ApiResponse<ForgotPasswordResponse>> {
-        return authApi.forgotPassword(USER_TYPE, body)
+        return safeCall {
+            authApi.forgotPassword(USER_TYPE, body)
+        }
     }
 
     override suspend fun otpVerification(body: OtpVerificationRequestBody): Response<ApiResponse<Unit>> {
-        return authApi.otpVerification(USER_TYPE, body)
+        return safeCall {
+            authApi.otpVerification(USER_TYPE, body)
+        }
     }
 
     override suspend fun resetPassword(body: ResetPasswordRequestBody): Response<ApiResponse<ResetPasswordResponse>> {
-        return authApi.resetPassword(USER_TYPE, body)
+        return safeCall {
+            authApi.resetPassword(USER_TYPE, body)
+        }
     }
 
     override fun saveUserToDatabase(user: User): Flow<Resource<Unit>> = flow {
