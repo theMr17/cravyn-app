@@ -117,7 +117,7 @@
     <string name="item_search_text">Search</string>
     <string name="item_query_text">Queries</string>
     <string name="item_cart_text">Cart</string>
-    <string name="order_id_dummy_text">#01493ef0-d491-45b4-a7b5-3316f041d00b</string>
+    <string name="order_time_dummy_text">Dec 31, 2024 10:33AM</string>
     <string name="order_no_dummy_text">Order No: 653602</string>
     <string name="order_final_price_dummy_text">₹816.37</string>
     <string name="status_label_text">Status:</string>
@@ -125,6 +125,7 @@
     <string name="cancel_order_button_text">Cancel</string>
     <string name="order_item_count_dummy_text">x2</string>
     <string name="order_item_count_text">x%1$d</string>
-    <string name="order_id_text">#%1$s</string>
     <string name="order_no_text">Order No: %1$s</string>
+    <string name="delivery_partner_label_text">Delivery Partner:</string>
+    <string name="delivery_partner_name_dummy_text">Delivery Partner Name</string>
 </resources>
