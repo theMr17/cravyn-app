@@ -1,7 +1,9 @@
 package com.cravyn.app.features.history.models
 
-
 import com.google.gson.annotations.SerializedName
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.TimeZone
 
 data class OrderHistoryResponse(
     @SerializedName("orders")
@@ -53,3 +55,22 @@ data class OrderHistoryResponse(
         )
     }
 }
+
+fun String.toDisplayableTime(): String {
+    return try {
+        // Parse the ISO 8601 string to a Date object.
+        val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        isoFormat.timeZone = TimeZone.getTimeZone("IST")
+        val date = isoFormat.parse(this)
+
+        // Format the Date object into a displayable string.
+        val displayFormat = SimpleDateFormat("MMM dd, yyyy h:mm a", Locale.getDefault())
+        displayFormat.timeZone = TimeZone.getDefault() // Format in the device's local time zone.
+        date?.let {
+            displayFormat.format(date)
+        } ?: this
+    } catch (e: Exception) {
+        this
+    }
+}
+

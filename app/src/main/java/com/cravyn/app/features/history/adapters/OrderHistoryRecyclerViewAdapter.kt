@@ -8,6 +8,7 @@ import com.cravyn.app.R
 import com.cravyn.app.databinding.ItemOrderHistoryBinding
 import com.cravyn.app.features.history.listeners.CancelOrderItemClickListener
 import com.cravyn.app.features.history.models.OrderHistoryResponse
+import com.cravyn.app.features.history.models.toDisplayableTime
 
 class OrderHistoryRecyclerViewAdapter(
     private val orderHistoryList: List<OrderHistoryResponse.Order>,
@@ -29,12 +30,12 @@ class OrderHistoryRecyclerViewAdapter(
         val item = orderHistoryList[position]
 
         holder.binding.apply {
-            orderIdText.text =
-                holder.itemView.context.getString(R.string.order_id_text, item.orderId)
+            orderTimeText.text = item.orderTimestamp.toDisplayableTime()
             orderNoText.text = holder.itemView.context.getString(R.string.order_no_text, item.listId)
             finalPriceText.text = holder.itemView.context.getString(R.string.formatted_price_text, item.checkoutPrice)
             statusText.text = item.orderStatus
             addressText.text = item.displayAddress
+            deliveryPartnerNameText.text = item.deliveryPartnerName
 
             if (item.canCancel) {
                 cancelOrderButton.visibility = View.VISIBLE
