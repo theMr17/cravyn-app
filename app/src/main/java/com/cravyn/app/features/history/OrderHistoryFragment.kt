@@ -11,10 +11,11 @@ import com.cravyn.app.data.api.Resource
 import com.cravyn.app.databinding.FragmentOrderHistoryBinding
 import com.cravyn.app.features.history.adapters.OrderHistoryRecyclerViewAdapter
 import com.cravyn.app.features.history.listeners.CancelOrderItemClickListener
+import com.cravyn.app.features.history.listeners.RepeatOrderButtonClickedListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OrderHistoryFragment : Fragment(), CancelOrderItemClickListener {
+class OrderHistoryFragment : Fragment(), CancelOrderItemClickListener, RepeatOrderButtonClickedListener {
     private var _binding: FragmentOrderHistoryBinding? = null
     private val binding get() = _binding!!
 
@@ -40,6 +41,7 @@ class OrderHistoryFragment : Fragment(), CancelOrderItemClickListener {
                     binding.orderHistoryRecyclerView.adapter =
                         OrderHistoryRecyclerViewAdapter(
                             it.data?.orders ?: emptyList(),
+                            this@OrderHistoryFragment,
                             this@OrderHistoryFragment
                         )
                 }
@@ -47,6 +49,21 @@ class OrderHistoryFragment : Fragment(), CancelOrderItemClickListener {
         }
 
         orderHistoryViewModel.cancelOrderLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+
+                is Resource.Loading -> {}
+
+                is Resource.Success -> {
+                    orderHistoryViewModel.getOrderHistory()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        orderHistoryViewModel.repeatOrderLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
@@ -69,7 +86,11 @@ class OrderHistoryFragment : Fragment(), CancelOrderItemClickListener {
         _binding = null
     }
 
-    override fun onCancelOrderItemClicked(orderId: String) {
+    override fun onCancelOrderButtonClicked(orderId: String) {
         orderHistoryViewModel.cancelOrder(orderId)
+    }
+
+    override fun onRepeatOrderButtonClicked(orderId: String) {
+        orderHistoryViewModel.repeatOrder(orderId)
     }
 }

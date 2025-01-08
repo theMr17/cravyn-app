@@ -20,4 +20,10 @@ class OrderHistoryRepositoryImpl @Inject constructor(
             orderHistoryApi.cancelOrder(orderId)
         }
     }
+
+    override suspend fun repeatOrder(orderId: String): Response<ApiResponse<Unit>> {
+        return safeCall {
+            orderHistoryApi.repeatOrder(orderId)
+        }
+    }
 }

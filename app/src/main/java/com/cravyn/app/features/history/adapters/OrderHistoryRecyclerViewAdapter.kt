@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cravyn.app.R
 import com.cravyn.app.databinding.ItemOrderHistoryBinding
 import com.cravyn.app.features.history.listeners.CancelOrderItemClickListener
+import com.cravyn.app.features.history.listeners.RepeatOrderButtonClickedListener
 import com.cravyn.app.features.history.models.OrderHistoryResponse
 import com.cravyn.app.features.history.models.toDisplayableTime
 
 class OrderHistoryRecyclerViewAdapter(
     private val orderHistoryList: List<OrderHistoryResponse.Order>,
-    private val cancelOrderItemClickListener: CancelOrderItemClickListener
+    private val cancelOrderItemClickListener: CancelOrderItemClickListener,
+    private val repeatOrderListener: RepeatOrderButtonClickedListener
 ) : RecyclerView.Adapter<OrderHistoryRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemOrderHistoryBinding) : RecyclerView.ViewHolder(binding.root)
@@ -30,6 +32,9 @@ class OrderHistoryRecyclerViewAdapter(
         val item = orderHistoryList[position]
 
         holder.binding.apply {
+            cancelOrderButton.visibility = View.INVISIBLE
+            repeatOrderButton.visibility = View.INVISIBLE
+
             orderTimeText.text = item.orderTimestamp.toDisplayableTime()
             orderNoText.text = holder.itemView.context.getString(R.string.order_no_text, item.listId)
             finalPriceText.text = holder.itemView.context.getString(R.string.formatted_price_text, item.checkoutPrice)
@@ -43,8 +48,18 @@ class OrderHistoryRecyclerViewAdapter(
                 cancelOrderButton.visibility = View.INVISIBLE
             }
 
+            if (item.canRepeat) {
+                repeatOrderButton.visibility = View.VISIBLE
+            } else {
+                repeatOrderButton.visibility = View.INVISIBLE
+            }
+
             cancelOrderButton.setOnClickListener {
-                cancelOrderItemClickListener.onCancelOrderItemClicked(item.orderId)
+                cancelOrderItemClickListener.onCancelOrderButtonClicked(item.orderId)
+            }
+
+            repeatOrderButton.setOnClickListener {
+                repeatOrderListener.onRepeatOrderButtonClicked(item.orderId)
             }
 
             orderHistoryImagesRecyclerView.adapter = OrderItemImageRecyclerViewAdapter(item.items)

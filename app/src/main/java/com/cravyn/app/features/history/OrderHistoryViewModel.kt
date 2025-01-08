@@ -24,6 +24,10 @@ class OrderHistoryViewModel @Inject constructor(
         MutableLiveData()
     val cancelOrderLiveData: LiveData<Resource<Unit>> get() = _cancelOrderLiveData
 
+    private val _repeatOrderLiveData: MutableLiveData<Resource<Unit>> =
+        MutableLiveData()
+    val repeatOrderLiveData: LiveData<Resource<Unit>> get() = _repeatOrderLiveData
+
     fun getOrderHistory() {
         viewModelScope.launch {
             _orderHistoryLiveData.postValue(Resource.Loading())
@@ -60,6 +64,27 @@ class OrderHistoryViewModel @Inject constructor(
                 )
             } else {
                 _cancelOrderLiveData.postValue(
+                    Resource.Error(getErrorMessage(response))
+                )
+            }
+        }
+    }
+
+    fun repeatOrder(orderId: String) {
+        viewModelScope.launch {
+            _repeatOrderLiveData.postValue(Resource.Loading())
+
+            val response = orderHistoryRepository.repeatOrder(orderId)
+
+            if (response.isSuccessful) {
+                _repeatOrderLiveData.postValue(
+                    Resource.Success(
+                        data = response.body()!!.data,
+                        message = response.body()?.message
+                    )
+                )
+            } else {
+                _repeatOrderLiveData.postValue(
                     Resource.Error(getErrorMessage(response))
                 )
             }

@@ -134,6 +134,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/repeat_order_button"
+            style="@style/SmallButtonStyle"
+            android:padding="0dp"
+            android:text="Repeat"
+            android:backgroundTint="@color/green_1"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View

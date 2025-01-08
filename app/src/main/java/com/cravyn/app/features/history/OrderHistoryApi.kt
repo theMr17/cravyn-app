@@ -15,4 +15,9 @@ interface OrderHistoryApi {
     suspend fun cancelOrder(
         @Query("orderId") orderId: String
     ): Response<ApiResponse<Unit>>
+
+    @POST("customer/repeat-order")
+    suspend fun repeatOrder(
+        @Query("orderId") orderId: String
+    ): Response<ApiResponse<Unit>>
 }

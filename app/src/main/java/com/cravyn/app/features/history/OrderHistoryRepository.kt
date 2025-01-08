@@ -7,4 +7,5 @@ import retrofit2.Response
 interface OrderHistoryRepository {
     suspend fun getOrderHistory(): Response<ApiResponse<OrderHistoryResponse>>
     suspend fun cancelOrder(orderId: String): Response<ApiResponse<Unit>>
+    suspend fun repeatOrder(orderId: String): Response<ApiResponse<Unit>>
 }

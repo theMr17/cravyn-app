@@ -14,6 +14,8 @@ data class OrderHistoryResponse(
         val addressId: String,
         @SerializedName("can_cancel")
         val canCancel: Boolean,
+        @SerializedName("can_repeat")
+        val canRepeat: Boolean,
         @SerializedName("checkout_price")
         val checkoutPrice: String,
         @SerializedName("customer_id")
